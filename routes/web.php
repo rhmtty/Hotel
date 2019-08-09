@@ -14,3 +14,54 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('/', function() {
+        return view('template');
+    });
+
+    /**
+     * KAMAR CONTROLLER
+     */
+    Route::group(['prefix' => 'kamar'], function(){
+        Route::get('/', 'KamarController@index');
+        Route::get('/form', 'KamarController@formNew');
+        Route::get('/save', 'KamarController@postNew');
+
+    });
+    /**
+     * LANTAI CONTROLLER
+     */
+    Route::group(['prefix' => 'lantai'], function(){
+        Route::get('/', 'LantaiController@index');
+        Route::get('/form', 'LantaiController@formNew');
+        Route::get('/save', 'LantaiController@postNew');
+
+    });
+    /**
+     * TIPE LANTAI CONTROLLER
+     */
+    Route::group(['prefix' => 'tipe-kamar'], function(){
+        Route::get('/', 'TipeKamarController@index');
+        Route::get('/form', 'TipeKamarController@formNew');
+        Route::post('/save', 'TipeKamarController@postNew');
+    });
+    /**
+     * BLOK CONTROLLER
+     */
+    Route::group(['prefix' => 'blok'], function(){
+        Route::get('/', 'BlokController@index');
+        Route::get('/form', 'BlokController@formNew');
+        Route::post('/save', 'BlokController@postNew');
+    });
+    /**
+     * 
+     * BOOKING CONTROLLER
+     */
+    Route::group(['prefix' => 'booking'], function(){
+        Route::get('/', 'BookingController@index');
+        Route::get('/form', 'BookingController@formNew');
+        Route::post('/save', 'BookingController@postNew');
+
+    });
+});

@@ -15,6 +15,12 @@ class CreateKamarTable extends Migration
     {
         Schema::create('kamar', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('lantai_id');
+            $table->integer('blok_id');
+            $table->integer('tipe_id');
+            $table->string('no_kamar');
+            $table->string('deskripsi', 2000);
+            $table->integer('active');
             $table->timestamps();
         });
     }
