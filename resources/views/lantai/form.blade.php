@@ -1,68 +1,79 @@
 @extends('template')
 @section('content')
 <div class="right_col" role="main">
-<div class="">
-<div class="page-title">
-    <div class="title_left">
-    <h3>Form Tambah Lantai</h3>
-    </div>
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Form Tambah Lantai</h3>
+        </div>
 
-    <div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-        <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for...">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-        </span>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-</div>
-<div class="clearfix"></div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="x_panel">
-        <div class="x_title">
-        <h2>Tambah<small>Lantai</small></h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel-footer">
+                @if(session('success'))
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span
+                                    aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                        <strong>Sukses! </strong> {{session('success')}}
+                    </div>
+                @endif
+            </div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Tambah<small>Lantai</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Lantai <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Level Lantai<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select name="no_lantai" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">---PILIH LEVEL LANTAI---</option>
+                                    <option value="1">Level 1</option>
+                                    <option value="2">Level 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="x_content">
-        <br />
-        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save" method="post" enctype="multipart/form-data">
-
-            <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" name="no">Kode Lantai <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-            </div>
-            <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">No Lantai<span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-            </div>
-
-            <div class="ln_solid"></div>
-            <div class="form-group">
-            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <button class="btn btn-primary" type="button">Cancel</button>
-                <button class="btn btn-primary" type="reset">Reset</button>
-                <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-            </div>
-
-        </form>
-        </div>
-    </div>
     </div>
 </div>
 @stop

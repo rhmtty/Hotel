@@ -35,11 +35,11 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'lantai'], function(){
         Route::get('/', 'LantaiController@index');
         Route::get('/form', 'LantaiController@formNew');
-        Route::get('/save', 'LantaiController@postNew');
+        Route::post('/save', 'LantaiController@postNew');
 
     });
     /**
-     * TIPE LANTAI CONTROLLER
+     * TIPE KAMAR CONTROLLER
      */
     Route::group(['prefix' => 'tipe-kamar'], function(){
         Route::get('/', 'TipeKamarController@index');
