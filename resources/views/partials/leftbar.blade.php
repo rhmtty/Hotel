@@ -8,11 +8,15 @@
   <!-- menu profile quick info -->
   <div class="profile clearfix">
     <div class="profile_pic">
-      <img src="{{url('assets/images/female.jpg')}}" alt="..." class="img-circle profile_img">
+    @if(Auth::user()->jenis_kelamin=="male")
+      <img src="{{url('assets/images/male.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
+    @else
+      <img src="{{url('assets/images/female.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
+    @endif
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
-      <h2>John Doe</h2>
+      <h2>{{ Auth::user()->fullname }}</h2>
     </div>
   </div>
   <!-- /menu profile quick info -->

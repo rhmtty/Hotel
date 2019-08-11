@@ -42,14 +42,21 @@
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save" method="post" enctype="multipart/form-data">
                     @csrf
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('kode') ? ' has-error' : ''}}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Lantai <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode" value="{{ old('kode') }}">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('nama') ? ' has-error' : ''}}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Lantai <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="nama" value="{{ old('nama') }}">
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('no_lantai') ? ' has-error' : ''}}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Level Lantai<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -57,15 +64,23 @@
                                     <option value="">---PILIH LEVEL LANTAI---</option>
                                     <option value="1">Level 1</option>
                                     <option value="2">Level 2</option>
+                                    <option value="3">Level 3</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('deskripsi') ? ' has-error' : ''}}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Deskripsi<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea name="deskripsi" id="textarea" rows="6" class="form-control col-md-7 col-xs-12">{{ old('kode') }}</textarea>
                             </div>
                         </div>
 
                         <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button class="btn btn-danger" type="button">Cancel</button>
+                                    <button class="btn btn-warning" type="reset">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

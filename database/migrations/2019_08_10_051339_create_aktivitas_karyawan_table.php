@@ -15,7 +15,7 @@ class CreateAktivitasKaryawanTable extends Migration
     {
         Schema::create('aktivitas_karyawan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_kary', 255);
+            $table->string('nama_kary', 255)->nullabe();
             $table->string('info_kary', 500);
             $table->string('aktivitas', 500);
             $table->timestamps();
