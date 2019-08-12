@@ -8,11 +8,11 @@
   <!-- menu profile quick info -->
   <div class="profile clearfix">
     <div class="profile_pic">
-    @if(Auth::user()->jenis_kelamin=="male")
-      <img src="{{url('assets/images/male.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
-    @else
-      <img src="{{url('assets/images/female.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
-    @endif
+      @if(Auth::user()->jenis_kelamin=="laki-laki")
+        <img src="{{url('assets/images/male.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
+      @else
+        <img src="{{url('assets/images/female.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
+      @endif
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
@@ -83,9 +83,12 @@
     <a data-toggle="tooltip" data-placement="top" title="Lock">
       <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
     </a>
-    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+    <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
       <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
     </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+    </form>
   </div>
   <!-- /menu footer buttons -->
 </div>
