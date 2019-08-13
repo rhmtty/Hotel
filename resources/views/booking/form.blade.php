@@ -1,6 +1,8 @@
 @extends('template')
+@section('title')
+  Booking
+@stop
 @section('content')
-<div class="right_col" role="main">
     <div class="page-title">
         <div class="title_left">
             <h3>Pesan Kamar</h3>
@@ -114,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <button type="button" class="btn btn-danger">Cancel</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
@@ -123,5 +125,4 @@
             </div>
         </div>
     </div>
-</div>
 @stop

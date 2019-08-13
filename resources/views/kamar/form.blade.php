@@ -1,7 +1,5 @@
 @extends('template')
 @section('content')
-
-<div class="right_col" role="main">
     <div class="page-title">
         <div class="title_left">
         <h3>Form Tambah Kamar</h3>
@@ -68,7 +66,6 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button class="btn btn-danger" type="button">Cancel</button>
                                 <button class="btn btn-primary" type="reset">Reset</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
@@ -78,5 +75,4 @@
             </div>
         </div>
     </div>
-</div>
 @stop

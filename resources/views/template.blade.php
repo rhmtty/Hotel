@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="{{ url('assets/favicon.ico')}}" type="image/ico" />
 
-    <title>Hotel Merakyat</title>
+    <title>@yield('title') | Hotel Merakyat</title>
 
     @include('partials.cssfile')
   </head>
@@ -27,7 +27,8 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-
+        <div class="right_col" role="main">
+          <!-- top tiles -->
           <!-- /top tiles -->
           @yield('content')
         </div>

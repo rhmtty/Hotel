@@ -16,9 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', function() {
-        return view('template');
-    });
+    Route::get('/', 'DashboardController@index');
 
     /**
      * KAMAR CONTROLLER
@@ -63,6 +61,14 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/form', 'BookingController@formNew');
         Route::post('/save', 'BookingController@postNew');
 
+    });
+    /**
+     * KARYAWAN CONTROLLER
+     */
+    Route::group(['prefix' => 'karyawan'], function() {
+        Route::get('/', 'KaryawanController@index');
+        Route::get('/form', 'KaryawanController@formNew');
+        Route::get('/save', 'KaryawanController@postNew');
     });
 });
 
