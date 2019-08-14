@@ -1,5 +1,17 @@
 @extends('template')
+@section('title')
+    Tipe Kamar
+@stop
 @section('content')
+  <div class="page-title">
+      <div class="title_left">
+          <ul class="breadcrumb">
+              <li><a href="/admin"><h3>Home</h3></a></li>
+              <li>Tipe Kamar</li>
+          </ul>
+      </div>
+  </div>
+  <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="x_panel tile fixed_height_320">

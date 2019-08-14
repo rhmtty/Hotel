@@ -1,4 +1,7 @@
 @extends('template')
+@section('title')
+    Home
+@stop
 @section('content')
     <!-- top tiles -->
     <div class="row tile_count">
@@ -34,4 +37,42 @@
         </div>
     </div>
     <!-- /top tiles -->
+    
+    <div class="row">
+        <div class="panel-footer">
+            @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span
+                                aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                    <strong>Sukses! </strong> {{session('success')}}
+                </div>
+            @endif
+        </div>
+        <table class="table table-stripped tabel-hover">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Karyawan</th>
+                    <th>Info Karyawan</th>
+                    <th>Aktivitas</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($aktivitas as $key => $rs)
+                <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $rs->nama_kary }}</td>
+                    <td>{{ $rs->info_kary }}</td>
+                    <td>{{ $rs->aktivitas }}</td>
+                    <td>
+                        <a href="/admin/delete/{{$rs->id}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        @if($aktivitas->count()>0)
+            {{$aktivitas->render()}}
+        @endif
+    </div>
 @stop

@@ -1,7 +1,19 @@
 @extends('template')
+@section('title')
+    Lantai
+@stop
 @section('content')
+  <div class="page-title">
+      <div class="title_left">
+          <ul class="breadcrumb">
+              <li><a href="/admin"><h3>Home</h3></a></li>
+              <li>Lantai</li>
+          </ul>
+      </div>
+  </div>
+  <div class="clearfix"></div>
   <div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="col-md-4">
     @foreach($lantai as $rs)
       <div class="x_panel tile fixed_height_320">
           <div class="x_title">

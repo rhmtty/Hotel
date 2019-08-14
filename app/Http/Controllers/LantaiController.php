@@ -11,6 +11,11 @@ use DB;
 
 class LantaiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data['lantai'] = Lantai::get();
@@ -41,7 +46,7 @@ class LantaiController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat.' '.Auth::user()->telp;
-        $karyawan->aktivitas = "Lantai Baru Ditambahakan</br>Kode Lantai:". ' '. $request->kode;
+        $karyawan->aktivitas = "Lantai Baru Ditambahkan Kode Lantai:". ' '. $request->kode;
         $karyawan->save();
 
         return back()->with('success', 'Lantai baru sukses ditambahkan.!');

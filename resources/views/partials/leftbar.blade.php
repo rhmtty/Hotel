@@ -30,12 +30,6 @@
       <ul class="nav side-menu">
         <li><a href="/admin"><i class="fa fa-home"></i> Home <span></span></a>
         </li>
-        <li><a><i class="fa fa-bed"></i> Kamar <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{{url('/admin/kamar/form')}}">Tambah Kamar</a></li>
-            <li><a href="{{url('/admin/kamar')}}">List Kamar</a></li>
-          </ul>
-        </li>
         <li><a><i class="fa fa-inbox"></i> Lantai <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/lantai/form')}}">Tambah Lantai</a></li>
@@ -54,6 +48,12 @@
             <li><a href="{{url('/admin/blok')}}">List Blok</a></li>
           </ul>
         </li>
+        <li><a><i class="fa fa-bed"></i> Kamar <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{url('/admin/kamar/form')}}">Tambah Kamar</a></li>
+            <li><a href="{{url('/admin/kamar')}}">List Kamar</a></li>
+          </ul>
+        </li>
         <li><a><i class="fa fa-book"></i>Booking<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/booking/form')}}">Pesan Kamar</a></li>
@@ -62,7 +62,6 @@
         </li>
         <li><a><i class="fa fa-user"></i>Karyawan <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="{{url('/admin/karyawan/form')}}">Tambah Karyawan</a></li>
             <li><a href="{{url('/admin/karyawan')}}">List Karyawan</a></li>
           </ul>
         </li>
@@ -85,7 +84,29 @@
     </a>
     <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
       <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+     
     </a>
+    
+    <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
       @csrf
     </form>

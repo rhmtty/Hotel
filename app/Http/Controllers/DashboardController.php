@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\AktivitasKaryawan;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        return view('dashboard.dashboard');
+        $data['aktivitas'] = AktivitasKaryawan::get();
+        return view('dashboard.dashboard', $data);
+    }
+
+    /**
+     * DELETE AKTIVITAS
+     */
+    public function delete($id)
+    {
+        $akivitas = AktivitasKaryawan::find($id);
+        $akivitas->delete();
+        return back()->with('success', 'Aktivitas Karyawan Berhasil Dihapus!');
     }
 }

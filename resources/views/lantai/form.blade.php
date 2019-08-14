@@ -1,8 +1,14 @@
 @extends('template')
+@section('title')
+    Lantai
+@stop
 @section('content')
     <div class="page-title">
         <div class="title_left">
-            <h3>Form Tambah Lantai</h3>
+            <ul class="breadcrumb">
+                <li><a href="/admin"><h3>Home</h3></a></li>
+                <li>Lantai</li>
+            </ul>
         </div>
     </div>
     <div class="clearfix"></div>

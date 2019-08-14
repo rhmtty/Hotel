@@ -5,18 +5,10 @@
 @section('content')
     <div class="page-title">
         <div class="title_left">
-            <h3>Pesan Kamar</h3>
-        </div>
-
-        <div class="title_right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div>
-            </div>
+            <ul class="breadcrumb">
+                <li><a href="/admin"><h3>Home</h3></a></li>
+                <li><span>Booking</span></li>
+            </ul>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -116,7 +108,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <button type="reset" class="btn btn-danger">Reset</button>
+                                <button type="btn btn-warning" class="btn btn-danger">Reset</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>

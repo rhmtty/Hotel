@@ -15,7 +15,7 @@
           <span class=" fa fa-angle-down"></span>
         </a>
         <ul class="dropdown-menu dropdown-usermenu pull-right">
-          <li><a href="javascript:;"> Profile</a></li>
+          <li><a href="/admin/karyawan/profile/{{ Auth::user()->id }}"> Profile</a></li>
           <li>
             <a href="javascript:;">
               <span class="badge bg-red pull-right">50%</span>
@@ -28,6 +28,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
+            
           </li>
         </ul>
       </li>

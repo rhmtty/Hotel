@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class KamarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         return view('kamar.index');
@@ -27,5 +32,14 @@ class KamarController extends Controller
         $kamar->deskripsi = $request->deskripsi;
         $kamar->active = $request->tersedia == "on" ? 1:0;
         $kamar->save();
+
+        $karyawan = new AktivitasKaryawan();
+        $karyawan->nama_kary = Auth::user()->fullname;
+        $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+        $karyawan->aktivitas = "Kamar Baru Ditambhakan No Kamar: ". $request->no_kamar;
+        $karyawan->save();
+
+        return back()->with('success', 'Blok baru sukses ditambahkan!1!1');
+
     } 
 }
