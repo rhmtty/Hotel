@@ -55,6 +55,7 @@
                     <th>Nama Karyawan</th>
                     <th>Info Karyawan</th>
                     <th>Aktivitas</th>
+                    <th>Waktu</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +65,7 @@
                     <td>{{ $rs->nama_kary }}</td>
                     <td>{{ $rs->info_kary }}</td>
                     <td>{{ $rs->aktivitas }}</td>
+                    <td>{{ $rs->created_at->diffForHumans() }}</td>
                     <td>
                         <a href="/admin/delete/{{$rs->id}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
@@ -71,8 +73,8 @@
             @endforeach
             </tbody>
         </table>
-        @if($aktivitas->count()>0)
+        <!-- @if($aktivitas->count()>0)
             {{$aktivitas->render()}}
-        @endif
+        @endif -->
     </div>
 @stop

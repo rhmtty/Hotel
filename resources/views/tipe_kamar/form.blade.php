@@ -14,6 +14,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel-footer">
+            @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                    <strong>Sukses! </strong> {{session('success')}}
+                </div>
+            @endif
+        </div>
         <div class="x_panel">
             <div class="x_title">
             <h2><strong>Tambah</strong><small><span>Tipe Kamar</span></small></h2>
@@ -27,25 +35,26 @@
             <div class="x_content">
             <br />
                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{url('/admin/tipe-kamar/save')}}" method="post" enctype="multipart/form-data">
-
-                    <div class="form-group">
+                @csrf
+                    <div class="form-group {{$errors->has('tipe') ? ' has-error' : ''}}">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tipe Kamar<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="tipe_kamar" required="required" class="form-control col-md-7 col-xs-12">
+                            <input type="text" id="tipe" name="tipe" required="required" value="{{ old('tipe') }}" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{$errors->has('tipe') ? ' has-error' : ''}}">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Harga<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12">
+                            <input type="text" id="last-name" name="harga" required="required" value="{{old('harga')}}" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
+                    <div class="form-group {{$errors->has('tipe') ? ' has-error' : ''}}">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="textarea" required="required" name="deskripsi" class="form-control col-md-7 col-xs-12"></textarea>
+                            <textarea id="textarea" required="required" name="deskripsi" value="{{old('deskripsi')}}" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                     </div>
 

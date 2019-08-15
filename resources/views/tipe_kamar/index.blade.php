@@ -13,112 +13,68 @@
   </div>
   <div class="clearfix"></div>
 <div class="row">
-  <div class="col-md-4 col-sm-4 col-xs-12">
-    <div class="x_panel tile fixed_height_320">
-      <div class="x_title">
-        <h2>App Versions</h2>
-        <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings 1</a>
-              </li>
-              <li><a href="#">Settings 2</a>
-              </li>
-            </ul>
-          </li>
-          <li><a class="close-link"><i class="fa fa-close"></i></a>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <h4>App Usage across versions</h4>
-        <div class="widget_summary">
-          <div class="w_left w_25">
-            <span>0.1.5.2</span>
+  <div class="panel-footer">
+        @if(session('success'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <strong>Sukses! </strong> {{session('success')}}
           </div>
-          <div class="w_center w_55">
-            <div class="progress">
-              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                <span class="sr-only">60% Complete</span>
-              </div>
-            </div>
+        @elseif(session('delete'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <strong>Sukses! </strong> {{session('delete')}}
           </div>
-          <div class="w_right w_20">
-            <span>123k</span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-
-        <div class="widget_summary">
-          <div class="w_left w_25">
-            <span>0.1.5.3</span>
-          </div>
-          <div class="w_center w_55">
-            <div class="progress">
-              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                <span class="sr-only">60% Complete</span>
-              </div>
-            </div>
-          </div>
-          <div class="w_right w_20">
-            <span>53k</span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="widget_summary">
-          <div class="w_left w_25">
-            <span>0.1.5.4</span>
-          </div>
-          <div class="w_center w_55">
-            <div class="progress">
-              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                <span class="sr-only">60% Complete</span>
-              </div>
-            </div>
-          </div>
-          <div class="w_right w_20">
-            <span>23k</span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="widget_summary">
-          <div class="w_left w_25">
-            <span>0.1.5.5</span>
-          </div>
-          <div class="w_center w_55">
-            <div class="progress">
-              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                <span class="sr-only">60% Complete</span>
-              </div>
-            </div>
-          </div>
-          <div class="w_right w_20">
-            <span>3k</span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="widget_summary">
-          <div class="w_left w_25">
-            <span>0.1.5.6</span>
-          </div>
-          <div class="w_center w_55">
-            <div class="progress">
-              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                <span class="sr-only">60% Complete</span>
-              </div>
-            </div>
-          </div>
-          <div class="w_right w_20">
-            <span>1k</span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
+        @endif
     </div>
-  </div>
+  <div class="col-md-4">
+    @foreach($tipe_kamar as $rs)
+      <div class="x_panel tile fixed_height_320">
+          <div class="x_title">
+              <h2>{{$rs->tipe_kamar}}</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('/admin/tipe-kamar/edit/'. $rs->id) }}"><i class="fa fa-pencil" title="Edit"><span>  Edit</span></i></a></li>
+                    <li><a href="{{ url('/admin/tipe-kamar/delete/'. $rs->id) }}"><i class="fa fa-trash" title="Hapus"><span>  Hapus</span></i></a></li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+            <div class="clearfix"></div>
+          </div>
+        <div class="x_content">
+          <div class="widget_summary">
+            <div class="w_left w_30" style="width:30%">
+              <strong>Harga:</strong>
+            </div>
+            <div class="w_center w_25">
+              <div class="">
+                <div class="">
+                  <span class="">{{$rs->harga}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div><br/>
+          <div class="widget_summary">
+            <div class="w_left w_30" style="width:30%">
+              <strong>Deskripsi:</strong>
+            </div>
+            <div class="w_center w_25" style="width:40%">
+              <div class="">
+                <div class="">
+                  <span class="">{{$rs->deskripsi}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    @endforeach
+    </div>
 </div>
 @stop

@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'KamarController@index');
         Route::get('/form', 'KamarController@formNew');
         Route::post('/save', 'KamarController@postNew');
+        Route::post('/edit/{id}', 'KamarController@showEdit');
 
     });
     /**
@@ -43,6 +44,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'LantaiController@index');
         Route::get('/form', 'LantaiController@formNew');
         Route::post('/save', 'LantaiController@postNew');
+        Route::get('/edit/{id}', 'LantaiController@showEdit');
+        Route::get('/delete/{id}', 'LantaiController@delete');
+        Route::post('/save/{id}', 'LantaiController@postEdit');
 
     });
     /**
@@ -52,6 +56,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'TipeKamarController@index');
         Route::get('/form', 'TipeKamarController@formNew');
         Route::post('/save', 'TipeKamarController@postNew');
+        Route::get('/edit/{id}', 'TipeKamarController@showEdit');
+        Route::get('/delete/{id}', 'TipeKamarController@delete');
+        Route::post('/save/{id}', 'TipeKamarController@postEdit');
+
     });
     /**
      * BLOK CONTROLLER
@@ -60,6 +68,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'BlokController@index');
         Route::get('/form', 'BlokController@formNew');
         Route::post('/save', 'BlokController@postNew');
+        Route::get('/edit/{id}', 'BlokController@showEdit');
+        Route::post('/save/{id}', 'BlokController@postEdit');
     });
     /**
      * 

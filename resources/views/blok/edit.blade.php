@@ -28,27 +28,20 @@
                 </div>
                 <div class="x_content">
                 <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{url('/admin/kamar/save')}}" method="post" enctype="multipart/form-data">
-
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{url('/admin/blok/save/'. $blok->id)}}" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
                         <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" name="nama">Kode<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name" name="nama">Nama Blok<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="nama" required="required" class="form-control col-md-7 col-xs-12" value="{{ $blok->nama_blok }}">
+                            </div>
                         </div>
-                        </div>
-                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Nama Blok<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                        </div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
-                        </div>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="textarea" required="required" name="deskripsi" class="form-control col-md-7 col-xs-12">{{ $blok->deskripsi }}</textarea>
+                            </div>
                         </div>
 
                         <div class="ln_solid"></div>

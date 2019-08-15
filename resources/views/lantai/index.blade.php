@@ -13,6 +13,19 @@
   </div>
   <div class="clearfix"></div>
   <div class="row">
+    <div class="panel-footer">
+        @if(session('success'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <strong>Sukses! </strong> {{session('success')}}
+          </div>
+        @elseif(session('delete'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <strong>Sukses! </strong> {{session('delete')}}
+          </div>
+        @endif
+    </div>
     <div class="col-md-4">
     @foreach($lantai as $rs)
       <div class="x_panel tile fixed_height_320">
@@ -23,8 +36,8 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#"><i class="fa fa-pencil" title="Edit"><span>  Edit</span></i></a></li>
-                    <li><a href="#"><i class="fa fa-trash" title="Hapus"><span>  Hapus</span></i></a></li>
+                    <li><a href="{{ url('/admin/lantai/edit/'. $rs->id) }}"><i class="fa fa-pencil" title="Edit"><span>  Edit</span></i></a></li>
+                    <li><a href="{{ url('/admin/lantai/delete/'. $rs->id) }}"><i class="fa fa-trash" title="Hapus"><span>  Hapus</span></i></a></li>
                   </ul>
                 </li>
                 <li><a class="close-link"><i class="fa fa-close"></i></a>

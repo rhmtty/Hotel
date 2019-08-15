@@ -14,7 +14,7 @@ class DashboardController extends Controller
     
     public function index()
     {
-        $data['aktivitas'] = AktivitasKaryawan::get();
+        $data['aktivitas'] = AktivitasKaryawan::orderBy('id', 'desc')->paginate(10);
         return view('dashboard.dashboard', $data);
     }
 

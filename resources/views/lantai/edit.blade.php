@@ -14,15 +14,6 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel-footer">
-                @if(session('success'))
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span
-                                    aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
-                        <strong>Sukses! </strong> {{session('success')}}
-                    </div>
-                @endif
-            </div>
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Edit<small>Lantai</small></h2>
@@ -34,20 +25,20 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save" method="post" enctype="multipart/form-data">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save/{{ $lantai->id }}" method="post" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group{{ $errors->has('kode') ? ' has-error' : ''}}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Lantai <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode" value="{{ old('kode') }}">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode" value="{{ $lantai->kode_lantai }}">
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('nama') ? ' has-error' : ''}}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Lantai <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="nama" value="{{ old('nama') }}">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="nama" value="{{ $lantai->nama_lantai }}">
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('no_lantai') ? ' has-error' : ''}}">
@@ -56,9 +47,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="no_lantai" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">---PILIH LEVEL LANTAI---</option>
-                                    <option value="1">Level 1</option>
-                                    <option value="2">Level 2</option>
-                                    <option value="3">Level 3</option>
+                                    <option value="1" @if($lantai->level == 1) selected @endif>Level 1</option>
+                                    <option value="2" @if($lantai->level == 2) selected @endif>Level 2</option>
+                                    <option value="3" @if($lantai->level == 3) selected @endif>Level 3</option>
                                 </select>
                             </div>
                         </div>
@@ -66,7 +57,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Deskripsi<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea name="deskripsi" id="textarea" rows="6" class="form-control col-md-7 col-xs-12">{{ old('kode') }}</textarea>
+                                <textarea name="deskripsi" id="textarea" rows="6" class="form-control col-md-7 col-xs-12">{{ $lantai->deskripsi }}</textarea>
                             </div>
                         </div>
 

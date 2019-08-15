@@ -42,4 +42,11 @@ class KamarController extends Controller
         return back()->with('success', 'Blok baru sukses ditambahkan!1!1');
 
     } 
+
+    public function showEdit($id)
+    {
+        $kamar = Kamar::find($id);
+        return view('kamar.edit')
+            ->with('Kamar', $kamar);
+    }
 }
