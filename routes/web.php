@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'BlokController@postNew');
         Route::get('/edit/{id}', 'BlokController@showEdit');
         Route::post('/save/{id}', 'BlokController@postEdit');
+        Route::delete('/delete', 'BlokController@deleteData');
     });
     /**
      * 

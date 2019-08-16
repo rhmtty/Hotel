@@ -15,23 +15,35 @@
   <div class="row">
     <div class="panel-footer">
         @if(session('success'))
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
-                <strong>Sukses! </strong> {{session('success')}}
-            </div>
+          <div class="alert alert-info" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <span class="badge">Sukses! </span> {{session('success')}}
+          </div>
+          @elseif(session('hapus'))
+          <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <span class="badge">Sukses! </span> {{session('hapus')}}
+          </div>
         @endif
     </div>
+    @foreach($blok as $result)
     <div class="col-md-4 col-sm-4 col-xs-12">
-      @foreach($blok as $result)
       <div class="x_panel tile fixed_height_320">
         <div class="x_title">
-          <h2>No </h2>
+          <!-- <h2>No </h2> -->
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
             <li class="dropdown">
               <a href="/admin/blok/edit/{{ $result->id }}" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a></li>
-            <li><a href="/admin/blok/delete" role="button" aria-expanded="false"><i class="fa fa-eraser"></i></a></li>
+            <li>
+              <a href="{{ url('/admin/blok/delete') }}" role="button" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"><i class="fa fa-eraser"></i></a>
+              <form id="delete-form" action="{{ url('/admin/blok/delete') }}" method="post" style="display: none;">
+                @method('DELETE')
+                @csrf
+                <input type="hidden" name="id" value="{{ $result->id }}">
+              </form>
+            </li>
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -40,7 +52,7 @@
           <h4>{{ $result->deskripsi }}</h4>
         </div>
       </div>
-      @endforeach
     </div>
+    @endforeach
   </div>
 @stop

@@ -26,8 +26,8 @@
           </div>
         @endif
     </div>
+  @foreach($tipe_kamar as $rs)
   <div class="col-md-4">
-    @foreach($tipe_kamar as $rs)
       <div class="x_panel tile fixed_height_320">
           <div class="x_title">
               <h2>{{$rs->tipe_kamar}}</h2>
@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-    @endforeach
-    </div>
+  </div>
+  @endforeach
 </div>
 @stop

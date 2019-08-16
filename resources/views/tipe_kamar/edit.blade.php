@@ -25,7 +25,7 @@
             </div>
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Edit<small>Lantai</small></h2>
+                    <h2>Edit<small>Tipe Kamar</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -34,39 +34,27 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/lantai/save" method="post" enctype="multipart/form-data">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/admin/tipe-kamar/save/{{ $tipekamar->id }}" method="post" enctype="multipart/form-data">
                     @csrf
-                        <div class="form-group{{ $errors->has('kode') ? ' has-error' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Lantai <span class="required">*</span>
+                        <div class="form-group{{ $errors->has('tipe') ? ' has-error' : ''}}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipe Kamar <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="kode" value="{{ old('kode') }}">
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="tipe" value="{{ $tipekamar->tipe_kamar }}">
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('nama') ? ' has-error' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Lantai <span class="required">*</span>
+                        <div class="form-group{{ $errors->has('harga') ? ' has-error' : ''}}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Harga <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="nama" value="{{ old('nama') }}">
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('no_lantai') ? ' has-error' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Level Lantai<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="no_lantai" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">---PILIH LEVEL LANTAI---</option>
-                                    <option value="1">Level 1</option>
-                                    <option value="2">Level 2</option>
-                                    <option value="3">Level 3</option>
-                                </select>
+                                <input type="text" id="kode" required="required" class="form-control col-md-7 col-xs-12" name="harga" value="{{ $tipekamar->harga }}">
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('deskripsi') ? ' has-error' : ''}}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"name="nama">Deskripsi<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea name="deskripsi" id="textarea" rows="6" class="form-control col-md-7 col-xs-12">{{ old('kode') }}</textarea>
+                                <textarea name="deskripsi" id="textarea" rows="6" class="form-control col-md-7 col-xs-12">{{ $tipekamar->deskripsi }}</textarea>
                             </div>
                         </div>
 

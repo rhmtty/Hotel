@@ -55,7 +55,7 @@ class TipeKamarController extends Controller
     {
         $tipekamar = TipeKamar::find($id);
         return view('tipe_kamar.edit')
-            ->withTipeKanar($tipekamar);
+            ->with('tipekamar',$tipekamar);
     }
 
     public function postEdit(Request $request, $id)
@@ -69,7 +69,7 @@ class TipeKamarController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat.' '.Auth::user()->telp;
-        $karyawan->aktivitas = "Infromasi Tipe Kamar Diperbarui dengan Tipe Kamar: ". $request->tipe;
+        $karyawan->aktivitas = "Infromasi Tipe Kamar Diperbarui. Tipe Kamar: ". $request->tipe;
         $karyawan->save();
 
         return redirect('/admin/tipe_kamar')->with('success', 'Tipe Kamar Sukses Diperbarui.!');

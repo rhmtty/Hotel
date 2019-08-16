@@ -62,4 +62,19 @@ class BlokController extends Controller
 
         return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!1!1');
     }
+
+    public function deleteData($id=null, Request $request)
+    {
+
+        $blok = Blok::where('id', $request->id);
+        $blok->delete();
+
+        $karyawan = new AktivitasKaryawan();
+        $karyawan->nama_kary = Auth::user()->fullname;
+        $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+        $karyawan->aktivitas = "Blok Sukses di hapus id Blok: ". $request->id;
+        $karyawan->save();
+        
+        return back()->with('hapus', 'Blok sukses dihapus!');
+    }
 }
