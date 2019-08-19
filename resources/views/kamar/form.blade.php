@@ -28,22 +28,17 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{url('/admin/kamar/save')}}" method="post" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kamar<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Kamar<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Lantai<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Lantai<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="lantai" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">--- Pilih Lantai ---</option>
-                                    @foreach(\App\Lantai::select('level', 'id')->orderBy('id', 'asc')->get() as $data)
-                                    <option value="{{$data->id}}">Level {{$data->level}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" id="last-name" name="lantai" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,11 +51,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tipe Kamar<span class="required">*</span></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tipe Kamar<span class="required">*</span>
+                            </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="tipe_kamar" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">--- Pilih Tipe Kamar ---</option>
+                                <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- Pilih Tipe ---</option>
+                                    <option value="ac">AC</option>
+                                    <option value="non_ac">NON AC</option>
+                                    <option value="vip">VIP</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Harga<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
                         <div class="item form-group">

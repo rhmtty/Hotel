@@ -46,18 +46,36 @@
                                 <span></span>
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Telp</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status">
+                            <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
+                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                            </div>                          
+                        </div>
+                        
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status">
+                            <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
+                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                            </div>                           
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Total</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" name="total">
                                 <span></span>
                             </div>
                         </div>
                         <div class="ln_solid"></div>
-
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">Cancel</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
@@ -88,7 +106,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">KTP</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">No Identitas</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <input type="text" class="form-control demo colorpicker-element" data-horizontal="true" id="demo_forceformat" name="no_ktp" value="">
                             </div>
@@ -108,7 +126,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <button type="btn btn-warning" class="btn btn-danger">Reset</button>
+                                <button type="btn btn-warning" class="btn btn-primary">Reset</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>

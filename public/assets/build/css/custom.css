@@ -1,0 +1,14 @@
+ul.nav > li > form > button{
+    display: block !important;
+    float: left !important;
+    border: none !important;
+    background-color: transparent !important;
+    line-height: 21px !important;
+    height: 27px !important;
+    padding-top: 5px !important;
+    margin-bottom: -25px !important;
+}
+
+/* .xpanel-info{
+ background-color: aquamarine;
+} */

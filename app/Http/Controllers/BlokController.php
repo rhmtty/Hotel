@@ -35,7 +35,7 @@ class BlokController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Blok Baru Ditambhakan Nama Blok: ". $request->nama;
+        $karyawan->aktivitas = "Blok Baru Ditambahkan Nama Blok: ". $request->nama;
         $karyawan->save();
 
         return back()->with('success', 'Blok baru sukses ditambahkan!1!1');
@@ -63,16 +63,15 @@ class BlokController extends Controller
         return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!1!1');
     }
 
-    public function deleteData($id=null, Request $request)
+    public function deleteData(Request $request)
     {
-
-        $blok = Blok::where('id', $request->id);
-        $blok->delete();
-
+        $blok = Blok::where('id', $request->id)->delete();
+        // dd($blok);
+        
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Blok Sukses di hapus id Blok: ". $request->id;
+        $karyawan->aktivitas = "Blok Sukses di hapus nama Blok: ". $request->nama;
         $karyawan->save();
         
         return back()->with('hapus', 'Blok sukses dihapus!');

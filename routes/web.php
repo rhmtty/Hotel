@@ -38,30 +38,6 @@ Route::group(['prefix' => 'admin'], function(){
 
     });
     /**
-     * LANTAI CONTROLLER
-     */
-    Route::group(['prefix' => 'lantai'], function(){
-        Route::get('/', 'LantaiController@index');
-        Route::get('/form', 'LantaiController@formNew');
-        Route::post('/save', 'LantaiController@postNew');
-        Route::get('/edit/{id}', 'LantaiController@showEdit');
-        Route::get('/delete/{id}', 'LantaiController@delete');
-        Route::post('/save/{id}', 'LantaiController@postEdit');
-
-    });
-    /**
-     * TIPE KAMAR CONTROLLER
-     */
-    Route::group(['prefix' => 'tipe-kamar'], function(){
-        Route::get('/', 'TipeKamarController@index');
-        Route::get('/form', 'TipeKamarController@formNew');
-        Route::post('/save', 'TipeKamarController@postNew');
-        Route::get('/edit/{id}', 'TipeKamarController@showEdit');
-        Route::get('/delete/{id}', 'TipeKamarController@delete');
-        Route::post('/save/{id}', 'TipeKamarController@postEdit');
-
-    });
-    /**
      * BLOK CONTROLLER
      */
     Route::group(['prefix' => 'blok'], function(){

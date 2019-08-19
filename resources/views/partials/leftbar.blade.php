@@ -28,20 +28,7 @@
     <div class="menu_section">
       <h3>General</h3>
       <ul class="nav side-menu">
-        <li><a href="/admin"><i class="fa fa-home"></i> Home <span></span></a>
-        </li>
-        <li><a><i class="fa fa-inbox"></i> Lantai <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{{url('/admin/lantai/form')}}">Tambah Lantai</a></li>
-            <li><a href="{{url('/admin/lantai')}}">List Lantai</a></li>
-          </ul>
-        </li>
-        <li><a><i class="fa fa-table"></i> Tipe Kamar <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{{url('/admin/tipe-kamar/form')}}">Tambah Tipe Kamar</a></li>
-            <li><a href="{{url('/admin/tipe-kamar')}}">List Tipe Kamar</a></li>
-          </ul>
-        </li>
+        <li><a href="/admin"><i class="fa fa-home"></i> Home <span></span></a></li>
         <li><a><i class="fa fa-building"></i>Blok <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/blok/form')}}">Tambah Blok</a></li>
@@ -65,7 +52,14 @@
             <li><a href="{{url('/admin/karyawan')}}">List Karyawan</a></li>
           </ul>
         </li>
-        
+        <li><a><i class="fa fa-list"></i>Laporan <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{url('/admin/karyawan')}}">Laporan Booking</a></li>
+            <li><a href="{{url('/admin/karyawan')}}">Laporan Data Pelanggan</a></li>
+            <li><a href="{{url('/admin/karyawan')}}">Laporan Aktivitas</a></li>
+            <li><a href="{{url('/admin/karyawan')}}">Laporan Pemesanan</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

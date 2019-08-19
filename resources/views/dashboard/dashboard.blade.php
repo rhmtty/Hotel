@@ -73,8 +73,8 @@
             @endforeach
             </tbody>
         </table>
-        <!-- @if($aktivitas->count()>0)
-            {{$aktivitas->render()}}
-        @endif -->
+        <!-- @if($aktivitas->count()>0) -->
+            {!! $aktivitas->render() !!}
+        <!-- @endif -->
     </div>
 @stop
