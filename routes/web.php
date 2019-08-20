@@ -34,7 +34,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'KamarController@index');
         Route::get('/form', 'KamarController@formNew');
         Route::post('/save', 'KamarController@postNew');
-        Route::post('/edit/{id}', 'KamarController@showEdit');
+        Route::get('/edit/{id}', 'KamarController@showEdit');
+        Route::post('/edit/{id}', 'KamarController@postEdit');
 
     });
     /**

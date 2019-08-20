@@ -30,13 +30,13 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="x_panel xpanel-info tile fixed_height_320">
         <div class="x_title">
-          <!-- <h2>No </h2> -->
+          <strong class="badge"></strong>
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
             <li class="dropdown">
-              <a href="/admin/blok/edit/{{ $result->id }}" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a></li>
+              <a href="/admin/blok/edit/{{ $result->id }}" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a>
+            </li>
             <li>
-              <!-- <a href="{{ url('/admin/blok/delete') }}" role="button" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('delete-form').submit();"></a> -->
               <form action="{{ url('/admin/blok/delete') }}" method="post" style="display: inline-block;">
                 @csrf
                 @method('DELETE')

@@ -26,19 +26,23 @@
                 <div class="x_content">
                 <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{url('/admin/kamar/save')}}" method="post" enctype="multipart/form-data">
-
+                    @csrf
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Kamar<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Contoh: No.01">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Lantai<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Lantai<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="lantai" required="required" class="form-control col-md-7 col-xs-12">
+                                <select name="lantai" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- Pilih Lantai ---</option>
+                                    <option value="1">Lantai 1</option>
+                                    <option value="2">Lantai 2</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,6 +51,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="blok" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- Pilih Blok ---</option>
+                                @foreach(\App\Blok::select('nama_blok', 'id')->get() as $data )
+                                    <option value="{{ $data->id }}">{{ $data->nama_blok }}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -70,9 +77,9 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi <span class="required">*</span></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Fasilitas <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="textarea" required="required" name="deskripsi" class="form-control col-md-7 col-xs-12"></textarea>
+                                <textarea id="textarea" required="required" name="fasilitas" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                         </div>
 

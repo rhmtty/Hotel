@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('telp');
             $table->string('alamat', 400);
+            $table->enum('role', ['Superuser', 'Admin'])->default('Admin');
             $table->rememberToken();
             $table->timestamps();
         });

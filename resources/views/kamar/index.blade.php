@@ -13,6 +13,7 @@
   </div>
   <div class="clearfix"></div>
   <div class="row">
+  @if($kamar->count()>0)
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="x_panel tile fixed_height_320">
         <div class="x_title">
@@ -35,5 +36,13 @@
         </div>
       </div>
     </div>
+  @else
+    <div class="col-md-12">
+      <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span><span class="sr-only">Tutup</span></button>
+        <strong class="badge">Kosong!!</strong>Data kamar tidak ada. Silahkan ditambahkan.
+      </div>
+    </div>
+  @endif
   </div>
 @stop

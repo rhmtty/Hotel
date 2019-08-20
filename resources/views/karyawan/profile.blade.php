@@ -41,22 +41,24 @@
               <div class="profile_img">
                 <div id="crop-avatar">
                   <!-- Current avatar -->
-                  <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+                  @if(Auth::user()->jenis_kelamin=="laki-laki")                      
+                    <img src="{{url('assets/images/male.jpg')}}" class="img-responsive avatar-view" alt="Avatar">
+                  @else
+                    <img src="{{url('assets/images/female.jpg')}}" class="img-responsive avatar-view" alt="Avatar" title="Change the avatar">
+                  @endif 
                 </div>
               </div>
-              <h3>Samuel Doe</h3>
+              <h3>{{ Auth::user()->fullname }}</h3>
 
               <ul class="list-unstyled user_data">
-                <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
-                </li>
+                <li><i class="fa fa-map-marker user-profile-icon"></i> {{ Auth::user()->alamat }}</li>
 
                 <li>
-                  <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{ Auth::user()->role }}
                 </li>
 
                 <li class="m-top-xs">
-                  <i class="fa fa-external-link user-profile-icon"></i>
-                  <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                  <i class="fa fa-phone"></i> {{ Auth::user()->telp }}
                 </li>
               </ul>
 
@@ -101,10 +103,7 @@
                   <h2> Aktivitas Karyawan</h2>
                 </div>
                 <div class="col-md-6">
-                  <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                  </div>
+                  
                 </div>
               </div>
 
@@ -120,70 +119,6 @@
 
                     <!-- start recent activity -->
                     <ul class="messages">
-                      <li>
-                        <img src="images/img.jpg" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-info">24</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Desmond Davison</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="images/img.jpg" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-error">21</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Brian Michaels</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="">Download</a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="images/img.jpg" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-info">24</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Desmond Davison</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="images/img.jpg" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-error">21</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Brian Michaels</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="">Download</a>
-                          </p>
-                        </div>
-                      </li>
 
                     </ul>
                     <!-- end recent activity -->
