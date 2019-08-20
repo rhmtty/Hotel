@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{{url('/admin')}}" class="site_title"><i class="fa fa-building"></i> <span>Hotel Merakyat</span></a>
+    <a href="{{url('/admin')}}" class="site_title"><i class="fa fa-building"></i> <span>Guest House</span></a>
   </div>
 
   <div class="clearfix"></div>

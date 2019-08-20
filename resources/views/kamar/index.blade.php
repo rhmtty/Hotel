@@ -14,27 +14,42 @@
   <div class="clearfix"></div>
   <div class="row">
   @if($kamar->count()>0)
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      <div class="x_panel tile fixed_height_320">
-        <div class="x_title">
-          <h2>No </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-              <a href="#" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a>
-            </li>
-            <li><a href="#" role="button" aria-expanded="false"><i class="fa fa-close"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <h4>Type Kamar</h4>
-          <h4>Deskripsi</h4>
-          <h4>Status</h4>
-        </div>
-      </div>
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No Kamar</th>
+            <th>Lantai</th>
+            <th>Blok</th>
+            <th>Tipe</th>
+            <th>Fasilitas</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($kamar as $data)
+          <tr>
+            <td>{{ $data->no_kamar }}</td>
+            <td>{{ $data->lantai }}</td>
+            <td>{{ $data->nama_blok }}</td>
+            <td>{{ $data->tipe }}</td>
+            <td>{{ $data->fasilitas }}</td>
+            <td>{{ $data->active ==1 ? '<strong style="color: green;">Tersedia</strong>' : '<strong style="color: red;">Tidak Tersedia</strong>' }}</td>
+            <td>
+              <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
+              <form action="{{ url('/admin/kamar/delete') }}" method="post" style="display: inline-block;">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value="{{ $data->id }}">
+                <input type="hidden" name="nama" value="{{ $data->no_kamar }}">
+                <button type="submit" class=""><i class="fa fa-eraser"></i></button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   @else
     <div class="col-md-12">

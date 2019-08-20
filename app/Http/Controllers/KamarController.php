@@ -16,7 +16,7 @@ class KamarController extends Controller
     
     public function index()
     {
-        $kamar = Kamar::get();
+        $kamar = Kamar::listKamar();
         return view('kamar.index', ['kamar' => $kamar]);
     }
 
