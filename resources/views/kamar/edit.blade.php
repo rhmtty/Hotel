@@ -13,6 +13,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
+        <div class="panel-footer">
+        @if(session('success'))
+          <div class="alert alert-info" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <span class="badge">Sukses! </span> {{session('success')}}
+          </div>
+        @endif
+        </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -26,19 +34,19 @@
                 <div class="x_content">
                 <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ url('/admin/kamar/edit/'.$kamar->id) }}" method="post" enctype="multipart/form-data">
-
+                    {{csrf_field()}}
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Kamar<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" value="{{ $kamar->no_kamar }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Lantai<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="lantai" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="lantai" required="required" class="form-control col-md-7 col-xs-12" value="{{ $kamar->lantai }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,7 +54,14 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="blok" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">--- Pilih Blok ---</option>
+                                @foreach(App\Blok::select('nama_blok', 'id')->get() as $data)
+                                    @if($data->id == $kamar->blok_id)
+                                    <option value="{{$data->id}}"> {{ $data->nama_blok }}</option>
+                                    @else
+                                    <option>----- Pilih Blok -----</option>
+                                    <option value="{{$data->id}}">{{$data->nama_blok}}</option>
+                                    @endif
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -55,10 +70,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">--- Pilih Tipe ---</option>
-                                    <option value="ac">AC</option>
-                                    <option value="non_ac">NON AC</option>
-                                    <option value="vip">VIP</option>
+                                    <option value="{{ $kamar->tipe}}">{{ $kamar->tipe}}</option>
                                 </select>
                             </div>
                         </div>
@@ -66,13 +78,13 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Harga<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12" value="{{ $kamar->harga }}">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Deskripsi <span class="required">*</span></label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Fasilitas <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="textarea" required="required" name="deskripsi" class="form-control col-md-7 col-xs-12"></textarea>
+                                <textarea id="textarea" required="required" name="fasilitas" class="form-control col-md-7 col-xs-12">{{ $kamar->no_kamar }}</textarea>
                             </div>
                         </div>
 

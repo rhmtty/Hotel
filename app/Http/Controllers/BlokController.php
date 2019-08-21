@@ -35,10 +35,10 @@ class BlokController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Blok Baru Ditambahkan Nama Blok: ". $request->nama;
+        $karyawan->aktivitas = "Menambahkan Blok: ". $request->nama;
         $karyawan->save();
 
-        return back()->with('success', 'Blok baru sukses ditambahkan!1!1');
+        return back()->with('success', 'Blok baru sukses ditambahkan!!');
     }
 
     public function showEdit($id)
@@ -57,10 +57,10 @@ class BlokController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Blok Sukses di edit Nama Blok: ". $request->nama;
+        $karyawan->aktivitas = "Mengedit Blok: ". $request->nama;
         $karyawan->save();
 
-        return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!1!1');
+        return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!!');
     }
 
     public function deleteData(Request $request)
@@ -71,7 +71,7 @@ class BlokController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Blok Sukses di hapus nama Blok: ". $request->nama;
+        $karyawan->aktivitas = "Menghapus Blok: ". $request->nama;
         $karyawan->save();
         
         return back()->with('hapus', 'Blok sukses dihapus!');

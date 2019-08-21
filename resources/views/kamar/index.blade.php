@@ -37,13 +37,13 @@
             <td>{{ $data->fasilitas }}</td>
             <td>{{ $data->active ==1 ? '<strong style="color: green;">Tersedia</strong>' : '<strong style="color: red;">Tidak Tersedia</strong>' }}</td>
             <td>
-              <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
+              <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil" title="Edit"></i></a>
               <form action="{{ url('/admin/kamar/delete') }}" method="post" style="display: inline-block;">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{ $data->id }}">
                 <input type="hidden" name="nama" value="{{ $data->no_kamar }}">
-                <button type="submit" class=""><i class="fa fa-eraser"></i></button>
+                <button type="submit" class=""><i class="fa fa-eraser" title="Delete"></i></button>
               </form>
             </td>
           </tr>

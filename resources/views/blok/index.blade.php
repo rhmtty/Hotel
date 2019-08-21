@@ -7,7 +7,7 @@
       <div class="title_left">
           <ul class="breadcrumb">
               <li><a href="/admin"><h3>Home</h3></a></li>
-              <li>Lantai</li>
+              <li>Blok</li>
           </ul>
       </div>
   </div>
@@ -26,34 +26,42 @@
           </div>
         @endif
     </div>
-    @foreach($blok as $result)
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      <div class="x_panel xpanel-info tile fixed_height_320">
-        <div class="x_title">
-          <strong class="badge"></strong>
-          <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-            <li class="dropdown">
-              <a href="/admin/blok/edit/{{ $result->id }}" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a>
-            </li>
-            <li>
+    <br/>
+    <div class="col-md-12">
+    @if($blok->count()>0)
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nama Blok</th>
+            <th>Deskripsi</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($blok as $data)
+          <tr>
+            <td>{{ $data->nama_blok }}</td>
+            <td>{{ $data->deskripsi }}</td>
+            <td>
+              <a href="{{ url('/admin/blok/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
               <form action="{{ url('/admin/blok/delete') }}" method="post" style="display: inline-block;">
                 @csrf
                 @method('DELETE')
-                <input type="hidden" name="id" value="{{ $result->id }}">
-                <input type="hidden" name="nama" value="{{ $result->nama_blok }}">
-                <button type="submit" class=""><i class="fa fa-eraser"></i></button>
+                <input type="hidden" name="id" value="{{ $data->id }}">
+                <input type="hidden" name="nama" value="{{ $data->nama_blok }}">
+                <button type="submit" class="button-delete"><i class="fa fa-eraser"></i></button>
               </form>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <h1>{{ $result->nama_blok }}</h1>
-          <h4>{{ $result->deskripsi }}</h4>
-        </div>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    @else
+      <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span><span class="sr-only">Tutup</span></button>
+        <strong class="badge">Kosong!!</strong>Data kamar tidak ada. Silahkan ditambahkan.
       </div>
+    @endif
     </div>
-    @endforeach
   </div>
 @stop

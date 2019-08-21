@@ -16,7 +16,7 @@ class KamarController extends Controller
     
     public function index()
     {
-        $kamar = Kamar::listKamar();
+        $kamar = Kamar::dataKamar();
         return view('kamar.index', ['kamar' => $kamar]);
     }
 
@@ -40,10 +40,10 @@ class KamarController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Kamar Baru Ditambhakan No Kamar: ". $request->kamar;
+        $karyawan->aktivitas = "Menambah data Kamar: ". $request->kamar;
         $karyawan->save();
 
-        return back()->with('success', 'Blok baru sukses ditambahkan!1!1');
+        return back()->with('success', 'Kamar baru sukses ditambahkan!!');
 
     } 
 
@@ -51,6 +51,25 @@ class KamarController extends Controller
     {
         $kamar = Kamar::find($id);
         return view('kamar.edit')
-            ->with('Kamar', $kamar);
+            ->with('kamar', $kamar);
+    }
+
+    public function postEdit(Request $request, $id)
+    {
+        $kamar = Kamar::find($id);
+        $kamar->no_kamar = $request->kamar;
+        $kamar->lantai = $request->lantai;
+        $kamar->blok_id = $request->blok;
+        $kamar->tipe = $request->tipe;
+        $kamar->harga = $request->harga;
+        $kamar->fasilitas = $request->fasilitas;
+        $kamar->update();
+
+        $karyawan = new AktivitasKaryawan();
+        $karyawan->nama_kary = Auth::user()->fullname;
+        $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+        $karyawan->aktivitas = "Mengedit data Kamar: ". $request->kamar;
+        $karyawan->save();
+        return back()->with('kamar', $kamar)->with('success', 'Kamar sukses diupdate!!');
     }
 }

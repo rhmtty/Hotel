@@ -13,6 +13,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="row">
+        <div class="panel-footer">
+        @if(session('success'))
+          <div class="alert alert-info" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <span class="badge">Sukses! </span> {{session('success')}}
+          </div>
+        @endif
+        </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -63,9 +71,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- Pilih Tipe ---</option>
-                                    <option value="ac">AC</option>
-                                    <option value="non_ac">NON AC</option>
-                                    <option value="vip">VIP</option>
+                                    <option value="AC">AC</option>
+                                    <option value="NON AC">NON AC</option>
+                                    <option value="VIP">VIP</option>
                                 </select>
                             </div>
                         </div>

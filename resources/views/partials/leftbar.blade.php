@@ -29,6 +29,12 @@
       <h3>General</h3>
       <ul class="nav side-menu">
         <li><a href="/admin"><i class="fa fa-home"></i> Home <span></span></a></li>
+        <li><a><i class="fa fa-book"></i>Booking<span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{url('/admin/booking/form')}}">Pesan Kamar</a></li>
+            <li><a href="{{url('/admin/booking')}}">List Booking</a></li>
+          </ul>
+        </li>
         <li><a><i class="fa fa-building"></i>Blok <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/blok/form')}}">Tambah Blok</a></li>
@@ -41,12 +47,6 @@
             <li><a href="{{url('/admin/kamar')}}">List Kamar</a></li>
           </ul>
         </li>
-        <li><a><i class="fa fa-book"></i>Booking<span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{{url('/admin/booking/form')}}">Pesan Kamar</a></li>
-            <li><a href="{{url('/admin/booking')}}">List Booking</a></li>
-          </ul>
-        </li>
         <li><a><i class="fa fa-user"></i>Karyawan <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/karyawan')}}">List Karyawan</a></li>
@@ -54,10 +54,10 @@
         </li>
         <li><a><i class="fa fa-list"></i>Laporan <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="{{url('/admin/karyawan')}}">Laporan Booking</a></li>
-            <li><a href="{{url('/admin/karyawan')}}">Laporan Data Pelanggan</a></li>
-            <li><a href="{{url('/admin/karyawan')}}">Laporan Aktivitas</a></li>
-            <li><a href="{{url('/admin/karyawan')}}">Laporan Pemesanan</a></li>
+            <li><a href="{{url('/admin/laporan/booking')}}">Laporan Booking</a></li>
+            <li><a href="{{url('/admin/laporan/data-pelanggan')}}">Laporan Data Pelanggan</a></li>
+            <li><a href="{{url('/admin/laporan/aktivitas')}}">Laporan Aktivitas</a></li>
+            <li><a href="{{url('/admin/laporan/pemesanan')}}">Laporan Pemesanan</a></li>
           </ul>
         </li>
       </ul>
