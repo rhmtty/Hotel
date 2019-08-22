@@ -27,7 +27,8 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/admin/booking/save')}}">
+                    <form class="form-horizontal form-label-left" action="{{url('/admin/booking/book')}}" method="POST">
+                    @csrf
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -53,6 +54,7 @@
                                 <textarea id="textarea" required="required" name="alamat" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                         </div>
+                        <!-- FORM BOOKING -->
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Kamar</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
@@ -69,7 +71,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status" name="checkin">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -78,16 +80,16 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status" name="checkout">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Total</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Keterangan</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="total">
+                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)">
                                 <span></span>
                             </div>
                         </div>

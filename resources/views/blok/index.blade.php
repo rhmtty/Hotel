@@ -24,6 +24,7 @@
               <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
               <span class="badge">Sukses! </span> {{session('hapus')}}
           </div>
+          
         @endif
     </div>
     <br/>

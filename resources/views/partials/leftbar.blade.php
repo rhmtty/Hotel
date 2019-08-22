@@ -57,7 +57,6 @@
             <li><a href="{{url('/admin/laporan/booking')}}">Laporan Booking</a></li>
             <li><a href="{{url('/admin/laporan/data-pelanggan')}}">Laporan Data Pelanggan</a></li>
             <li><a href="{{url('/admin/laporan/aktivitas')}}">Laporan Aktivitas</a></li>
-            <li><a href="{{url('/admin/laporan/pemesanan')}}">Laporan Pemesanan</a></li>
           </ul>
         </li>
       </ul>
