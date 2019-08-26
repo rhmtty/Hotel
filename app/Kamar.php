@@ -18,4 +18,11 @@ class Kamar extends Model
             ->select('kamar.*', 'blok.nama_blok')
             ->get();
     }
+
+    public function scopeGetHarga($query, $id)
+    {
+        $data = $query->where('id', $id)->where('active', 1)
+            ->select('harga')->first();
+        return $data;
+    }
 }

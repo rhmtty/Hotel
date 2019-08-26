@@ -19,7 +19,7 @@ class CreateKamarTable extends Migration
             $table->string('lantai');
             $table->integer('blok_id');
             $table->string('tipe');
-            $table->integer('harga');
+            $table->double('harga');
             $table->string('fasilitas', 2000);
             $table->integer('active');
             $table->timestamps();

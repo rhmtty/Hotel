@@ -65,8 +65,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'karyawan'], function() {
         Route::get('/', 'KaryawanController@index');
         Route::get('/form', 'KaryawanController@formNew');
-        Route::post('/save', 'KaryawanController@postNew');
-        Route::get('/profile/{id}', 'KaryawanController@showProfile');
+        Route::get('/profile/{id}', 'KaryawanController@postProfile');
+        Route::post('/profile/edit', 'KaryawanController@postProfile');
     });
 });
 

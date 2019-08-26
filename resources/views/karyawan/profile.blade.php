@@ -15,10 +15,18 @@
     <!-- <div class="clearfix"></div> -->
 
     <div class="row">
+      <div class="panel-footer">
+        @if(session('success'))
+          <div class="alert alert-info" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+              <span class="badge">Sukses! </span> {{session('success')}}
+          </div>
+        @endif
+      </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Laporan <small>Aktivitas Karyawan</small></h2>
+            <h2>Profile <small> Karyawan</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -64,63 +72,82 @@
 
               <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
               <br />
-
               <!-- start skills -->
-              <h4>Skills</h4>
-              <ul class="list-unstyled user_data">
-                <li>
-                  <p>Web Applications</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                  </div>
-                </li>
-                <li>
-                  <p>Website Design</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                  </div>
-                </li>
-                <li>
-                  <p>Automation & Testing</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                  </div>
-                </li>
-                <li>
-                  <p>UI / UX</p>
-                  <div class="progress progress_sm">
-                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                  </div>
-                </li>
-              </ul>
-              <!-- end of skills -->
 
+              <!-- end of skills -->
             </div>
             <div class="col-md-9 col-sm-n9 col-xs-12">
-
-              <div class="profile_title">
-                <div class="col-md-6">
-                  <h2> Aktivitas Karyawan</h2>
-                </div>
-                <div class="col-md-6">
-                  
-                </div>
-              </div>
-
-
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Aktivitas Terbaru</a>
+                  <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Edit Pofile</a>
                   </li>
-                  
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                     <!-- start recent activity -->
-                    <ul class="messages">
-
-                    </ul>
+                    <div class="messages">
+                      <form action="{{url('/admin/karyawan/profile/edit')}}" method="POST">
+                      @csrf
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
+                          <div class="col-md-9 col-sm-9 col-xs-12">
+                              <input type="text" class="demo1 form-control" name="nama" value="{{$karyawan->fullname}}" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="email" class="demo1 form-control" name="email" value="{{$karyawan->email}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="password" class="demo1 form-control" name="pass" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Kelamin</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="jk" id="" class="form-control col-md-7 col-xs-12">
+                                  <option value="laki-laki"><i class="fa fa-male"></i>Laki-laki</option>
+                                  <option value="perempuan"><i class="fa fa-female"></i>Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Telepon</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="demo1 form-control" name="telp" value="{{$karyawan->telp}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="alamat" id="" cols="20" rows="5" class="form-control col-md-7 col-xs-12">{{$karyawan->alamat}}</textarea>
+                            </div>
+                        </div>
+                      @if(Auth::user()->role == 'Superuser') 
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Role</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select name="role" id="" class="form-control col-md-7 col-xs-12">
+                                  <option value="Superuser">Superuser</option>
+                                  <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                      @endif
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-9 col-md-offset-3">
+                              <button type="reset" class="btn btn-primary">Reset</button>
+                              <button type="submit" class="btn btn-success">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
                     <!-- end recent activity -->
 
                   </div>

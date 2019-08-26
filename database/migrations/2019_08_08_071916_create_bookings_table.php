@@ -20,7 +20,7 @@ class CreateBookingsTable extends Migration
             $table->integer('id_pelanggan')->unsigned();
             $table->timestamp('checkin_time')->nullable();
             $table->timestamp('checkout_time')->nullable();
-            $table->string('total');
+            $table->double('total');
             $table->integer('lama_menginap');
             $table->string('keterangan');
             $table->timestamps();

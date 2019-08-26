@@ -29,13 +29,13 @@
         </thead>
         <tbody>
           @foreach($kamar as $data)
-          <tr>
+          <tr class="{{$data->active == 1 ? 'table-success' : 'table-danger'}}">
             <td>{{ $data->no_kamar }}</td>
             <td>{{ $data->lantai }}</td>
             <td>{{ $data->nama_blok }}</td>
             <td>{{ $data->tipe }}</td>
             <td>{{ $data->fasilitas }}</td>
-            <td>{{ $data->active ==1 ? '<strong style="color: green;">Tersedia</strong>' : '<strong style="color: red;">Tidak Tersedia</strong>' }}</td>
+            <td>{{ $data->active ==1 ? 'Tersedia' : 'Tidak Tersedia' }}</td>
             <td>
               <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil" title="Edit"></i></a>
               <form action="{{ url('/admin/kamar/delete') }}" method="post" style="display: inline-block;">

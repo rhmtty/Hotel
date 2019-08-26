@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blok;
+use App\Kamar;
 use App\AktivitasKaryawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,7 @@ class BlokController extends Controller
     public function deleteData(Request $request)
     {
         $blok = Blok::where('id', $request->id)->delete();
+        $kamar = Kamar::where('blok_id', $request->id)->delete();
         // dd($blok);
         
         $karyawan = new AktivitasKaryawan();

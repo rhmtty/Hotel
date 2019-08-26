@@ -34,14 +34,16 @@
             <td>{{ $data->jenis_kelamin }}</td>
             <td>{{ $data->telp }}</td>
             <td>{{ $data->alamat }}</td>
-            <td>
-              <a href="{{ url('/admin/karyawan/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
-              <form action="{{ url('/admin/karyawan/delete') }}" method="post" style="display: inline-block;">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="id" value="{{ $data->id }}">
-                <button type="submit" class=""><i class="fa fa-eraser"></i></button>
-              </form>
+            <td width="7%">
+              <?php if(Auth::user()->role == 'Superuser') { ?>
+                <a href="{{ url('/admin/karyawan/profile/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
+                <form action="{{ url('/admin/karyawan/delete') }}" method="post" style="display: inline-block;">
+                  @csrf
+                  @method('DELETE')
+                  <input type="hidden" name="id" value="{{ $data->id }}">
+                  <button type="submit" class=""><i class="fa fa-eraser"></i></button>
+                </form>
+              <?php } ?>
             </td>
           </tr>
           @endforeach
