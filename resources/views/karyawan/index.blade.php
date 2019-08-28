@@ -41,7 +41,7 @@
                   @csrf
                   @method('DELETE')
                   <input type="hidden" name="id" value="{{ $data->id }}">
-                  <button type="submit" class=""><i class="fa fa-eraser"></i></button>
+                  <button type="submit" class="del-button"><i class="fa fa-eraser"></i></button>
                 </form>
               <?php } ?>
             </td>

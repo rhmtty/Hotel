@@ -18,17 +18,26 @@ class BookingController extends Controller
         $this->middleware('auth');
     }
     
+    /**
+     * Tampil data booking
+     */
     public function index()
     {
         $books = Booking::DataBooking();
         return view('booking.index', compact('books'));
     }
 
+    /**
+     * Tampil form booking
+     */
     public function formNew()
     {
         return view('booking.form');
     }
 
+    /**
+     * Save data booking  
+     */
     public function postNew(Request $request)
     {
         $pelanggan = New Pelanggan();
@@ -74,5 +83,20 @@ class BookingController extends Controller
         $karyawan->save();
         return back()->with('success', 'Kamar sukses dibooking');
 
+    }
+
+    /**
+     * Edit data booking
+     */
+    public function editBooking($id, Request $request)
+    {
+        if($request->Method('GET')) {
+            $book = Booking::find($id);
+            return view('booking.edit', $book);
+        } elseif($request->Method('POST')) {
+            $book = Booking::find($id);
+            $book->checkin_time = $request->checkin;
+            $book->checkout_time = $request->checkout;
+        }
     }
 }

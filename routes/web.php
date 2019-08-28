@@ -58,7 +58,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'BookingController@index');
         Route::get('/form', 'BookingController@formNew');
         Route::post('/book', 'BookingController@postNew');
-        Route::get('/edit/{id}', 'BookingController@showEdit');
+        Route::get('/edit/{id}', 'BookingController@editBooking');
+        Route::post('/edit/save', 'BookingController@editBooking');
         Route::get('/check-out', 'BookingController@CheckOut');
         Route::delete('/delete', 'BookingController@deleteBooking');
 
