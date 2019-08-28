@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="demo1 form-control" name="nama" value="" />
+                                <input type="text" class="demo1 form-control" name="nama" value=""/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,7 +60,7 @@
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="kamar" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- PILIH KAMAR ---</option>
-                                    @foreach(App\Kamar::dataKamar() as $data)
+                                    @foreach(App\Kamar::BookingKamar() as $data)
                                         <option value="{{$data->id}}">{{$data->no_kamar}} - {{$data->tipe}} - {{$data->harga}} </option>
                                     @endforeach
                                 </select>

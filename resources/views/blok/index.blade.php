@@ -45,13 +45,7 @@
             <td>{{ $data->deskripsi }}</td>
             <td>
               <a href="{{ url('/admin/blok/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
-              <form action="{{ url('/admin/blok/delete') }}" method="post" style="display: inline-block;">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="id" value="{{ $data->id }}">
-                <input type="hidden" name="nama" value="{{ $data->nama_blok }}">
-                <button type="submit" class="button-delete"><i class="fa fa-eraser"></i></button>
-              </form>
+              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-modal-md"><i class="fa fa-eraser"></i></button>
             </td>
           </tr>
           @endforeach
@@ -64,5 +58,33 @@
       </div>
     @endif
     </div>
+<!-- DELETE CONFIRMATION -->
+    <div class="modal fade delete-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Hapus Blok</h4>
+          </div>
+          <div class="modal-body">
+            <p>Yakin mau menghapus Blok ini ?</p>
+          </div>
+          <div class="modal-footer">
+            <form action="{{ url('/admin/blok/delete') }}" method="post" style="display: inline-block;">
+              @csrf
+              @method('DELETE')
+              <input type="hidden" name="id" value="{{ $data->id }}">
+              <input type="hidden" name="nama" value="{{ $data->nama_blok }}">
+              
+              <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
+              <button type="submit" class="btn btn-danger">Ya</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END MODAL DELETE  -->
   </div>
 @stop

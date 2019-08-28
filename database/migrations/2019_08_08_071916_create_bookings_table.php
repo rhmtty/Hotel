@@ -18,11 +18,12 @@ class CreateBookingsTable extends Migration
             $table->integer('id_kamar')->unsigned();
             $table->integer('id_user')->unsigned();
             $table->integer('id_pelanggan')->unsigned();
-            $table->timestamp('checkin_time')->nullable();
-            $table->timestamp('checkout_time')->nullable();
+            $table->datetime('checkin_time')->nullable();
+            $table->datetime('checkout_time')->nullable();
             $table->double('total');
             $table->integer('lama_menginap');
             $table->string('keterangan');
+            $table->integer('active');
             $table->timestamps();
         });
     }

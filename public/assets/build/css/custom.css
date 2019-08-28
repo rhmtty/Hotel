@@ -9,7 +9,8 @@
     margin-bottom: -25px !important;
 } */
 
-.table > tbody > tr > td > form > button{
+.table > tbody >tr > td > button.del-button{
+    color: #5A738E;
     display: block !important;
     float: left !important;
     border: none !important;
@@ -17,11 +18,25 @@
     /* line-height: 21px !important; */
     height: 19px !important;
     /* padding-top: 5px !important; */
-    margin-bottom: -25px !important;
+    /* margin-bottom: -25px !important; */
+}
+.table > tbody >tr > td > a{
+    color: #5A738E;
+    display: block !important;
+    float: left !important;
+    border: none !important;
+    background-color: transparent !important;
+    /* line-height: 21px !important; */
+    height: 19px !important;
+    /* padding-top: 5px !important; */
+    /* margin-bottom: -25px !important; */
+}
+.table>tbody>tr>td{
+    color: #111 !important;
 }
 
 .table>tbody>tr.table-success{
-    background-color: #8fd19e !important;
+    background-color: #80cdfa !important;
 }
 .table>tbody>tr.table-danger{
     background-color: #f5c6cb !important;

@@ -43,25 +43,29 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Lantai<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Lantai<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="lantai" required="required" class="form-control col-md-7 col-xs-12" value="{{ $kamar->lantai }}">
+                                <select name="lantai" class="form-control col-md-7 col-xs-12">
+                                    <option>--- PILIH LANTAI ---</option>
+                                    <option value="1">Lantai 1</option>
+                                    <option value="2">Lantai 2</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Blok<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="blok" id="" class="form-control col-md-7 col-xs-12">
-                                @foreach(App\Blok::select('nama_blok', 'id')->get() as $data)
-                                    @if($data->id == $kamar->blok_id)
-                                    <option value="{{$data->id}}"> {{ $data->nama_blok }}</option>
-                                    @else
+                                <select name="blok" class="form-control col-md-7 col-xs-12">
                                     <option>----- Pilih Blok -----</option>
-                                    <option value="{{$data->id}}">{{$data->nama_blok}}</option>
-                                    @endif
-                                @endforeach
+                                    @foreach(App\Blok::select(['nama_blok', 'id'])->get() as $data)
+                                        @if($data->id == $kamar->blok_id)
+                                            <option value="{{$data->id}}" selected> {{ $data->nama_blok }}</option>
+                                        @else
+                                            <option value="{{$data->id}}">{{$data->nama_blok}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -70,7 +74,10 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="{{ $kamar->tipe}}">{{ $kamar->tipe}}</option>
+                                    <option>--- PILIH TIPE ---</option>
+                                    <option value="AC">AC</option>
+                                    <option value="VIP">VIP</option>
+                                    <option value="NON AC">NON AC</option>
                                 </select>
                             </div>
                         </div>

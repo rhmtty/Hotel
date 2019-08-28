@@ -19,10 +19,11 @@ class Kamar extends Model
             ->get();
     }
 
-    public function scopeGetHarga($query, $id)
+    public function scopeBookingKamar($query)
     {
-        $data = $query->where('id', $id)->where('active', 1)
-            ->select('harga')->first();
-        return $data;
+        return $query->join('blok', 'kamar.blok_id', '=', 'blok.id')
+            ->where('kamar.active', 1)
+            ->select('kamar.*', 'blok.nama_blok')
+            ->get();
     }
 }

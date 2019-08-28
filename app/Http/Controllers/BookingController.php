@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pelanggan;
 use App\Kamar;
 use App\Booking;
+use App\AktivitasKaryawan;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
@@ -19,8 +20,8 @@ class BookingController extends Controller
     
     public function index()
     {
-        $book = Booking::get();
-        return view('booking.index', $book);
+        $books = Booking::DataBooking();
+        return view('booking.index', compact('books'));
     }
 
     public function formNew()
@@ -37,25 +38,34 @@ class BookingController extends Controller
         $pelanggan->alamat = $request->alamat;
         $pelanggan->save();
 
+        $idPelanggan = Pelanggan::where('nama', $request->nama)->value('id');
+        // dd($idPelanggan);
+
         $tglCekin = new DateTime($request->checkin);
         $tglCekout = new DateTime($request->checkout);
         $jumlah_hari = $tglCekin->diff($tglCekout);
         $hari = ($jumlah_hari->format('%a')) + 1;
+        
+        $harga = Kamar::where('id', $request->kamar)->value('harga');
+        // $harga = Kamar::harga();
 
-        $Harga = Kamar::where('id', $request->kamar);
-        $harga = Kamar::getHarga($Harga);
-        $total = $hari * $harga->harga;
+        $total = $hari * $harga;
 
         $book = New Booking();
         $book->id_kamar = $request->kamar;
         $book->id_user = Auth::user()->id;
-        $book->id_pelanggan = Pelanggan::select('id', $request->nama);
+        $book->id_pelanggan = $idPelanggan;
         $book->checkin_time = $tglCekin;
         $book->checkout_time = $tglCekout;
         $book->total = $total;
         $book->lama_menginap = $hari;
         $book->keterangan = $request->keterangan;
+        $book->active = 1;
         $book->save();
+
+        $room = Kamar::find($request->kamar);
+        $room->active = 0;
+        $room->update();
 
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;

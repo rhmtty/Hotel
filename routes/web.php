@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'KamarController@postNew');
         Route::get('/edit/{id}', 'KamarController@showEdit');
         Route::post('/edit/{id}', 'KamarController@postEdit');
+        Route::delete('/delete', 'KamarController@delete');
 
     });
     /**
@@ -57,6 +58,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'BookingController@index');
         Route::get('/form', 'BookingController@formNew');
         Route::post('/book', 'BookingController@postNew');
+        Route::get('/edit/{id}', 'BookingController@showEdit');
+        Route::get('/check-out', 'BookingController@CheckOut');
+        Route::delete('/delete', 'BookingController@deleteBooking');
 
     });
     /**
@@ -67,6 +71,14 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/form', 'KaryawanController@formNew');
         Route::get('/profile/{id}', 'KaryawanController@postProfile');
         Route::post('/profile/edit', 'KaryawanController@postProfile');
+    });
+    /**
+     * LAPORAN CONTROLLER
+     */
+    Route::group(['prefix' => 'laporan'], function() {
+        Route::get('/bookings', 'LaporanController@booking');
+        Route::get('/aktifitas', 'LaporanController@aktifitas');
+        Route::get('/pelanggan', 'LaporanController@pelanggan');
     });
 });
 

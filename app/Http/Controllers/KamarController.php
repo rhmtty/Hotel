@@ -34,7 +34,7 @@ class KamarController extends Controller
         $kamar->tipe = $request->tipe;
         $kamar->harga = $request->harga;
         $kamar->fasilitas = $request->fasilitas;
-        $kamar->active = 1;
+        $kamar->active = $request->tersedia == "on" ? 1 : 0;
         $kamar->save();
 
         $karyawan = new AktivitasKaryawan();
@@ -71,5 +71,17 @@ class KamarController extends Controller
         $karyawan->aktivitas = "Mengedit data Kamar: ". $request->kamar;
         $karyawan->save();
         return back()->with('kamar', $kamar)->with('success', 'Kamar sukses diupdate!!');
+    }
+
+    public function delete(Request $request)
+    {
+        $kamar = Kamar::where('id', $request->id)->delete();
+
+        $karyawan = new AktivitasKaryawan();
+        $karyawan->nama_kary = Auth::user()->fullname;
+        $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+        $karyawan->aktivitas = "Menghapus data Kamar: ". $request->no_kamar;
+        $karyawan->save();
+        return back()->with('kamar', $kamar)->with('hapus', 'Kamar sukses dihapus!!');
     }
 }

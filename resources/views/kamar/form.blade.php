@@ -14,12 +14,12 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="panel-footer">
-        @if(session('success'))
-          <div class="alert alert-info" role="alert">
-              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
-              <span class="badge">Sukses! </span> {{session('success')}}
-          </div>
-        @endif
+            @if(session('success'))
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <span class="badge">Sukses! </span> {{session('success')}}
+            </div>
+            @endif
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -88,6 +88,13 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Fasilitas <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea id="textarea" required="required" name="fasilitas" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Tersedia? <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="check" for="check"></label>
+                                <input type="checkbox" name="tersedia" style="margin-top: 10px;" checked>
                             </div>
                         </div>
 
