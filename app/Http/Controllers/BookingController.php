@@ -99,4 +99,38 @@ class BookingController extends Controller
             $book->checkout_time = $request->checkout;
         }
     }
+
+    public function CheckOut(Request $request, $id)
+    {
+        if($request->isMethod('GET')) {
+            /**
+             * Tampil Check Out
+             */
+            $booking = Booking::DataCheckOut($id);
+            return view('booking.checkout', compact('booking'));
+        } elseif($request->isMethod('POST')) {
+            /**
+             * Proses check out
+             */
+            $booking = Booking::find($id);
+            $booking->exists = true;
+            $booking->active = 0;
+            $booking->save();
+            $kamar = Kamar::find($booking->id_kamar);
+            $kamar->active = 1;
+            $kamar->save();
+            // dd($booking, $kamar);
+
+            $infop = Pelanggan::find($booking->id_pelanggan);
+
+            $karyawan = new AktivitasKaryawan();
+            $karyawan->nama_kary = Auth::user()->fullname;
+            $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. "No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. "Telepon: ". $infop->notelp. ".". "No Kamar: ". $kamar->no_kamar. "Tipe: ". $kamar->tipe. "Totaln Tagihan: ". $booking->total;
+            $karyawan->save();
+            return redirect('/admin/booking')->with('booking', 'Proses Check Out sukses dilakukan!!');
+
+        }
+        
+    }
 }

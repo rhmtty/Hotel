@@ -60,7 +60,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/book', 'BookingController@postNew');
         Route::get('/edit/{id}', 'BookingController@editBooking');
         Route::post('/edit/save', 'BookingController@editBooking');
-        Route::get('/check-out', 'BookingController@CheckOut');
+        if(\App\Booking::where('active', 1)){
+            Route::get('/check-out/{id}', 'BookingController@CheckOut');
+        }
+        Route::post('/check-out/post/{id}', 'BookingController@CheckOut');
         Route::delete('/delete', 'BookingController@deleteBooking');
 
     });

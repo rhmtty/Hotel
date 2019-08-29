@@ -7,14 +7,20 @@
     <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-bed"></i> Kamar Tersedia </span>
-            <div class="count">{{\App\Kamar::select('active', 1)->count()}}</div>
+            <div class="count">{{\App\Kamar::where('active', 1)->count()}}</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>{{Carbon\Carbon::today()->format('D, d M Y')}}</span>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total Booking</span>
-            <div class="count green">{{\App\Booking::select('active', 1)->count()}}</div>
+            <span class="count_top"><i class="fa fa-book"></i> Total Booking</span>
+            <div class="count green">{{\App\Booking::where('active', 1)->count()}}</div>
             <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>{{Carbon\Carbon::today()->format('D, d M Y')}}</span>
         </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="">
+            <iframe src="http://free.timeanddate.com/clock/i6wwghpx/n552/szw95/szh95/hocbbb/hbw6/cf100/hgr0/fas16/fdi64/mqc000/mqs3/mql20/mqw2/mqd94/mhc111/mhs3/mhl20/mhw2/mhd94/mmc000/mml10/mmw1/mmd94/hmr7/hsc900/hss1/hsl90" frameborder="0" width="95" height="95"></iframe>
+
+
+      </div>
+
     </div>
     <!-- /top tiles -->
         <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">Booking Kamar</button>
