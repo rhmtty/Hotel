@@ -91,8 +91,8 @@ class BookingController extends Controller
     public function editBooking($id, Request $request)
     {
         if($request->Method('GET')) {
-            $book = Booking::find($id);
-            return view('booking.edit', $book);
+            $book = Booking::EditBooking($id);
+            return view('booking.edit', compact('book'));
         } elseif($request->Method('POST')) {
             $book = Booking::find($id);
             $book->checkin_time = $request->checkin;

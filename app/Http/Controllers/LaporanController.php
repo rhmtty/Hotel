@@ -30,8 +30,14 @@ class LaporanController extends Controller
 
     public function aktifitas()
     {
-        $aktifitas = DB::select('SELECT id, nama_kary, info_kary, aktivitas, created_at, updated_at FROM aktivitas_karyawan');
-        $content =view ('laporan.aktifitas',compact('aktifitas'));
+        $aktifitas = DB::table('aktivitas_karyawan')
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'))
+            ->groupBy('date')
+            ->orderBy('date', 'desc')
+            ->get();
+
+        // $aktifitas = DB::select('SELECT id, nama_kary, info_kary, aktivitas, created_at, updated_at FROM aktivitas_karyawan');
+        // $content =view ('laporan.aktifitas',compact('aktifitas'));
 
         $pdf = new MPdf([
             'orientation'=>"P",

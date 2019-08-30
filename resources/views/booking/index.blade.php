@@ -43,7 +43,7 @@
         <tbody>
         @foreach($books as $book)
           <tr>
-            <td>{{$book->nomer_kamar}}</td>
+            <td>No. {{$book->nomer_kamar}}</td>
             <td>{{$book->nama_pelanggan}}</td>
             <td>{{$book->lama_menginap}}</td>
             <td>{{date('d-m-Y', strtotime($book->checkin_time))}}</td>
@@ -52,11 +52,13 @@
             <td>{{$book->keterangan}}</td>
             <td>{{$book->operator}}</td>
             <td>{{$book->active == 1 ? 'Menginap' : 'Keluar'}}</td>
-            <td width="20%">
-              <a href="{{ url('/admin/booking/edit/'.$book->id) }}"><i class="fa fa-pencil"></i></a>
-              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-booking-md"><i class="fa fa-eraser"></i></button>
-              <a href="{{url('/admin/booking/check-out/'.$book->id)}}"><button class="btn {{$book->active == 0 ? '' : 'btn-info'}} btn-sm" style="margin-top: -4px;" {{$book->active == 0 ? 'disabled' : ''}}>Check Out</button></a>
-            </td>
+            @if($book->active == 1)
+              <td width="20%">
+                <a href="{{ url('/admin/booking/edit/'.$book->id) }}"><i class="fa fa-pencil"></i></a>
+                <button type="button" class="del-button" data-toggle="modal" data-target=".delete-booking-md"><i class="fa fa-eraser"></i></button>
+                <a href="{{url('/admin/booking/check-out/'.$book->id)}}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
+              </td>
+            @endif
           </tr>
         @endforeach
         </tbody>

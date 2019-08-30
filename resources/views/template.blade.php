@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ url('assets/favicon.ico')}}" type="image/ico" />
 
-    <title>@yield('title') | Hotel Merakyat</title>
+    <title>@yield('title') | Guest House</title>
 
     @include('partials.cssfile')
   </head>

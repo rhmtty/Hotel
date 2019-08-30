@@ -58,13 +58,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Kamar</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <select name="kamar" id="" class="form-control col-md-7 col-xs-12">
-                                    <option value="">--- PILIH KAMAR ---</option>
-                                    @foreach(App\Kamar::BookingKamar() as $data)
-                                        @if($data->)
-                                        <option value="{{$data->id}}">{{$data->no_kamar}} - {{$data->tipe}} - {{$data->harga}} </option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{$book->nomer_kamar}}">
                                 <span></span>
                             </div>
                         </div>
@@ -72,7 +66,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status" name="checkin">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin" value="">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -81,7 +75,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status" name="checkout">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           
@@ -90,7 +84,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Keterangan</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)">
+                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)" value="{{$book->keterangan}}">
                                 <span></span>
                             </div>
                         </div>
