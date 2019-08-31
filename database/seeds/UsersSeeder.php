@@ -14,13 +14,24 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'fullname' => 'Nanas Sultan Sagiri',
-            'email' => 'nss@email.com',
-            'password' => bcrypt('123456'),
-            'jenis_kelamin' => 'perempuan',
-            'telp' => '081226478',
-            'alamat' => 'WBM',
-            'role' => 'Superuser'
+            [
+                'fullname' => 'Nanas Sultan Sagiri',
+                'email' => 'nss@email.com',
+                'password' => bcrypt('123456'),
+                'jenis_kelamin' => 'perempuan',
+                'telp' => '081226478',
+                'alamat' => 'WBM',
+                'role' => 'Superuser'
+            ],
+            [
+                'fullname' => 'Karnoto',
+                'email' => 'kar@email.com',
+                'password' => bcrypt('123456'),
+                'jenis_kelamin' => 'laki-laki',
+                'telp' => '085608911601',
+                'alamat' => 'Wonogiri',
+                'role' => 'Admin'
+            ]
         ]);
     }
 }

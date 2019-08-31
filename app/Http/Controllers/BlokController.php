@@ -64,11 +64,13 @@ class BlokController extends Controller
         return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!!');
     }
 
-    public function deleteData(Request $request)
+    public function deleteData(Request $request, $id)
     {
-        $blok = Blok::where('id', $request->id)->delete();
-        $kamar = Kamar::where('blok_id', $request->id)->delete();
-        // dd($blok);
+        $blok = Blok::find($id);
+        dd($blok);
+            // ->delete();
+        $kamar = Kamar::where('blok_id', $request->id);
+            // ->delete();
         
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;

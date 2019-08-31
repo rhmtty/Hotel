@@ -18,13 +18,19 @@
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
         <span class="badge">Sukses! </span> {{session('success')}}
     </div>
-    @elseif(session('booking'))
+  @elseif(session('success-edit'))
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+        <span class="badge">Sukses! </span> {{session('success-edit')}}
+    </div>
+  @elseif(session('booking'))
     <div class="alert alert-success" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
         <span class="badge">Sukses! </span> {{session('booking')}}
     </div>
   @endif
     <div class="col-md-12">
+    @if(isset($book) && $book->count()>=1)
       <table class="table">
         <thead>
           <tr>
@@ -41,56 +47,62 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($books as $book)
+        @foreach($book as $result)
           <tr>
-            <td>No. {{$book->nomer_kamar}}</td>
-            <td>{{$book->nama_pelanggan}}</td>
-            <td>{{$book->lama_menginap}}</td>
-            <td>{{date('d-m-Y', strtotime($book->checkin_time))}}</td>
-            <td>{{date('d-m-Y', strtotime($book->checkout_time))}}</td>
-            <td>{{$book->total}}</td>
-            <td>{{$book->keterangan}}</td>
-            <td>{{$book->operator}}</td>
-            <td>{{$book->active == 1 ? 'Menginap' : 'Keluar'}}</td>
-            @if($book->active == 1)
+            <td>No. {{$result->nomer_kamar}}</td>
+            <td>{{$result->nama_pelanggan}}</td>
+            <td>{{$result->lama_menginap}} Hari</td>
+            <td>{{date('d-m-Y', strtotime($result->checkin_time))}}</td>
+            <td>{{date('d-m-Y', strtotime($result->checkout_time))}}</td>
+            <td>{{$result->total}}</td>
+            <td>{{$result->keterangan}}</td>
+            <td>{{$result->operator}}</td>
+            <td>{{$result->active == 1 ? 'Menginap' : 'Keluar'}}</td>
+            @if($result->active == 1)
               <td width="20%">
-                <a href="{{ url('/admin/booking/edit/'.$book->id) }}"><i class="fa fa-pencil"></i></a>
+                <a href="{{ url('/admin/booking/edit/'.$result->id) }}"><i class="fa fa-pencil"></i></a>
                 <button type="button" class="del-button" data-toggle="modal" data-target=".delete-booking-md"><i class="fa fa-eraser"></i></button>
-                <a href="{{url('/admin/booking/check-out/'.$book->id)}}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
+                <a href="{{url('/admin/booking/check-out/'.$result->id)}}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
               </td>
             @endif
           </tr>
         @endforeach
         </tbody>
       </table>
-    </div>
-    <!-- DELETE CONFIRMATION -->
-    <div class="modal fade delete-booking-md" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Hapus Booking</h4>
-          </div>
-          <div class="modal-body">
-            <p>Yakin mau menghapus data booking ini ? Apabila dihapus data tidak bisa dikembalikan.</p>
-          </div>
-          <div class="modal-footer">
-            <form action="{{ url('/admin/booking/delete') }}" method="post" style="display: inline-block;">
-              @csrf
-              @method('DELETE')
-              <input type="hidden" name="id" value="{{ $book->id }}">
-              <input type="hidden" name="nama" value="{{ $book->nama_blok }}">
-              
-              <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-danger">Ya</button>
-              </form>
+      <!-- DELETE CONFIRMATION -->
+      <div class="modal fade delete-booking-md" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Hapus Booking</h4>
+            </div>
+            <div class="modal-body">
+              <p>Yakin mau menghapus data booking ini ? Apabila dihapus data tidak bisa dikembalikan.</p>
+            </div>
+            <div class="modal-footer">
+              <form action="{{ url('/admin/booking/delete') }}" method="post" style="display: inline-block;">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value="{{ $result->id }}">
+                <input type="hidden" name="id_kamar" value="{{ $result->id_kamar }}">
+                
+                <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
+                <button type="submit" class="btn btn-danger">Ya</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- END MODAL DELETE  -->
+      @else
+        <div class="alert alert-danger" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span><span class="sr-only">Tutup</span></button>
+          <strong class="badge">Kosong!!</strong>Data Booking tidak ada. Silahkan ditambahkan.
+        </div>
+      </div>
+      @endif
     </div>
-    <!-- END MODAL DELETE  -->
-  </div>
 @stop

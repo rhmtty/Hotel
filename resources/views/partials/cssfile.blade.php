@@ -15,6 +15,8 @@
 <link href="{{asset('assets/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
 <!-- bootstrap-daterangepicker -->
 <link href="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+<!-- Bootstrap datepicker -->
+<link href="{{asset('assets/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
 
 <!-- Custom Theme Style -->
 <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">

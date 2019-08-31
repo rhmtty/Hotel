@@ -27,8 +27,10 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/admin/booking/edit/save')}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/admin/booking/edit/save/'.$book->id)}}" method="POST">
                     @csrf
+                        <input type="hidden" value="{{$book->id}}" name="id">
+                        <input type="hidden" value="{{$book->id_kamar}}" name="id_kamar">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -58,7 +60,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Kamar</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{$book->nomer_kamar}}">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="kamar" value="{{$book->nomer_kamar}}">
                                 <span></span>
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin" value="">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin" value="{{$book->checkin_time}}">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -75,7 +77,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="{{$book->checkout_time}}">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           

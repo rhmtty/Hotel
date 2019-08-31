@@ -48,13 +48,41 @@
             <td>{{ $data->active ==1 ? 'Tersedia' : 'Tidak Tersedia' }}</td>
             <td>
               <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil" title="Edit"></i></a>
-              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-kamar"><i class="fa fa-eraser" title="Delete"></i></button>
+              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-kamar" kd="{{$data->id}}"><i class="fa fa-eraser" title="Delete"></i></button>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
+  </div>
+  <!-- delete modal -->
+  <div class="modal fade delete-kamar" tabindex="-1" role="dialog" aria-hidden="true" kd="{{$data->id}}">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Hapus kamar</h4>
+        </div>
+        <div class="modal-body">
+          <p>Apakah kamu yakin mau menghapus kamar ini ?</p>
+        </div>
+        <div class="modal-footer">
+          <form action="{{ url('/admin/kamar/delete') }}" method="post" style="display: inline-block;">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="id" value="{{ $data->id }}">
+            <input type="hidden" name="nama" value="{{ $data->no_kamar }}">
+
+            <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
+            <button type="submit" class="btn btn-danger">Ya</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end modal -->
   @else
     <div class="col-md-12">
       <div class="alert alert-danger" role="alert">
@@ -63,31 +91,5 @@
       </div>
     </div>
   @endif
-  </div>
-    <div class="modal fade delete-kamar" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Hapus kamar</h4>
-          </div>
-          <div class="modal-body">
-            <p>Apakah kamu yakin mau menghapus kamar ini ?</p>
-          </div>
-          <div class="modal-footer">
-            <form action="{{ url('/admin/kamar/delete') }}" method="post" style="display: inline-block;">
-              @csrf
-              @method('DELETE')
-              <input type="hidden" name="id" value="{{ $data->id }}">
-              <input type="hidden" name="nama" value="{{ $data->no_kamar }}">
-
-              <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-danger">Ya</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 @stop

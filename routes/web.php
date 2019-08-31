@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'BlokController@postNew');
         Route::get('/edit/{id}', 'BlokController@showEdit');
         Route::post('/save/{id}', 'BlokController@postEdit');
-        Route::delete('/delete', 'BlokController@deleteData');
+        Route::get('/delete/{id}', 'BlokController@deleteData');
     });
     /**
      * 
@@ -58,8 +58,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/', 'BookingController@index');
         Route::get('/form', 'BookingController@formNew');
         Route::post('/book', 'BookingController@postNew');
-        Route::get('/edit/{id}', 'BookingController@editBooking');
-        Route::post('/edit/save', 'BookingController@editBooking');
+        Route::get('/edit/{id}', 'BookingController@editData');
+        Route::post('/edit/save/{id}', 'BookingController@editData');
         if(\App\Booking::where('active', 1)){
             Route::get('/check-out/{id}', 'BookingController@CheckOut');
         }

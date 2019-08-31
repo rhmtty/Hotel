@@ -14,6 +14,12 @@
     <div class="clearfix"></div>
 
     <div class="row">
+        @if(session('success'))
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <span class="badge">Sukses! </span> {{session('success')}}
+            </div>
+        @endif
         <!-- form input mask -->
         <div class="col-md-12">
             <div class="x_panel">
@@ -71,7 +77,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status" name="checkin">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -80,7 +86,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status" name="checkout">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           

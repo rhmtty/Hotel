@@ -35,6 +35,7 @@ class LaporanController extends Controller
             ->groupBy('date')
             ->orderBy('date', 'desc')
             ->get();
+        dd($aktifitas);
 
         // $aktifitas = DB::select('SELECT id, nama_kary, info_kary, aktivitas, created_at, updated_at FROM aktivitas_karyawan');
         // $content =view ('laporan.aktifitas',compact('aktifitas'));

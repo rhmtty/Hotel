@@ -23,8 +23,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $books = Booking::DataBooking();
-        return view('booking.index', compact('books'));
+        $book = Booking::DataBooking();
+        return view('booking.index',['book' => $book]);
     }
 
     /**
@@ -79,7 +79,7 @@ class BookingController extends Controller
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;
         $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-        $karyawan->aktivitas = "Kamar baru dipesan. Nama Pelanggan: ". $request->nama. "No KTP: ". $request->no_ktp. "Alamat: ". $request->alamat. "Telepon: ". $request->notelp;
+        $karyawan->aktivitas = "Kamar baru dipesan. Nama Pelanggan: ". $request->nama. " No KTP: ". $request->no_ktp. " Alamat: ". $request->alamat. " Telepon: ". $request->notelp;
         $karyawan->save();
         return back()->with('success', 'Kamar sukses dibooking');
 
@@ -88,15 +88,37 @@ class BookingController extends Controller
     /**
      * Edit data booking
      */
-    public function editBooking($id, Request $request)
+    public function editData(Request $request, $id)
     {
-        if($request->Method('GET')) {
+        if($request->isMethod('GET')) {
             $book = Booking::EditBooking($id);
             return view('booking.edit', compact('book'));
-        } elseif($request->Method('POST')) {
+        } elseif($request->isMethod('POST')) {
+            $tglCekin = new DateTime($request->checkin);
+            $tglCekout = new DateTime($request->checkout);
+            $jumlah_hari = $tglCekin->diff($tglCekout);
+            $hari = ($jumlah_hari->format('%a')) + 1;
+            
+            $harga = Kamar::where('id', $request->id_kamar)->value('harga');
+            // dd($harga);
+            // $total = $hari * $harga;
+
             $book = Booking::find($id);
+            $book->exists = true;
+            $book->id = $request->id;
+            $book->lama_menginap = $hari;
             $book->checkin_time = $request->checkin;
             $book->checkout_time = $request->checkout;
+            $book->total = $hari * $harga;
+            // dd($book);
+            $book->update();
+            
+            $karyawan = new AktivitasKaryawan();
+            $karyawan->nama_kary = Auth::user()->fullname;
+            $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
+            $karyawan->aktivitas = "Mengedit data booking. ID booking: ". $id;
+            $karyawan->save();
+            return redirect('/admin/booking')->with('success-edit', 'Data booking sukses di edit!!');
         }
     }
 
@@ -126,11 +148,20 @@ class BookingController extends Controller
             $karyawan = new AktivitasKaryawan();
             $karyawan->nama_kary = Auth::user()->fullname;
             $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. "No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. "Telepon: ". $infop->notelp. ".". "No Kamar: ". $kamar->no_kamar. "Tipe: ". $kamar->tipe. "Totaln Tagihan: ". $booking->total;
+            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. " No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. " Telepon: ". $infop->telp. " No Kamar: ". $kamar->no_kamar. " Tipe: ". $kamar->tipe. " Total Tagihan: ". $booking->total;
             $karyawan->save();
             return redirect('/admin/booking')->with('booking', 'Proses Check Out sukses dilakukan!!');
 
         }
         
+    }
+
+    public function deleteBooking(Request $request)
+    {
+        $booking = Booking::where('id', $request->id)->delete();
+        $kamar = Kamar::find($request->id_kamar);
+        // dd($booking, $kamar);
+        $kamar->active = 1;
+        $kamar->save();
     }
 }

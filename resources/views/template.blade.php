@@ -43,6 +43,17 @@
     </div>
 
     @include('partials.jsfile')
-  
+    <script>
+      jQuery('#datepicker-start').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy-mm-dd' 
+      });
+      jQuery('#datepicker-end').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'yyyy-mm-dd'
+      });
+    </script>
   </body>
 </html>
