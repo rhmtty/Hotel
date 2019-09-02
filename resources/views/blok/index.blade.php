@@ -44,7 +44,7 @@
             <td>{{ $data->deskripsi }}</td>
             <td>
               <a href="{{ url('/admin/blok/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
-              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-modal-md"><i class="fa fa-eraser"></i></button>
+              <button type="button" class="del-button" data-toggle="modal" data-target=".delete-modal-md" onclick="deleteData({{$data->id}})"><i class="fa fa-eraser"></i></button>
             </td>
           </tr>
           @endforeach
@@ -52,33 +52,33 @@
       </table>
     </div>
 <!-- DELETE CONFIRMATION -->
-    <div class="modal fade delete-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
+  <form action="" id="deleteForm" method="post" style="display: inline-block;">
+    <div class="modal fade delete-modal-md text-danger" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+          <div class="modal-header bg-danger">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
             </button>
             <h4 class="modal-title" id="myModalLabel">Hapus Blok</h4>
           </div>
           <div class="modal-body">
-            <p>Yakin mau menghapus Blok ini ?</p>
+            <center><p>Yakin mau menghapus Blok ini ?</p></center>
           </div>
           <div class="modal-footer">
-            <!-- <form action="{{ url('/admin/blok/delete/'.$data->id) }}" method="post" style="display: inline-block;">
               @csrf
-              @method('DELETE') -->
-              <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
+              @method('DELETE')
+              <input type="hidden" name="id" value="{{ $data->id }}">
               <input type="hidden" name="nama" value="{{ $data->nama_blok }}">
               
               <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
-              <a href="{{ url('/admin/blok/delete/'.$data->id) }}" class="btn btn-danger" value="">Ya</a>
-              <!-- <button type="submit" class="btn btn-danger">Ya</button> -->
-              <!-- </form> -->
+              <!-- <a href="{{ url('/admin/blok/delete/'.$data->id) }}" class="btn btn-danger" value="">Ya</a> -->
+              <button type="submit" class="btn btn-danger" onclick="formSubmit()">Ya, Hapus</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </form>
 <!-- END MODAL DELETE  -->
     @else
       <div class="alert alert-danger" role="alert">

@@ -1,3 +1,4 @@
+<title>Laporan Booking</title>
 <style>
 table { position: relative; border-collapse:collapse; width: 100%; }
 table td { border:1px solid #000; padding: 5px; }
@@ -26,15 +27,15 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
     </tr>
     @foreach($bookings as $data)
     <tr>
-        <td>{{ $data->no_kamar }}</td>
-        <td>{{ $data->nama }}</td>
-        <td>{{ $data->created_at }}</td>
+        <td>No. {{ $data->nomer_kamar }}</td>
+        <td>{{ $data->nama_pelanggan }}</td>
+        <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
         <td>{{ $data->checkin_time }}</td>
         <td>{{ $data->checkout_time }}</td>
-        <td>{{ $data->lama_menginap }}</td>
+        <td>{{ $data->lama_menginap }} Hari</td>
         <td>{{ $data->total }}</td>
         <td>{{ $data->keterangan }}</td>
-        <td>{{ $data->fullname }}</td>
+        <td>{{ $data->operator }}</td>
 
     </tr>    
     @endforeach

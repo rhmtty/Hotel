@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'BlokController@postNew');
         Route::get('/edit/{id}', 'BlokController@showEdit');
         Route::post('/save/{id}', 'BlokController@postEdit');
-        Route::get('/delete/{id}', 'BlokController@deleteData');
+        Route::delete('/delete/{id}', 'BlokController@deleteData')->name('blok.destroy');
     });
     /**
      * 
@@ -81,7 +81,9 @@ Route::group(['prefix' => 'admin'], function(){
      */
     Route::group(['prefix' => 'laporan'], function() {
         Route::get('/bookings', 'LaporanController@booking');
+        Route::get('/bookings/view/{id}', 'LaporanController@booking');
         Route::get('/aktifitas', 'LaporanController@aktifitas');
+        Route::get('/aktifitas/view/{key}', 'LaporanController@aktifitas');
         Route::get('/pelanggan', 'LaporanController@pelanggan');
     });
 });

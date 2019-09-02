@@ -1,13 +1,13 @@
 @extends('template')
 @section('title')
-    Laporan Aktivitas
+    Laporan Booking
 @stop
 @section('content')
     <div class="page-title">
         <div class="title_left">
             <ul class="breadcrumb">
                 <li><a href="/admin"><h3>Home</h3></a></li>
-                <li><span>Laporan Aktivitas</span></li>
+                <li><span>Laporan Booking</span></li>
             </ul>
         </div>
     </div>
@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Laporan Aktivtas Karyawan</h2>
+                    <h2>Laporan Booking</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -33,10 +33,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($aktivitas as $key => $dt)
+                            @foreach($bookings as $dt)
                                 <tr>
-                                    <td>{{date('M-Y', strtotime($key))}}</td>
-                                    <td><a href="{{ url('admin/laporan/aktifitas/view/'.$key)}}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a></td>
+                                    <td>{{date('M-Y', strtotime($dt->created_at))}}</td>
+                                    <td><a href="{{ url('/admin/laporan/bookings/view/'.$dt->id) }}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
