@@ -20,12 +20,13 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
         <td>Aktifitas</td>
         <td>Tanggal</td>
     </tr>
-    @foreach($aktifitas as $data)
+    @foreach($data as $dt)
     <tr>
-        <td>{{ $data->nama_kary }}</td>
-        <td>{{ $data->info_kary }}</td>
-        <td>{{ $data->aktivitas }}</td>
-        <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+        <td>{{ $dt->nama_kary }}</td>
+        <td>{{ $dt->info_kary }}</td>
+        <td>{{ $dt->aktivitas }}</td>
+        <td>{{ date('d-m-Y', strtotime($dt->created_at)) }}</td>
     </tr>    
     @endforeach
+
 </table>

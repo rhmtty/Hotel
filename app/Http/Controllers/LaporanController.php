@@ -49,18 +49,20 @@ class LaporanController extends Controller
             ->get()
             ->groupBy(function($date) {
                 return carbon::parse($date->created_at)->format('M-Y');
-            }); 
+            });
             return view('laporan.aktivitas.index', ['aktivitas' => $aktifitas]);
         }else{
-            $date = Carbon::parse($key)->format('M-Y');
-            // dd($date);
-            $aktifitas = AktivitasKaryawan::selectRaw(['count(*) AS cnt, created_at', 'info_kary'])
-                ->groupBy('created_at')
-                ->orderBy('cnt', 'DESC')
-                // ->limit(30)
-                ->get();
-                // dd($aktifitas);
-            $content = view('laporan.aktivitas.aktifitas', compact('aktifitas'));
+            $tgl = Carbon::parse($key)->format('M-Y');
+            $tgl_end = Carbon::parse($key)->addWeeks(4)->addDays(2)->format('M-Y');
+            // $data = AktivitasKaryawan::select('created_at', 'nama_kary', 'info_kary', 'aktivitas')
+            //     ->get()
+            //     ->where('created_at', $tgl)
+            //     ->groupBy(function($date) {
+            //         return carbon::parse($date->created_at)->format('M-Y');
+            //     });
+            // dd($data);
+            
+            $content = view('laporan.aktivitas.aktifitas', ['data', $data]);
 
             $pdf = new MPdf([
                 'orientation'=>"P",
