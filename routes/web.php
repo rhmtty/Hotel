@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'BlokController@postNew');
         Route::get('/edit/{id}', 'BlokController@showEdit');
         Route::post('/save/{id}', 'BlokController@postEdit');
-        Route::delete('/delete/{id}', 'BlokController@deleteData')->name('blok.destroy');
+        Route::delete('/delete/{id}', 'BlokController@deleteData')->name('blok.delete');
     });
     /**
      * 
@@ -60,9 +60,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/book', 'BookingController@postNew');
         Route::get('/edit/{id}', 'BookingController@editData');
         Route::post('/edit/save/{id}', 'BookingController@editData');
-        if(\App\Booking::where('active', 1)){
+        // if(Route::input('active') == 1){
             Route::get('/check-out/{id}', 'BookingController@CheckOut');
-        }
+        // }
         Route::post('/check-out/post/{id}', 'BookingController@CheckOut');
         Route::delete('/delete', 'BookingController@deleteBooking');
 
@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'laporan'], function() {
         Route::get('/bookings', 'LaporanController@booking');
         Route::get('/bookings/view/{id}', 'LaporanController@booking');
-        Route::get('/aktifitas', 'LaporanController@aktifitas');
+        Route::get('/aktifitas', 'LaporanController@indexAktivitas');
         Route::get('/aktifitas/view/{key}', 'LaporanController@aktifitas');
         Route::get('/pelanggan', 'LaporanController@pelanggan');
     });

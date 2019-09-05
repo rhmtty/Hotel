@@ -64,7 +64,7 @@ class BlokController extends Controller
         return redirect('/admin/blok')->with('success', 'Blok sukses diperbarui!!');
     }
 
-    public function deleteData(Request $request, $id)
+    public function deleteData($id, Request $request)
     {
         $blok = Blok::find($id);
         dd($blok);

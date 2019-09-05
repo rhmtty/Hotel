@@ -54,9 +54,9 @@
         </li>
         <li><a><i class="fa fa-list"></i>Laporan <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a target="_BLANK" href="{{url('/admin/laporan/bookings')}}">Laporan Booking</a></li>
-            <li><a target="_BLANK" href="{{url('/admin/laporan/pelanggan')}}">Laporan Data Pelanggan</a></li>
-            <li><a target="_BLANK" href="{{url('/admin/laporan/aktifitas')}}">Laporan Aktivitas</a></li>
+            <li><a href="{{url('/admin/laporan/bookings')}}">Laporan Booking</a></li>
+            <li><a target="_blank" href="{{url('/admin/laporan/pelanggan')}}">Laporan Data Pelanggan</a></li>
+            <li><a href="{{url('/admin/laporan/aktifitas')}}">Laporan Aktivitas</a></li>
           </ul>
         </li>
       </ul>

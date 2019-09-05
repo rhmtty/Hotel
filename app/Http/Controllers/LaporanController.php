@@ -40,39 +40,44 @@ class LaporanController extends Controller
             
     }
 
+    public function indexAktivitas()
+    {
+         $aktifitas = AktivitasKaryawan::select('created_at')
+        ->get()
+        ->groupBy(function($date) {
+            return carbon::parse($date->created_at)->format('M-Y');
+        });
+        return view('laporan.aktivitas.index', ['aktivitas' => $aktifitas]);
+    }
+
     public function aktifitas(Request $request, $key=null)
     {
-        
-        // dd($aktifitas);
-        if($request->is('admin/laporan/aktifitas')) { 
-            $aktifitas = AktivitasKaryawan::select('created_at')
-            ->get()
-            ->groupBy(function($date) {
-                return carbon::parse($date->created_at)->format('M-Y');
-            });
-            return view('laporan.aktivitas.index', ['aktivitas' => $aktifitas]);
-        }else{
-            $tgl = Carbon::parse($key)->format('M-Y');
-            $tgl_end = Carbon::parse($key)->addWeeks(4)->addDays(2)->format('M-Y');
-            // $data = AktivitasKaryawan::select('created_at', 'nama_kary', 'info_kary', 'aktivitas')
-            //     ->get()
-            //     ->where('created_at', $tgl)
-            //     ->groupBy(function($date) {
-            //         return carbon::parse($date->created_at)->format('M-Y');
-            //     });
-            // dd($data);
-            
-            $content = view('laporan.aktivitas.aktifitas', ['data', $data]);
+        $tgl = Carbon::parse($key)->startOfMonth()->format('d-M-Y');
+        $tgl_end = Carbon::parse($key)->endOfMonth()->format('d-M-Y');
 
-            $pdf = new MPdf([
-                'orientation'=>"P",
-                'format'=>"Folio"
-            ]);
+        // $bln = Carbon::parse($key);
 
-            $pdf->WriteHTML($content);
-            $pdf->Output(public_path().'/Laporan Data Aktifitas Karyawan','I');
-            exit();
+        for($i = 1; $i < 13; $i++) {
+            $aktifitas[$i] = AktivitasKaryawan::whereMonth('created_at', $i);
+        dd($aktifitas[$i]);
         }
+        $perbln = $aktifitas->where('created_at', '>', Carbon::parse($key)->startOfMonth())->where('created_at', '<', Carbon::parse($key)->endOfMonth());
+
+        // $data = AktivitasKaryawan::whereMonth('created_at', '<=', $tgl)
+        //     ->whereMonth('created_at', '>=', $tgl_end)
+        //     ->orderBy('created_at', 'ASC')
+        //     ->get()->toArray();
+        
+        $content = view('laporan.aktivitas.aktifitas', ['data' => $data]);
+
+        $pdf = new MPdf([
+            'orientation'=>"P",
+            'format'=>"Folio"
+        ]);
+
+        $pdf->WriteHTML($content);
+        $pdf->Output(public_path().'/Laporan Data Aktifitas Karyawan','I');
+        exit();
 
     }
     public function pelanggan()

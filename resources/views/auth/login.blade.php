@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row"  style="font-size:25px">
+                        <div class="form-group row"  style="font-size:19px">
                             <label for="email" class="col-md-4 col-form-label text-md-right fa fa-envelope" style="color:white"></label>
 
                             <div class="col-md-6">

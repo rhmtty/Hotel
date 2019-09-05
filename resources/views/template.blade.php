@@ -55,11 +55,11 @@
         format: 'yyyy-mm-dd'
       });
     </script>
-    <script>
+    <script type="text/javascript">
       function deleteData(id)
       {
         var id = id;
-        var url = '{{ route("blok.destroy", ":id") }}';
+        var url = '{{ route("blok.delete", ":id") }}';
         url = url.replace(':id', id);
         $("deleteForm").attr('action', url);
       }
