@@ -35,8 +35,11 @@
                         <tbody>
                             @foreach($aktivitas as $key => $dt)
                                 <tr>
-                                    <td>{{date('M-Y', strtotime($key))}}</td>
-                                    <td><a href="{{ url('admin/laporan/aktifitas/view/'.$key)}}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a></td>
+                                @php
+                                    $param = date('Y-m', strtotime($dt[0]->created_at))
+                                @endphp
+                                    <td>{{date('M-Y', strtotime($dt[0]->created_at))}}</td>
+                                    <td><a href="{{ url('admin/laporan/aktifitas/view/'.$param)}}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

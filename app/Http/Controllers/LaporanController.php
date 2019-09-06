@@ -50,25 +50,27 @@ class LaporanController extends Controller
         return view('laporan.aktivitas.index', ['aktivitas' => $aktifitas]);
     }
 
-    public function aktifitas(Request $request, $key=null)
+    public function aktifitas($key)
     {
-        $tgl = Carbon::parse($key)->startOfMonth()->format('d-M-Y');
-        $tgl_end = Carbon::parse($key)->endOfMonth()->format('d-M-Y');
+        $tgl = Carbon::parse($key)->startOfMonth();
+        $tgl_end = Carbon::parse($key)->endOfMonth();
 
+        $lapbln = Carbon::parse($key)->format('F-Y');
+
+        // $format = date('Y-m-d', strtotime([$tgl, $tgl_end]));
+        // $bln = Carbon::parse($key)->format('Y-m-d');
+        
         // $bln = Carbon::parse($key);
 
-        for($i = 1; $i < 13; $i++) {
-            $aktifitas[$i] = AktivitasKaryawan::whereMonth('created_at', $i);
-        dd($aktifitas[$i]);
-        }
-        $perbln = $aktifitas->where('created_at', '>', Carbon::parse($key)->startOfMonth())->where('created_at', '<', Carbon::parse($key)->endOfMonth());
-
-        // $data = AktivitasKaryawan::whereMonth('created_at', '<=', $tgl)
-        //     ->whereMonth('created_at', '>=', $tgl_end)
-        //     ->orderBy('created_at', 'ASC')
-        //     ->get()->toArray();
+        // for($i = 1; $i < 13; $i++) {
+        //     $aktifitas[$i] = collect(DB::select('nama_kary', 'info_kary', 'aktivitas', 'created_at')->where('created_at', $i));
+        // }
+        // $perbln = $aktifitas->where('created_at', '>', Carbon::parse($key)->startOfMonth())->where('created_at', '<', Carbon::parse($key)->endOfMonth());
+        $aktivitas = DB::table('aktivitas_karyawan')->whereBetween('created_at', [$tgl, $tgl_end])->get();
+        // dd($aktivitas, $tgl,$tgl_end, $lapbln);
         
-        $content = view('laporan.aktivitas.aktifitas', ['data' => $data]);
+        $content = view('laporan.aktivitas.aktifitas', ['aktivitas' => $aktivitas,
+            'bln' => $lapbln]);
 
         $pdf = new MPdf([
             'orientation'=>"P",

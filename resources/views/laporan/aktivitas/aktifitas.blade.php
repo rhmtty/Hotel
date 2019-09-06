@@ -11,21 +11,23 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 <h2>PERUM PERHUTANI</h2>
 <p>Jl Rimbamulya No.11 Kartoharjo Madiun, Telp : (021) 0351453094 
 <br>www.perhutani-corpu.com</p>
-<h2>AKTIFITAS KARYAWAN</h2>
+<h2>AKTIVITAS KARYAWAN BULAN {{$bln}}</h2>
 <br>
 <table>
     <tr class="title">
+        <td>No</td>
         <td>Nama</td>
         <td>Info</td>
         <td>Aktifitas</td>
         <td>Tanggal</td>
     </tr>
-    @foreach($data as $dt)
+    @foreach($aktivitas as $key => $dt)
     <tr>
+        <td>{{ $key+1 }}</td>
         <td>{{ $dt->nama_kary }}</td>
         <td>{{ $dt->info_kary }}</td>
         <td>{{ $dt->aktivitas }}</td>
-        <td>{{ date('d-m-Y', strtotime($dt->created_at)) }}</td>
+        <td>{{ date('d-F-Y', strtotime($dt->created_at)) }}</td>
     </tr>    
     @endforeach
 
