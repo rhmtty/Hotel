@@ -7,11 +7,11 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 .title { background: #ccc; }
 </style>
 
-<h1>GUEST HOUSE EBONI</h1>
+<h1>GUEST HOUSE</h1>
 <h2>PERUM PERHUTANI</h2>
-<p>Jl Rimbamulya No.11 Kartoharjo Madiun, Telp : (021) 0351453094 
+<p>Jl. Rimbamulya No.11 Kartoharjo Madiun, Telp : (021) 0351453094
 <br>www.perhutani-corpu.com</p>
-<h2>AKTIVITAS KARYAWAN BULAN {{$bln}}</h2>
+<h2>AKTIVITAS KARYAWAN BULAN {{$bln->formatLocalized('%B %Y')}}</h2>
 <br>
 <table>
     <tr class="title">
@@ -27,7 +27,7 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
         <td>{{ $dt->nama_kary }}</td>
         <td>{{ $dt->info_kary }}</td>
         <td>{{ $dt->aktivitas }}</td>
-        <td>{{ date('d-F-Y', strtotime($dt->created_at)) }}</td>
+        <td>{{ date('d F Y', strtotime($dt->created_at)) }}</td>
     </tr>    
     @endforeach
 

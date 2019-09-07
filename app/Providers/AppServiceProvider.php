@@ -24,8 +24,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Carbon\Carbon::setLocale('id');
-        // jika ingin menyesuaikan dengan dengan locale di laravel
-        \Carbon\Carbon::setLocale(config('app.locale'));
+        // setlocale(LC_TIME, 'id_ID');
+        // // \Carbon\Carbon::setLocale('ID');
+        // // // jika ingin menyesuaikan dengan dengan locale di laravel
+        // // \Carbon\Carbon::setLocale(config('app.locale'));
+        // // config(['app.locale' => 'id']);
+        // // \Carbon\Carbon::setLocale('id');
+        // //  Schema::defaultStringLength(191);
+
+        // // setlocale(LC_ALL, 'id_ID.utf8');
+        // Carbon::setLocale('id');
+        // \Carbon\Carbon::setLocale(config('app.locale'));
+            
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Jakarta');
     }
 }

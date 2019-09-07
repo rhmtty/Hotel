@@ -148,7 +148,7 @@ class BookingController extends Controller
             $karyawan = new AktivitasKaryawan();
             $karyawan->nama_kary = Auth::user()->fullname;
             $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
-            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. " No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. " Telepon: ". $infop->telp. " No Kamar: ". $kamar->no_kamar. " Tipe: ". $kamar->tipe. " Total Tagihan: ". $booking->total;
+            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. " No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. " Telepon: ". $infop->telp. " No Kamar: ". $kamar->no_kamar. " Tipe: ". $kamar->tipe. " Total Tagihan: Rp. ". $booking->total;
             $karyawan->save();
             return redirect('/admin/booking')->with('booking', 'Proses Check Out sukses dilakukan!!');
 

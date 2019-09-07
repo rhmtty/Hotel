@@ -25,7 +25,7 @@
     </div>
   @if($kamar->count()>0)
     <div class="col-md-12">
-      <table class="table">
+      <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>No Kamar</th>
@@ -33,8 +33,9 @@
             <th>Blok</th>
             <th>Tipe</th>
             <th>Fasilitas</th>
+            <th>Harga</th>
             <th>Status</th>
-            <th></th>
+            <th width="5%"></th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
             <td>{{ $data->nama_blok }}</td>
             <td>{{ $data->tipe }}</td>
             <td>{{ $data->fasilitas }}</td>
+            <td>Rp. {{ number_format($data->harga). ',-' }}</td>
             <td>{{ $data->active ==1 ? 'Tersedia' : 'Tidak Tersedia' }}</td>
             <td>
               <a href="{{ url('/admin/kamar/edit/'.$data->id) }}"><i class="fa fa-pencil" title="Edit"></i></a>

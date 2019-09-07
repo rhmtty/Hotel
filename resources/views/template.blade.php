@@ -56,18 +56,11 @@
       });
     </script>
     <script type="text/javascript">
-      function deleteData(id)
-      {
-        var id = id;
-        var url = '{{ route("blok.delete", ":id") }}';
-        url = url.replace(':id', id);
-        $("deleteForm").attr('action', url);
-      }
-
-      function formSubmit()
-      {
-        $("#deleteForm").submit();
-      }
+      $document().on('click', '.del-button', function() {
+        var blokID=$(this).attr('data-blokid');
+        $('#blok_id').val(blokID);
+        $('#blokDelete').modal('show');
+      })
     </script>
   </body>
 </html>

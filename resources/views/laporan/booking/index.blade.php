@@ -29,14 +29,14 @@
                         <thead>
                             <tr>
                                 <th>Bulan</th>
-                                <th></th>
+                                <th width="10%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($bookings as $dt)
                                 <tr>
-                                    <td>{{date('M-Y', strtotime($dt->created_at))}}</td>
-                                    <td><a href="{{ url('/admin/laporan/bookings/view/'.$dt->id) }}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a>
+                                    <td>{{date('M-Y', strtotime($dt[0]->created_at))}}</td>
+                                    <td><a href="{{ url('/admin/laporan/bookings/view/'.$param) }}" target="_blank"><button class="btn btn-info btn-sm">Lihat</button></a>
                                     </td>
                                 </tr>
                             @endforeach

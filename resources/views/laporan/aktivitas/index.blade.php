@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th>Bulan</th>
-                                <th></th>
+                                <th width="10%"></th>
                             </tr>
                         </thead>
                         <tbody>

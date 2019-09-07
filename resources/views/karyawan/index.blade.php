@@ -15,7 +15,7 @@
   <div class="row">
   @if($karyawans->count()>0)
     <div class="col-md-12">
-      <table class="table">
+      <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>Nama</th>

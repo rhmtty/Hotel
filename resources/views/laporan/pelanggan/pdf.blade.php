@@ -6,9 +6,9 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 .title { background: #ccc; }
 </style>
 
-<h1>GUEST HOUSE EBONI</h1>
+<h1>GUEST HOUSE</h1>
 <h2>PERUM PERHUTANI</h2>
-<p>Jl Rimbamulya No.11 Kartoharjo Madiun, Telp : (021) 7777777 
+<p>Jl Rimbamulya No.11 Kartoharjo Madiun, Telp: (021) 0351453094  
 <br>www.perhutani-corpu.com</p>
 <h2>DATA PELANGGAN</h2>
 <br>

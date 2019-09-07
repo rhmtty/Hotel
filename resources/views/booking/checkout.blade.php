@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label class="col-md-2" for="">Total Tagihan: </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <span class="demo1">{{$booking->total}}</span> 
+                                <span class="demo1">Rp. {{ number_format($booking->total,2)}}</span> 
                             </div>
                         </div>
                         <div class="ln_solid"></div>

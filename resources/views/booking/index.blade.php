@@ -31,10 +31,11 @@
   @endif
     <div class="col-md-12">
     @if(isset($book) && $book->count()>=1)
-      <table class="table">
+      <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>Kamar</th>
+            <th>Tipe Kamar</th>
             <th>Pelanggan</th>
             <th>Lama Menginap</th>
             <th>Check In</th>
@@ -43,28 +44,29 @@
             <th>Order Via</th>
             <th>Operator</th>
             <th>Status</th>
-            <th></th>
+            <th width="12%"></th>
           </tr>
         </thead>
         <tbody>
         @foreach($book as $result)
           <tr>
             <td>No. {{$result->nomer_kamar}}</td>
+            <td>{{$result->tipe_kamar}}</td>
             <td>{{$result->nama_pelanggan}}</td>
             <td>{{$result->lama_menginap}} Hari</td>
             <td>{{date('d-m-Y', strtotime($result->checkin_time))}}</td>
             <td>{{date('d-m-Y', strtotime($result->checkout_time))}}</td>
-            <td>{{$result->total}}</td>
+            <td>Rp.{{ number_format($result->total)}}</td>
             <td>{{$result->keterangan}}</td>
             <td>{{$result->operator}}</td>
             <td>{{$result->active == 1 ? 'Menginap' : 'Keluar'}}</td>
-            @if($result->active == 1)
-              <td width="20%">
+            <td>
+              @if($result->active == 1)
                 <a href="{{ url('/admin/booking/edit/'.$result->id) }}"><i class="fa fa-pencil"></i></a>
                 <button type="button" class="del-button" data-toggle="modal" data-target=".delete-booking-md"><i class="fa fa-eraser"></i></button>
                 <a href="{{url('/admin/booking/check-out/'.$result->id)}}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
-              </td>
-            @endif
+              @endif
+            </td>
           </tr>
         @endforeach
         </tbody>
