@@ -66,11 +66,11 @@ class BlokController extends Controller
 
     public function deleteData(Request $request)
     {
-        $blok = Blok::where('id', $request->id);
-        dd($blok);
-            // ->delete();
-        $kamar = Kamar::where('blok_id', $request->id);
-            // ->delete();
+        $blok = Blok::where('id', $request->id)
+        // dd($blok->where('id', $request->id)->toSql());
+            ->delete();
+        $kamar = Kamar::where('blok_id', $request->id)
+            ->delete();
         
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;

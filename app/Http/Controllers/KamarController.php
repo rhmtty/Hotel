@@ -75,9 +75,9 @@ class KamarController extends Controller
 
     public function delete(Request $request)
     {
-        $kamar = Kamar::where('id', $request->id);
-        dd($kamar);
-        // ->delete();
+        $kamar = Kamar::where('id', $request->id)
+        // dd($kamar);
+            ->delete();
 
         $karyawan = new AktivitasKaryawan();
         $karyawan->nama_kary = Auth::user()->fullname;

@@ -55,12 +55,5 @@
         format: 'yyyy-mm-dd'
       });
     </script>
-    <script type="text/javascript">
-      $document().on('click', '.del-button', function() {
-        var blokID=$(this).attr('data-blokid');
-        $('#blok_id').val(blokID);
-        $('#blokDelete').modal('show');
-      })
-    </script>
   </body>
 </html>

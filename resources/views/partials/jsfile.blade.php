@@ -45,3 +45,5 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('assets/build/js/custom.min.js')}}"></script>
+    <!-- Delete Modal -->
+    <script src="{{asset('assets/build/js/delete-modal.js')}}"></script>

@@ -46,7 +46,7 @@
             <td>{{ $data->deskripsi }}</td>
             <td>
               <a href="{{ url('/admin/blok/edit/'.$data->id) }}"><i class="fa fa-pencil"></i></a>
-              <button class="del-button" data-toggle="modal" data-target=".delete-modal-md" data-blokid="{{$data->id}}"><i class="fa fa-eraser"></i></button>
+              <button class="del-button" data-blokid="{{$data->id}}" nama-blok="{{$data->nama_blok}}"><i class="fa fa-eraser"></i></button>
             </td>
           </tr>
           @endforeach
@@ -55,7 +55,7 @@
     </div>
 <!-- DELETE CONFIRMATION -->
     <div id="blokDelete" class="modal fade delete-modal-md text-danger" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           <form action="{{ route('blok.delete') }}" id="deleteForm" method="post">
             @csrf
@@ -66,14 +66,13 @@
               <h4 class="modal-title" id="myModalLabel">Hapus Blok</h4>
             </div>
             <div class="modal-body">
-              <center><p>Yakin mau menghapus Blok ini ?</p></center>
+              <center><p>Apakah anda yakin mau menghapus blok ini ? Apabila dihapus data tidak bisa dikembalikan!!</p></center>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="id" value="{{ $data->id }}" id="blok_id">
-                <input type="hidden" name="nama" value="{{ $data->nama_blok }}">
+                <input type="hidden" name="id" id="blok_id">
+                <input type="hidden" name="nama" id="nama_blok">
                 
                 <button type="button" class="btn btn-info" data-dismiss="modal">Tidak</button>
-                <!-- <a href="{{ url('/admin/blok/delete/'.$data->id) }}" class="btn btn-danger" value="">Ya</a> -->
                 <button type="submit" class="btn btn-danger">Ya, Hapus</button>
               </div>
             </div>

@@ -36,8 +36,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/save', 'KamarController@postNew');
         Route::get('/edit/{id}', 'KamarController@showEdit');
         Route::post('/edit/{id}', 'KamarController@postEdit');
-        Route::delete('/delete', 'KamarController@delete');
-
+        Route::delete('/delete', 'KamarController@delete')->name('kamar.delete');
     });
     /**
      * BLOK CONTROLLER

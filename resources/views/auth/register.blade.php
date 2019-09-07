@@ -111,6 +111,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <button type="button" class="btn btn-success" onclick="history.back()">
+                                    {{__('Back')}}
+                                </button>
                             </div>
                         </div>
                     </form>
