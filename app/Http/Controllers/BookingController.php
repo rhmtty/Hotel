@@ -40,6 +40,12 @@ class BookingController extends Controller
      */
     public function postNew(Request $request)
     {
+         $this->validate($request,[
+           'nama' => 'required|min:5|max:20|exists',
+           'no_ktp' => 'required|numeric',
+           'notelp' => 'required|numeric',
+           'alamat' => 'required|min:5|max:20|exists',
+        ]);
         $pelanggan = New Pelanggan();
         $pelanggan->nama = $request->nama;
         $pelanggan->no_ktp = $request->no_ktp;
@@ -150,7 +156,7 @@ class BookingController extends Controller
             $karyawan->info_kary = Auth::user()->alamat. ' '. Auth::user()->telp;
             $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: ". $infop->nama. " No KTP: ". $infop->no_ktp. "Alamat: ". $infop->alamat. " Telepon: ". $infop->telp. " No Kamar: ". $kamar->no_kamar. " Tipe: ". $kamar->tipe. " Total Tagihan: Rp. ". $booking->total;
             $karyawan->save();
-            return redirect('/admin/booking')->with('booking', 'Proses Check Out sukses dilakukan!!');
+            return redirect('/admin/booking')->with('checkout', 'Proses Check Out sukses dilakukan!!');
 
         }
         

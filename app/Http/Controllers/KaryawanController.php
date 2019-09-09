@@ -31,13 +31,21 @@ class KaryawanController extends Controller
         return view('karyawan.profile', $karyawan);
     }
 
-    public function postProfile(Request $request, $id=null)
+    public function postProfile($id=null, Request $request)
     {
         
         if($request->Method('GET')) {
             $karyawan = User::find($id);
             return view('karyawan.profile', ['karyawan' => $karyawan]);
         }elseif($request->Method('POST')) {
+        $this->validate($request,[
+           'nama' => 'required|min:5|max:20|exists',
+           'email' => 'required|numeric',
+           'pass' => 'required|password|min:6|max:20'
+           'jk' => 'required',
+           'telp' => 'required|numeric',
+           'alamat' => 'required|min:5|max:20|exists',
+        ]);
             $karyawan = User::find($id);
             $karyawan->fullname = $request->nama;
             $karyawan->email = $request->email;

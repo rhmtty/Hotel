@@ -23,10 +23,10 @@
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
         <span class="badge">Sukses! </span> {{session('success-edit')}}
     </div>
-  @elseif(session('booking'))
+  @elseif(session('checkout'))
     <div class="alert alert-success" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
-        <span class="badge">Sukses! </span> {{session('booking')}}
+        <span class="badge">Sukses! </span> {{session('checkout')}}
     </div>
   @endif
     <div class="col-md-12">

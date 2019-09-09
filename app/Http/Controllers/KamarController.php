@@ -27,6 +27,21 @@ class KamarController extends Controller
 
     public function postNew(Request $request)
     {
+        $msg = [
+            'required' => 'form tidak boleh kosong!!',
+            'min' => 'harus diisi minimal :min karakter',
+            'max' => 'harus diisi minimal :max karakter',
+            'same' => 'kamar sudah ada',
+        ];
+        $this->validate($request,[
+            'kamar' => 'required|numeric|same:no_kamar',
+            'lantai' => 'required',
+            'blok' => 'required',
+            'tipe' => 'required',
+            'harga' => 'required|alpha_num',
+            'fasilitas' => 'required'
+        ], $msg); 
+
         $kamar = new Kamar();
         $kamar->no_kamar = $request->kamar;
         $kamar->lantai = $request->lantai;

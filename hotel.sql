@@ -70,7 +70,20 @@ INSERT INTO `aktivitas_karyawan` (`id`, `nama_kary`, `info_kary`, `aktivitas`, `
 	(37, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Proses Check Out. Nama Pelanggan: Paino No KTP: 93478439Alamat: Skh Telepon: 085689257341 No Kamar: 01 Tipe: AC Total Tagihan: 500000', '2019-09-07 08:51:16', '2019-09-07 08:51:16'),
 	(38, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambahkan Blok: Blok Test', '2019-09-07 09:05:17', '2019-09-07 09:05:17'),
 	(39, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambahkan Blok: Blok Dihapus', '2019-09-07 09:05:41', '2019-09-07 09:05:41'),
-	(40, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambahkan Blok: Pokoke Tes', '2019-09-07 09:06:04', '2019-09-07 09:06:04');
+	(40, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambahkan Blok: Pokoke Tes', '2019-09-07 09:06:04', '2019-09-07 09:06:04'),
+	(41, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus Blok: Blok Test', '2019-09-07 14:34:52', '2019-09-07 14:34:52'),
+	(42, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus Blok: Blok Dihapus', '2019-09-07 14:36:55', '2019-09-07 14:36:55'),
+	(43, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambahkan Blok: Tes hapus', '2019-09-07 15:19:42', '2019-09-07 15:19:42'),
+	(44, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus Blok: Tes hapus', '2019-09-07 15:30:07', '2019-09-07 15:30:07'),
+	(45, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus Blok: Pokoke Tes', '2019-09-07 15:30:34', '2019-09-07 15:30:34'),
+	(46, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: ngetes hapus', '2019-09-07 15:51:00', '2019-09-07 15:51:00'),
+	(47, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: tes 2', '2019-09-07 15:51:28', '2019-09-07 15:51:28'),
+	(48, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: tes hapus 2', '2019-09-07 15:52:49', '2019-09-07 15:52:49'),
+	(49, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: tes hapus luurde', '2019-09-07 15:53:40', '2019-09-07 15:53:40'),
+	(50, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes hapus luurde', '2019-09-07 16:02:46', '2019-09-07 16:02:46'),
+	(51, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: ngetes hapus', '2019-09-07 16:03:12', '2019-09-07 16:03:12'),
+	(52, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes 2', '2019-09-07 16:04:33', '2019-09-07 16:04:33'),
+	(53, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes hapus 2', '2019-09-07 16:04:56', '2019-09-07 16:04:56');
 /*!40000 ALTER TABLE `aktivitas_karyawan` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.blok
@@ -89,10 +102,7 @@ DELETE FROM `blok`;
 INSERT INTO `blok` (`id`, `nama_blok`, `deskripsi`, `created_at`, `updated_at`) VALUES
 	(1, 'Blok I', 'Sebelah Barat', '2019-08-31 04:25:43', '2019-08-31 04:25:43'),
 	(7, 'Blok Jati', 'utara', '2019-08-31 08:13:29', '2019-08-31 08:13:29'),
-	(8, 'Blok Menilkara', 'timur', '2019-09-02 02:04:07', '2019-09-02 02:04:07'),
-	(9, 'Blok Test', 'Jajal hapus', '2019-09-07 09:05:16', '2019-09-07 09:05:16'),
-	(10, 'Blok Dihapus', 'Tes terus', '2019-09-07 09:05:41', '2019-09-07 09:05:41'),
-	(11, 'Pokoke Tes', 'Tes troos', '2019-09-07 09:06:04', '2019-09-07 09:06:04');
+	(8, 'Blok Menilkara', 'timur', '2019-09-02 02:04:07', '2019-09-02 02:04:07');
 /*!40000 ALTER TABLE `blok` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.bookings

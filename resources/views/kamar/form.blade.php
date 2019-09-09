@@ -21,6 +21,16 @@
             </div>
             @endif
         </div>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -39,7 +49,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Kamar<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Contoh: 01">
+                                <input type="number" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Contoh: 01">
                             </div>
                         </div>
                         <div class="form-group">

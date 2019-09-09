@@ -16,12 +16,15 @@
             <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i></i>{{Carbon\Carbon::today()->format('D, d M Y')}}</span>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="">
-            <iframe src="http://free.timeanddate.com/clock/i6wwghpx/n552/szw95/szh95/hocbbb/hbw6/cf100/hgr0/fas16/fdi64/mqc000/mqs3/mql20/mqw2/mqd94/mhc111/mhs3/mhl20/mhw2/mhd94/mmc000/mml10/mmw1/mmd94/hmr7/hsc900/hss1/hsl90" frameborder="0" width="95" height="95"></iframe>
-
-
+            <iframe src="http://free.timeanddate.com/clock/i6xgpsj4/n552/tlid38/fn3/fs16/fc444/tct/pct/ftb/tt0/ts1/tb4" frameborder="0" width="175" height="65" allowTransparency="true"></iframe>
       </div>
-
     </div>
+    @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+            <span class="badge">Sukses! </span> {{session('success')}}
+        </div>
+    @endif
     <!-- /top tiles -->
         <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg">Booking Kamar</button>
 
@@ -84,7 +87,7 @@
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="kamar" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- PILIH KAMAR ---</option>
-                                    @foreach(App\Kamar::dataKamar() as $data)
+                                    @foreach(App\Kamar::BookingKamar() as $data)
                                         <option value="{{$data->id}}">{{$data->no_kamar}} - {{$data->tipe}} - {{$data->harga}} </option>
                                     @endforeach
                                 </select>
@@ -95,7 +98,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal1" aria-describedby="inputSuccess2Status" name="checkin">
+                            <input type="date" class="form-control col-md-7 col-xs-12" id="" aria-describedby="inputSuccess2Status" name="checkin">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -104,7 +107,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="single_cal2" aria-describedby="inputSuccess2Status" name="checkout">
+                            <input type="date" class="form-control col-md-7 col-xs-12" id="" aria-describedby="inputSuccess2Status" name="checkout">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           
