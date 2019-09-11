@@ -28,10 +28,16 @@ class BlokController extends Controller
 
     public function postNew(Request $request)
     {
+        $msg = [
+            'required' => 'form tidak boleh kosong!!',
+            'min' => 'harus diisi minimal :min karakter',
+            'max' => 'harus diisi minimal :max karakter',
+            'same' => 'blok sudah ada',
+        ];
         $this->validate($request,[
-           'nama' => 'required|min:5|max:20|exists',
+           'nama' => 'required|min:5|max:20|same:nama_blok',
            'deskripsi' => 'required',          
-        ]);   
+        ], $msg);   
         $blok = new Blok();
         $blok->nama_blok = $request->nama;
         $blok->deskripsi = $request->deskripsi;

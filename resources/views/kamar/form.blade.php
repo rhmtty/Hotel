@@ -21,7 +21,7 @@
             </div>
             @endif
         </div>
-        @if (count($errors) > 0)
+        <!-- @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
                 <ul>
@@ -30,7 +30,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif -->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">

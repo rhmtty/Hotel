@@ -55,5 +55,32 @@
         format: 'yyyy-mm-dd'
       });
     </script>
+    <script>
+      $(document).on('click', '#log-out', function() {
+        $('#ModalLogout').modal('show');
+      });
+    </script>
+  @if($errors->any())
+    <div id="ModalNotif" class="modal fade text-danger" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+          <div class="modal-content panel-warning" style="border-radius: 0px;">
+              <div class="modal-header bg-danger" style="padding: 0px 10px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body" style="min-height: 80px;">
+                <div class="alert alert-primary" style="padding: 1px 5px;border-radius: 0px;">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript">$('#ModalNotif').modal('show');</script>
+  @endif
   </body>
 </html>

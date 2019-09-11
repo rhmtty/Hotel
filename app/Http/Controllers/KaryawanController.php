@@ -39,12 +39,12 @@ class KaryawanController extends Controller
             return view('karyawan.profile', ['karyawan' => $karyawan]);
         }elseif($request->Method('POST')) {
         $this->validate($request,[
-           'nama' => 'required|min:5|max:20|exists',
+           'nama' => 'required|min:5|max:20|same:nama',
            'email' => 'required|numeric',
-           'pass' => 'required|password|min:6|max:20'
+           'pass' => 'required|password|min:6|max:20',
            'jk' => 'required',
            'telp' => 'required|numeric',
-           'alamat' => 'required|min:5|max:20|exists',
+           'alamat' => 'required|min:5|max:20',
         ]);
             $karyawan = User::find($id);
             $karyawan->fullname = $request->nama;

@@ -41,10 +41,10 @@ class BookingController extends Controller
     public function postNew(Request $request)
     {
          $this->validate($request,[
-           'nama' => 'required|min:5|max:20|exists',
-           'no_ktp' => 'required|numeric',
+           'nama' => 'required|min:5|max:20',
+           'no_ktp' => 'required|numeric|same:no_ktp',
            'notelp' => 'required|numeric',
-           'alamat' => 'required|min:5|max:20|exists',
+           'alamat' => 'required|min:5|max:20',
         ]);
         $pelanggan = New Pelanggan();
         $pelanggan->nama = $request->nama;
@@ -65,7 +65,10 @@ class BookingController extends Controller
         // $harga = Kamar::harga();
 
         $total = $hari * $harga;
-
+        $this->validate($request, [
+            'kamar' => 'required',
+            'keterangan' => 'required',
+        ]);
         $book = New Booking();
         $book->id_kamar = $request->kamar;
         $book->id_user = Auth::user()->id;
