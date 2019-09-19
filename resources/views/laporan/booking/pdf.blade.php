@@ -5,6 +5,7 @@ table td { border:1px solid #000; padding: 5px; }
 h1,h2,p { margin: 0; text-align: center;}
 p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 .title { background: #ccc; }
+/* .footer { background: #fff; } */
 </style>
 
 <h1>GUEST HOUSE</h1>
@@ -38,7 +39,15 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
         <td>Rp.{{ number_format($data->total) }}</td>
         <td>{{ $data->keterangan }}</td>
         <td>{{ $data->operator }}</td>
-
     </tr>    
     @endforeach
+</table>
+<table>
+    @php
+        
+    @endphp
+    <tr class="footer">
+        <td width="65.2%">Total</td>
+        <td>Rp. {{ $total[0] }}</td>
+    </tr>
 </table>

@@ -12,6 +12,18 @@
               <button class="btn btn-danger btn-xs">Tidak Tersedia</button>
           </ul>
       </div>
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <form action="{{ url('/admin/kamar/cari')}}" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control"  name="cari" placeholder="Cari Data Kamar....."value="">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Cari</button>
+        </span>
+      </div>
+    </form>
+    </div>
+  </div>
   </div>
   <div class="clearfix"></div>
   <div class="row">

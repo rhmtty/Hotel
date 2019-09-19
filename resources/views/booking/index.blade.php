@@ -10,6 +10,18 @@
               <li>Booking</li>
           </ul>
       </div>
+    <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <form action="{{ url('admin/booking/cari')}}" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control"  name="cari" placeholder="Cari Data Booking. . . ."value="{{ old('cari') }}">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Cari</button>
+        </span>
+      </div>
+    </form>
+    </div>
+  </div>
   </div>
   <div class="clearfix"></div>
   <div class="row">
@@ -30,7 +42,7 @@
     </div>
   @endif
     <div class="col-md-12">
-    @if(isset($book) && $book->count()>=1)
+    @if(isset($book) && $book->count()>0)
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -59,7 +71,7 @@
             <td>Rp.{{ number_format($result->total)}}</td>
             <td>{{$result->keterangan}}</td>
             <td>{{$result->operator}}</td>
-            <td>{{$result->active == 1 ? 'Menginap' : 'Keluar'}}</td>
+            <td>{{$result->active == 1 ? 'Check In' : 'Check Out'}}</td>
             <td>
               @if($result->active == 1)
                 <a href="{{ url('/admin/booking/edit/'.$result->id) }}"><i class="fa fa-pencil"></i></a>

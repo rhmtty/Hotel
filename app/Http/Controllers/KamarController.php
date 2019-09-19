@@ -6,6 +6,7 @@ use App\Kamar;
 use App\AktivitasKaryawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class KamarController extends Controller
 {
@@ -34,7 +35,7 @@ class KamarController extends Controller
             'same' => 'kamar sudah ada',
         ];
         $this->validate($request,[
-            'kamar' => 'required|numeric|same:no_kamar',
+            'kamar' => 'required|numeric',
             'lantai' => 'required',
             'blok' => 'required',
             'tipe' => 'required',
@@ -100,5 +101,20 @@ class KamarController extends Controller
         $karyawan->aktivitas = "Menghapus data Kamar: ". $request->no_kamar;
         $karyawan->save();
         return back()->with('kamar', $kamar)->with('hapus', 'Kamar sukses dihapus!!');
+    }
+    public function cari(Request $request)
+    {
+        // menangkap data pencarian
+        $keyword = $request->get('cari');
+        $kamar = DB::table('kamar')
+        ->join('blok', 'kamar.blok_id', '=', 'blok.id')
+        ->where('no_kamar','like',"%".$keyword."%")->paginate(5);
+
+        // $kamar = Kamar::search('no_kamar')->where('no_kamar','like','%'.$keyword.'%')->get();
+        // dd($kamar);
+    
+            // mengirim data pegawai ke view index
+        return view('kamar.index',['kamar' => $kamar]);
+    
     }
 }

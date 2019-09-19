@@ -34,14 +34,14 @@ class KaryawanController extends Controller
     public function postProfile($id=null, Request $request)
     {
         
-        if($request->Method('GET')) {
+        if($request->isMethod('GET')) {
             $karyawan = User::find($id);
             return view('karyawan.profile', ['karyawan' => $karyawan]);
-        }elseif($request->Method('POST')) {
+        }elseif($request->isMethod('POST')) {
         $this->validate($request,[
-           'nama' => 'required|min:5|max:20|same:nama',
-           'email' => 'required|numeric',
-           'pass' => 'required|password|min:6|max:20',
+           'nama' => 'required|min:5|max:20',
+           'email' => 'required',
+           'pass' => 'required|min:6|max:20',
            'jk' => 'required',
            'telp' => 'required|numeric',
            'alamat' => 'required|min:5|max:20',

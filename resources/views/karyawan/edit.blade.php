@@ -17,8 +17,7 @@
             <div class="panel-footer">
                 @if(session('success'))
                     <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span
-                                    aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
                         <strong>Sukses! </strong> {{session('success')}}
                     </div>
                 @endif

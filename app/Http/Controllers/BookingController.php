@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class BookingController extends Controller
 {
@@ -40,11 +41,13 @@ class BookingController extends Controller
      */
     public function postNew(Request $request)
     {
-         $this->validate($request,[
-           'nama' => 'required|min:5|max:20',
-           'no_ktp' => 'required|numeric|same:no_ktp',
+        $this->validate($request,[
+           'nama' => 'required|min:1|max:20',
+           'no_ktp' => 'required|min:1|same:no_ktp|numeric',
            'notelp' => 'required|numeric',
-           'alamat' => 'required|min:5|max:20',
+           'alamat' => 'required|max:20',
+           'checkin' => 'required|date|after_or_equal:today',
+           'checkout' => 'required|date'
         ]);
         $pelanggan = New Pelanggan();
         $pelanggan->nama = $request->nama;
@@ -103,6 +106,16 @@ class BookingController extends Controller
             $book = Booking::EditBooking($id);
             return view('booking.edit', compact('book'));
         } elseif($request->isMethod('POST')) {
+
+            // $this->validate($request,[
+            //     'nama' => 'required|min:1|max:20',
+            //     'no_ktp' => 'required|min:1|same:no_ktp|numeric',
+            //     'notelp' => 'required|numeric',
+            //     'alamat' => 'required|max:20',
+            //     'checkin' => 'required|date|after_or_equal:today',
+            //     'checkout' => 'required|date'
+            //  ]);
+
             $tglCekin = new DateTime($request->checkin);
             $tglCekout = new DateTime($request->checkout);
             $jumlah_hari = $tglCekin->diff($tglCekout);
@@ -172,5 +185,37 @@ class BookingController extends Controller
         // dd($booking, $kamar);
         $kamar->active = 1;
         $kamar->save();
+    }
+	public function hasilcari()
+	{
+    		// mengambil data dari table pegawai
+		$booking = DB::table('booking')->paginate(10);
+ 
+    		// mengirim data pegawai ke view index
+		return view('booking.index',['booking' => $booking]);
+ 
+	}
+ 
+    public function cari(Request $request)
+    {
+    	// menangkap data pencarian
+        $keyword = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        // $data['result'] = $result;
+        $cari = DB::table('bookings')
+            ->join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
+            ->join('users', 'bookings.id_user', '=', 'users.id')
+            ->join('pelanggan', 'bookings.id_pelanggan', '=', 'pelanggan.id')
+            // ->where('bookings.active', 1)
+            ->where('pelanggan.nama', 'like', '%'. $keyword .'%')
+            ->orWhere('pelanggan.no_ktp','like','%'.$keyword.'%')
+            ->orWhere('kamar.no_kamar','like','%'.$keyword.'%')
+            ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan')
+            ->get();
+        // mengirim data pegawai ke view index
+        // dd($cari);
+        return view('booking.index', ['book' => $cari]);
+
     }
 }

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::group(['prefix' => 'kamar'], function(){
         Route::get('/', 'KamarController@index');
         Route::get('/form', 'KamarController@formNew');
+        Route::get('/cari', 'KamarController@cari');
         Route::post('/save', 'KamarController@postNew');
         Route::get('/edit/{id}', 'KamarController@showEdit');
         Route::post('/edit/{id}', 'KamarController@postEdit');
@@ -64,6 +65,8 @@ Route::group(['prefix' => 'admin'], function(){
         // }
         Route::post('/check-out/post/{id}', 'BookingController@CheckOut');
         Route::delete('/delete', 'BookingController@deleteBooking');
+        Route::get('/cari', 'BookingController@cari');
+
 
     });
     /**
@@ -90,3 +93,4 @@ Route::group(['prefix' => 'admin'], function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

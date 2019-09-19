@@ -60,7 +60,7 @@
         $('#ModalLogout').modal('show');
       });
     </script>
-  @if($errors->any())
+  @if(count($errors) > 0)
     <div id="ModalNotif" class="modal fade text-danger" role="dialog">
       <div class="modal-dialog">
       <!-- Modal content-->

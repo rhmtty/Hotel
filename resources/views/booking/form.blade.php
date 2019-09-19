@@ -38,26 +38,26 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="demo1 form-control" name="nama" value=""/>
+                                <input type="text" class="demo1 form-control" name="nama" value="{{old('nama')}}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">No Identitas</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="form-control demo colorpicker-element" data-horizontal="true" id="demo_forceformat" name="no_ktp" value="">
+                                <input type="text" class="form-control demo colorpicker-element" data-horizontal="true" id="demo_forceformat" name="no_ktp" value="{{old('no_ktp')}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">No telp</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{old('notelp')}}">
                             </div>
                         </div>
                         <div class="form form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Alamat <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea id="textarea" required="required" name="alamat" class="form-control col-md-7 col-xs-12"></textarea>
+                                <textarea id="textarea" required="required" name="alamat" class="form-control col-md-7 col-xs-12">{{old('alamat')}}</textarea>
                             </div>
                         </div>
                         <!-- FORM BOOKING -->
@@ -77,7 +77,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek in</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-start" aria-describedby="inputSuccess2Status" name="checkin" value="{{old('checkin')}}">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                          
@@ -86,7 +86,7 @@
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout">
+                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="{{old('checkout')}}">
                             <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
                             <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Keterangan</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)">
+                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)" value="{{old('keterangan')}}">
                                 <span></span>
                             </div>
                         </div>

@@ -56,7 +56,7 @@
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/laporan/bookings')}}">Laporan Booking</a></li>
             <li><a target="_blank" href="{{url('/admin/laporan/pelanggan')}}">Laporan Data Pelanggan</a></li>
-            <li><a href="{{url('/admin/laporan/aktifitas')}}">Laporan Aktivitas</a></li>
+            <li><a href="{{url('/admin/laporan/aktifitas')}}">Log Aktivitas</a></li>
           </ul>
         </li>
       </ul>
