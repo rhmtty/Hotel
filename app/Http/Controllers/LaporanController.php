@@ -33,8 +33,8 @@ class LaporanController extends Controller
         }else{
             // $gtotal = Booking::sum('total');
 
-            $total[0] = 0;
-            $total[0] += $bookings[0]->total;
+            // $total[0] = 0;
+            // $total[0] += $bookings[0]->total;
 
             $tgl_awal = Carbon::parse($tgl)->startOfMonth();
             $tgl_akhir = Carbon::parse($tgl)->endOfMonth();
@@ -43,16 +43,14 @@ class LaporanController extends Controller
             $bookings = Booking::join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
                 ->join('users', 'bookings.id_user', '=', 'users.id')
                 ->join('pelanggan', 'bookings.id_pelanggan', '=', 'pelanggan.id')
-                ->select(['bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan'])
-                // ->SUM('total', '+=', 'total')
+                ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan', 'bookings.total')
                 ->whereBetween('bookings.created_at', [$tgl_awal, $tgl_akhir])
                 // ->groupBy('bookings.id')
+                // ->sum('total')
                 ->get();
-                // dd($bookings);
-            // $gtotal = $bookings->sum('bookings.total');
-            // $gtotal = $bookings->SUM('total');
-            // dd($gtotal);
-            $content = view ('laporan.booking.pdf', compact('bookings', 'data', 'total'))->render();
+            $gtotal = $bookings->sum('total');
+            // dd($bookings, $gtotal);
+            $content = view ('laporan.booking.pdf', compact('bookings', 'data','gtotal'))->render();
 
             $pdf = new MPdf([
                 'orientation'=>"P",

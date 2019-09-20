@@ -5,7 +5,7 @@ table td { border:1px solid #000; padding: 5px; }
 h1,h2,p { margin: 0; text-align: center;}
 p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 .title { background: #ccc; }
-/* .footer { background: #fff; } */
+.footer { background: #ccc; }
 </style>
 
 <h1>GUEST HOUSE</h1>
@@ -43,11 +43,8 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
     @endforeach
 </table>
 <table>
-    @php
-        
-    @endphp
     <tr class="footer">
-        <td width="65.2%">Total</td>
-        <td>Rp. {{ $total[0] }}</td>
+        <td width="65.2%"><b>Total</b></td>
+        <td><b>Rp. {{ number_format($gtotal)  }}</b></td>
     </tr>
 </table>
