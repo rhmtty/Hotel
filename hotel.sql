@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS `aktivitas_karyawan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.aktivitas_karyawan: ~40 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.aktivitas_karyawan: ~61 rows (lebih kurang)
 DELETE FROM `aktivitas_karyawan`;
 /*!40000 ALTER TABLE `aktivitas_karyawan` DISABLE KEYS */;
 INSERT INTO `aktivitas_karyawan` (`id`, `nama_kary`, `info_kary`, `aktivitas`, `created_at`, `updated_at`) VALUES
@@ -83,7 +83,22 @@ INSERT INTO `aktivitas_karyawan` (`id`, `nama_kary`, `info_kary`, `aktivitas`, `
 	(50, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes hapus luurde', '2019-09-07 16:02:46', '2019-09-07 16:02:46'),
 	(51, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: ngetes hapus', '2019-09-07 16:03:12', '2019-09-07 16:03:12'),
 	(52, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes 2', '2019-09-07 16:04:33', '2019-09-07 16:04:33'),
-	(53, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes hapus 2', '2019-09-07 16:04:56', '2019-09-07 16:04:56');
+	(53, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: tes hapus 2', '2019-09-07 16:04:56', '2019-09-07 16:04:56'),
+	(54, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Kamar baru dipesan. Nama Pelanggan: Akeno No KTP: 911082131 Alamat: Jepun Telepon: 081226435780', '2019-09-09 10:30:37', '2019-09-09 10:30:37'),
+	(55, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Kamar baru dipesan. Nama Pelanggan: Atho No KTP: 123456911 Alamat: Jagaraga Telepon: 08122881', '2019-09-09 10:54:16', '2019-09-09 10:54:16'),
+	(56, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Kamar baru dipesan. Nama Pelanggan: Emilia No KTP: 911911 Alamat: Ngawi Telepon: 081234', '2019-09-09 10:59:41', '2019-09-09 10:59:41'),
+	(57, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Mengedit data booking. ID booking: 6', '2019-09-09 11:01:50', '2019-09-09 11:01:50'),
+	(58, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: 04', '2019-09-09 13:50:29', '2019-09-09 13:50:29'),
+	(59, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menambah data Kamar: 04', '2019-09-09 14:05:03', '2019-09-09 14:05:03'),
+	(60, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: 04', '2019-09-09 14:05:23', '2019-09-09 14:05:23'),
+	(61, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Menghapus data Kamar: 04', '2019-09-09 14:05:31', '2019-09-09 14:05:31'),
+	(62, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Proses Check Out. Nama Pelanggan: Vina No KTP: 999832762Alamat: Asgar Telepon: 085608911601 No Kamar: 03 Tipe: VIP Total Tagihan: Rp. 72000000', '2019-09-19 21:24:36', '2019-09-19 21:24:36'),
+	(63, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Kamar baru dipesan. Nama Pelanggan: Rem No KTP: 911082131 Alamat: Isekai Telepon: 08123456', '2019-09-20 00:01:36', '2019-09-20 00:01:36'),
+	(64, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Mengedit data booking. ID booking: 7', '2019-09-20 00:03:51', '2019-09-20 00:03:51'),
+	(65, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Proses Check Out. Nama Pelanggan: Rem No KTP: 911082131Alamat: Isekai Telepon: 08123456 No Kamar: 03 Tipe: VIP Total Tagihan: Rp. 500000', '2019-09-20 00:04:16', '2019-09-20 00:04:16'),
+	(66, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Mengedit data booking. ID booking: 6', '2019-09-20 00:04:56', '2019-09-20 00:04:56'),
+	(67, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Proses Check Out. Nama Pelanggan: Emilia No KTP: 911911Alamat: Ngawi Telepon: 081234 No Kamar: 04 Tipe: NON AC Total Tagihan: Rp. 1100000', '2019-09-20 00:06:10', '2019-09-20 00:06:10'),
+	(68, 'Nanas Sultan Sagiri', 'WBM 081226478', 'Kamar baru dipesan. Nama Pelanggan: Mukidi No KTP: 12345677 Alamat: Sby Telepon: 089123413', '2019-09-20 00:42:01', '2019-09-20 00:42:01');
 /*!40000 ALTER TABLE `aktivitas_karyawan` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.blok
@@ -94,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `blok` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.blok: ~6 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.blok: ~4 rows (lebih kurang)
 DELETE FROM `blok`;
 /*!40000 ALTER TABLE `blok` DISABLE KEYS */;
 INSERT INTO `blok` (`id`, `nama_blok`, `deskripsi`, `created_at`, `updated_at`) VALUES
@@ -120,15 +135,20 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.bookings: ~3 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.bookings: ~8 rows (lebih kurang)
 DELETE FROM `bookings`;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
 INSERT INTO `bookings` (`id`, `id_kamar`, `id_user`, `id_pelanggan`, `checkin_time`, `checkout_time`, `total`, `lama_menginap`, `keterangan`, `active`, `created_at`, `updated_at`) VALUES
-	(1, 7, 1, 5, '2019-09-03', '2019-09-10', 72000000, 8, 'Traveloka', 1, '2019-09-02 03:48:10', '2019-09-02 03:48:10'),
+	(1, 7, 1, 5, '2019-09-03', '2019-09-10', 72000000, 8, 'Traveloka', 0, '2019-09-02 03:48:10', '2019-09-19 21:24:35'),
 	(2, 1, 1, 8, '2019-09-03', '2019-09-07', 500000, 5, 'Via telepon', 0, '2019-09-02 05:40:28', '2019-09-07 08:51:16'),
-	(3, 4, 1, 9, '2019-09-07', '2019-09-10', 8000000, 4, 'Langsung', 1, '2019-09-07 08:22:19', '2019-09-07 08:22:19');
+	(3, 4, 1, 9, '2019-09-07', '2019-09-10', 8000000, 4, 'Langsung', 1, '2019-09-07 08:22:19', '2019-09-07 08:22:19'),
+	(4, 7, 1, 10, '2019-09-09', '2019-09-12', 2000000, 4, 'Via telepon', 1, '2019-09-09 10:30:37', '2019-09-09 10:30:37'),
+	(5, 1, 1, 11, '2019-09-09', '2019-09-10', 200000, 2, 'Via telepon', 1, '2019-09-09 10:54:16', '2019-09-09 10:54:16'),
+	(6, 8, 1, 12, '2019-09-10', '2019-09-20', 1100000, 11, 'Langsung', 0, '2019-09-09 10:59:41', '2019-09-20 00:06:10'),
+	(7, 7, 1, 13, '2019-09-20', '2019-09-20', 500000, 1, 'Traveloka', 0, '2019-09-20 00:01:35', '2019-09-20 00:04:16'),
+	(8, 8, 1, 16, '2019-09-20', '2019-09-21', 200000, 2, 'Traveloka', 1, '2019-09-20 00:42:01', '2019-09-20 00:42:01');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.kamar
@@ -146,14 +166,14 @@ CREATE TABLE IF NOT EXISTS `kamar` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.kamar: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.kamar: ~5 rows (lebih kurang)
 DELETE FROM `kamar`;
 /*!40000 ALTER TABLE `kamar` DISABLE KEYS */;
 INSERT INTO `kamar` (`id`, `no_kamar`, `lantai`, `blok_id`, `tipe`, `harga`, `fasilitas`, `active`, `created_at`, `updated_at`) VALUES
-	(1, '01', '1', 1, 'AC', 100000, 'AC, Kasur, TV', 1, '2019-08-31 04:32:59', '2019-09-07 08:51:16'),
+	(1, '01', '1', 1, 'AC', 100000, 'AC, Kasur, TV', 0, '2019-08-31 04:32:59', '2019-09-09 10:54:16'),
 	(4, '02', '1', 1, 'AC', 2000000, 'AC, kasur', 0, '2019-08-31 08:05:56', '2019-09-07 08:22:19'),
-	(7, '03', '1', 7, 'VIP', 500000, 'AC double, shower, TV', 0, '2019-08-31 08:18:42', '2019-09-06 14:55:52'),
-	(8, '04', '2', 8, 'NON AC', 100000, 'Kipas angin, TV', 1, '2019-09-07 08:27:46', '2019-09-07 08:27:46');
+	(7, '03', '1', 7, 'VIP', 500000, 'AC double, shower, TV', 1, '2019-08-31 08:18:42', '2019-09-20 00:04:16'),
+	(8, '04', '2', 8, 'NON AC', 100000, 'Kipas angin, TV', 0, '2019-09-07 08:27:46', '2019-09-20 00:42:01');
 /*!40000 ALTER TABLE `kamar` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.migrations
@@ -185,9 +205,12 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.password_resets: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.password_resets: ~2 rows (lebih kurang)
 DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+	('nss@email.com', '$2y$10$hEotAUV92k1.hfZXTCidDeBN5Rdu0lg7F9GMv46qoVDbGgjFGyno2', '2019-09-19 21:24:59'),
+	('rofik@gmail.com', '$2y$10$sBwpDG3IVnxUMznb4WqUvuaj95GOPQnCBhqrXFDL1dYy6tXN7A2Gy', '2019-09-19 21:29:10');
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.pelanggan
@@ -200,9 +223,9 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.pelanggan: ~5 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.pelanggan: ~10 rows (lebih kurang)
 DELETE FROM `pelanggan`;
 /*!40000 ALTER TABLE `pelanggan` DISABLE KEYS */;
 INSERT INTO `pelanggan` (`id`, `no_ktp`, `nama`, `telp`, `alamat`, `created_at`, `updated_at`) VALUES
@@ -210,7 +233,14 @@ INSERT INTO `pelanggan` (`id`, `no_ktp`, `nama`, `telp`, `alamat`, `created_at`,
 	(6, 999832762, 'Vina', '085608911601', 'Asgar', '2019-08-31 05:13:00', '2019-08-31 05:13:00'),
 	(7, 999832762, 'Vina', '085608911601', 'Asgar', '2019-09-02 03:48:10', '2019-09-02 03:48:10'),
 	(8, 93478439, 'Paino', '085689257341', 'Skh', '2019-09-02 05:40:28', '2019-09-02 05:40:28'),
-	(9, 123456, 'Karnoto', '0813456789', 'Konoha', '2019-09-07 08:22:19', '2019-09-07 08:22:19');
+	(9, 123456, 'Karnoto', '0813456789', 'Konoha', '2019-09-07 08:22:19', '2019-09-07 08:22:19'),
+	(10, 911082131, 'Akeno', '081226435780', 'Jepun', '2019-09-09 10:30:37', '2019-09-09 10:30:37'),
+	(11, 123456911, 'Atho', '08122881', 'Jagaraga', '2019-09-09 10:54:16', '2019-09-09 10:54:16'),
+	(12, 911911, 'Emilia', '081234', 'Ngawi', '2019-09-09 10:59:41', '2019-09-09 10:59:41'),
+	(13, 911082131, 'Rem', '08123456', 'Isekai', '2019-09-19 23:59:41', '2019-09-19 23:59:41'),
+	(14, 911082131, 'Rem', '08123456', 'Isekai', '2019-09-20 00:01:25', '2019-09-20 00:01:25'),
+	(15, 911082131, 'Rem', '08123456', 'Isekai', '2019-09-20 00:01:35', '2019-09-20 00:01:35'),
+	(16, 12345677, 'Mukidi', '089123413', 'Sby', '2019-09-20 00:42:01', '2019-09-20 00:42:01');
 /*!40000 ALTER TABLE `pelanggan` ENABLE KEYS */;
 
 -- membuang struktur untuk table hotel.users
@@ -229,13 +259,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel hotel.users: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel hotel.users: ~0 rows (lebih kurang)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `fullname`, `email`, `email_verified_at`, `password`, `jenis_kelamin`, `telp`, `alamat`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Nanas Sultan Sagiri', 'nss@email.com', NULL, '$2y$10$dbhf/kDLVpBXrOuZy1Jw5.sILHX/kzB/jD1hpWqjOZBpRzOa6ezW2', 'perempuan', '081226478', 'WBM', 'Superuser', NULL, NULL, NULL);
+	(1, 'Nanas Sultan Sagiri', 'nss@email.com', NULL, '$2y$10$dbhf/kDLVpBXrOuZy1Jw5.sILHX/kzB/jD1hpWqjOZBpRzOa6ezW2', 'perempuan', '081226478', 'WBM', 'Superuser', NULL, NULL, NULL),
+	(2, 'Rofik', 'rofik@gmail.com', NULL, '$2y$10$/Upu.55vzg/wzgjo0.O1W..XznMxwxPHyUB7dUdDBcELOOofgh1sq', 'laki-laki', '087765543321', 'Blora', 'Admin', NULL, '2019-09-19 20:52:46', '2019-09-19 20:52:46');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
