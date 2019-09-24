@@ -49,7 +49,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No Kamar<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Contoh: 01">
+                                <input type="number" id="last-name" name="kamar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Contoh: 01" value="{{ old('kamar') }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,8 +58,8 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="lantai" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- Pilih Lantai ---</option>
-                                    <option value="1">Lantai 1</option>
-                                    <option value="2">Lantai 2</option>
+                                    <option value="1" {{ (old('lantai') == '1') ? 'selected' : '' }}>Lantai 1</option>
+                                    <option value="2" {{ (old('lantai') == '2') ? 'selected' : '' }}>Lantai 2</option>
                                 </select>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 <select name="blok" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- Pilih Blok ---</option>
                                 @foreach(\App\Blok::select('nama_blok', 'id')->get() as $data )
-                                    <option value="{{ $data->id }}">{{ $data->nama_blok }}</option>
+                                    <option value="{{ $data->id}}" {{ (old('blok') == $data->id) ? 'selected' : ''}}>{{ $data->nama_blok }}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -81,9 +81,9 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- Pilih Tipe ---</option>
-                                    <option value="AC">AC</option>
-                                    <option value="NON AC">NON AC</option>
-                                    <option value="VIP">VIP</option>
+                                    <option value="AC" {{ (old('tipe') == 'AC') ? 'selected' : '' }}>AC</option>
+                                    <option value="NON AC" {{ (old('tipe') == 'NON AC') ? 'selected' : '' }}>NON AC</option>
+                                    <option value="VIP" {{ (old('tipe') == 'VIP') ? 'selected' : '' }}>VIP</option>
                                 </select>
                             </div>
                         </div>
@@ -91,13 +91,13 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Harga<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="last-name" name="harga" required="required" class="form-control col-md-7 col-xs-12" value="{{ old('harga') }}">
                             </div>
                         </div>
                         <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Fasilitas <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="textarea" required="required" name="fasilitas" class="form-control col-md-7 col-xs-12"></textarea>
+                                <textarea id="textarea" required="required" name="fasilitas" class="form-control col-md-7 col-xs-12">{{ old('fasilitas') }}</textarea>
                             </div>
                         </div>
                         <div class="item form-group">

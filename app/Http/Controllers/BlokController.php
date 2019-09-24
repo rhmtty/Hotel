@@ -32,10 +32,10 @@ class BlokController extends Controller
             'required' => 'form tidak boleh kosong!!',
             'min' => 'harus diisi minimal :min karakter',
             'max' => 'harus diisi minimal :max karakter',
-            'same' => 'blok sudah ada',
+            'unique' => 'blok sudah ada',
         ];
         $this->validate($request,[
-           'nama' => 'required|min:5|max:20|same:nama_blok',
+           'nama' => 'required|min:5|max:20|unique:blok,nama_blok',
            'deskripsi' => 'required',          
         ], $msg);   
         $blok = new Blok();

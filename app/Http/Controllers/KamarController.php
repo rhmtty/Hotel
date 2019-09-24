@@ -32,10 +32,10 @@ class KamarController extends Controller
             'required' => 'form tidak boleh kosong!!',
             'min' => 'harus diisi minimal :min karakter',
             'max' => 'harus diisi minimal :max karakter',
-            'same' => 'kamar sudah ada',
+            'unique' => 'kamar sudah ada',
         ];
         $this->validate($request,[
-            'kamar' => 'required|numeric',
+            'kamar' => 'required|numeric|unique:kamar,no_kamar',
             'lantai' => 'required',
             'blok' => 'required',
             'tipe' => 'required',

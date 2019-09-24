@@ -45,11 +45,11 @@ class BookingController extends Controller
             'required' => 'form tidak boleh kosong!!',
             'min' => 'harus diisi minimal :min karakter',
             'max' => 'harus diisi minimal :max karakter',
-            'after_or_equal' => 'Tanggal check in tidak valid',
+            'after_or_equal' => 'Tanggal check in/check out tidak valid',
         ];
         $this->validate($request,[
            'nama' => 'required|min:1|max:20',
-           'no_ktp' => 'required|min:1|same:no_ktp|numeric',
+           'no_ktp' => 'required|min:1|numeric',
            'notelp' => 'required|numeric',
            'alamat' => 'required|max:20',
            'checkin' => 'required|date|after_or_equal:today',

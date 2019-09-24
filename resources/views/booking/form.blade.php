@@ -67,7 +67,7 @@
                                 <select name="kamar" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- PILIH KAMAR ---</option>
                                     @foreach(App\Kamar::BookingKamar() as $data)
-                                        <option value="{{$data->id}}">{{$data->no_kamar}} - {{$data->tipe}} - {{$data->harga}} </option>
+                                        <option value="{{$data->id}}" {{ (old('kamar') == $data->id) ? 'selected' : ''}}>No. {{$data->no_kamar}} - {{$data->tipe}} - {{$data->harga}} </option>
                                     @endforeach
                                 </select>
                                 <span></span>
