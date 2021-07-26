@@ -192,10 +192,11 @@ class BookingController extends Controller
         $kamar->active = 1;
         $kamar->save();
     }
+
 	public function hasilcari()
 	{
     		// mengambil data dari table pegawai
-		$booking = DB::table('booking')->paginate(10);
+		$booking = DB::table('bookings')->paginate(10);
  
     		// mengirim data pegawai ke view index
 		return view('booking.index',['booking' => $booking]);
@@ -218,7 +219,7 @@ class BookingController extends Controller
             ->orWhere('pelanggan.no_ktp','like','%'.$keyword.'%')
             ->orWhere('kamar.no_kamar','like','%'.$keyword.'%')
             ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan')
-            ->paginate(5);
+            ->get();
         // mengirim data pegawai ke view index
         // dd($cari);
         return view('booking.index', ['book' => $cari]);
