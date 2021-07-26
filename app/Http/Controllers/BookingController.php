@@ -218,7 +218,7 @@ class BookingController extends Controller
             ->orWhere('pelanggan.no_ktp','like','%'.$keyword.'%')
             ->orWhere('kamar.no_kamar','like','%'.$keyword.'%')
             ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan')
-            ->get();
+            ->paginate(5);
         // mengirim data pegawai ke view index
         // dd($cari);
         return view('booking.index', ['book' => $cari]);
