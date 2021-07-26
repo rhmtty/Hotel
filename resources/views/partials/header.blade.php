@@ -25,7 +25,7 @@
     <div class="modal-content" style="border-radius: 0px;">
       <div class="modal-header bg-danger" style="padding: 0px 10px;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <p>Log Out</p>
+        <h2>Log Out</h2>
       </div>
       <div class="modal-body" style="min-height: 80px;">
         <div class="alert alert-primary" style="padding: 1px 5px;border-radius: 0px;">
