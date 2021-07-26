@@ -75,7 +75,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="tipe" id="" class="form-control col-md-7 col-xs-12">
                                     <option>--- PILIH TIPE ---</option>
-                                    <option value="AC">AC</option>
+                                    <option value="AC" selected>AC</option>
                                     <option value="VIP">VIP</option>
                                     <option value="NON AC">NON AC</option>
                                 </select>
