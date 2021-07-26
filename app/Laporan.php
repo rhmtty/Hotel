@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Laporan extends Model
 {
-    protected $tabel = "bookings";
+    protected $table = "bookings";
 
     public function scopeLaporanBooking($query){
         return $query->join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
