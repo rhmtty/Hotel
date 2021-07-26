@@ -15,7 +15,7 @@
           <span class=" fa fa-angle-down"></span>
         </a>
         <ul class="dropdown-menu dropdown-usermenu pull-right">
-          <li><a href="/admin/karyawan/profile/{{ Auth::user()->id }}"> Profile</a></li>
+          <li><a href="{{ url('/admin/karyawan/profile/') }}{{ Auth::user()->id }}"> Profile</a></li>
           <li><a href="#" id="log-out" data-target="#ModalLogout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
           </li>
         </ul>
