@@ -28,7 +28,7 @@
     <div class="menu_section">
       <h3>General</h3>
       <ul class="nav side-menu">
-        <li><a href="/admin"><i class="fa fa-home"></i> Home <span></span></a></li>
+        <li><a href="{{ url('/admin') }}"><i class="fa fa-home"></i> Home <span></span></a></li>
         <li><a><i class="fa fa-book"></i>Booking<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/booking/form')}}">Pesan Kamar</a></li>
