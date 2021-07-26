@@ -13,3 +13,6 @@ yarn-error.log
 
 # DB
 hotel.sql
+
+# Compress
+Hotel.zip
