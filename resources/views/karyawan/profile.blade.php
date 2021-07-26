@@ -49,11 +49,7 @@
               <div class="profile_img">
                 <div id="crop-avatar">
                   <!-- Current avatar -->
-                  @if(Auth::user()->jenis_kelamin=="laki-laki")                      
-                    <img src="{{url('assets/images/male.jpg')}}" class="img-responsive avatar-view" alt="Avatar">
-                  @else
-                    <img src="{{url('assets/images/female.jpg')}}" class="img-responsive avatar-view" alt="Avatar" title="Change the avatar">
-                  @endif 
+                    <img src="{{url('assets/images/avatar.png')}}" class="img-responsive avatar-view" alt="Avatar" title="Change the avatar">
                 </div>
               </div>
               <h3>{{ Auth::user()->fullname }}</h3>
