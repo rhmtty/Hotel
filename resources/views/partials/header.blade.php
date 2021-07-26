@@ -7,10 +7,10 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="">
         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          @if(Auth::user()->jenis_kelamin === "perempuan")
-          <img src="{{url('assets/images/female.jpg')}}" alt="">{{ Auth::user()->fullname }}
-          @else
+          @if(Auth::user()->jenis_kelamin === "laki-laki")
           <img src="{{url('assets/images/male.jpg')}}" alt="">{{ Auth::user()->fullname }}
+          @else
+          <img src="{{url('assets/images/female.jpg')}}" alt="">{{ Auth::user()->fullname }}
           @endif
           <span class=" fa fa-angle-down"></span>
         </a>
