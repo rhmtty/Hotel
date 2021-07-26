@@ -82,7 +82,6 @@
           </tr>
         @endforeach
         </tbody>
-        {!! $book->render() !!}
       </table>
       <!-- DELETE CONFIRMATION -->
       <div class="modal fade delete-booking-md" tabindex="-1" role="dialog" aria-hidden="true">
