@@ -8,11 +8,7 @@
   <!-- menu profile quick info -->
   <div class="profile clearfix">
     <div class="profile_pic">
-      @if(Auth::user()->jenis_kelamin=="laki-laki")
-        <img src="{{url('assets/images/male.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
-      @else
-        <img src="{{url('assets/images/female.jpg')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
-      @endif
+        <img src="{{url('assets/images/avatar.png')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
