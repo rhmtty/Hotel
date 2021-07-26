@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                        {{ csrf_field() }}
 
                         <div class="form-group row"  style="font-size:19px">
                             <label for="email" class="col-md-4 col-form-label text-md-right fa fa-envelope" style="color:white"></label>
