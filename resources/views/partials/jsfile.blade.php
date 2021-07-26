@@ -9,9 +9,9 @@
     <script src="{{asset('assets/vendors/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
     <script src="{{asset('assets/vendors/nprogress/nprogress.js')}}"></script>
-    <!-- Chart.js')}} -->
+    <!-- Chart.js' -->
     <script src="{{asset('assets/vendors/Chart.js/dist/Chart.min.js')}}"></script>
-    <!-- gauge.js')}} -->
+    <!-- gauge.js' -->
     <script src="{{asset('assets/vendors/gauge.js/dist/gauge.min.js')}}"></script>
     <!-- bootstrap-progressbar -->
     <script src="{{asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
