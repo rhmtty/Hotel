@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('telp');
             $table->string('alamat', 400);
             $table->enum('role', ['Superuser', 'Admin'])->default('Admin');
