@@ -48,7 +48,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select name="lantai" class="form-control col-md-7 col-xs-12">
                                     <option>--- PILIH LANTAI ---</option>
-                                    <option value="1">Lantai 1</option>
+                                    <option value="1" selected>Lantai 1</option>
                                     <option value="2">Lantai 2</option>
                                 </select>
                             </div>
