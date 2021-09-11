@@ -8,19 +8,16 @@ use App\Booking;
 use App\Pelanggan;
 use App\AktivitasKaryawan;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\MemberController;
 
 class BookingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Tampil data booking
@@ -36,8 +33,8 @@ class BookingController extends Controller
      */
     public function formNew()
     {
-        $data_bank = MemberController::getDataBank();
-        $data_emoney = MemberController::getDataEmoney();
+        $data_bank = ApiController::getDataBankAPI();
+        $data_emoney = ApiController::getDataEmoneyAPI();
 
         return view('booking.form', compact('data_bank', 'data_emoney'));
     }
@@ -54,7 +51,8 @@ class BookingController extends Controller
             'after_or_equal' => 'Tanggal check in/check out tidak valid',
             'numeric' => ':attribute data harus berupa angka',
             'alpha' => 'form :attribute harus berupa huruf',
-            'date' => ':attribute harus berupa tanggal'
+            'date' => ':attribute harus berupa tanggal',
+            'required_without' => 'pilih metode pembayaran',
         ];
 
         $request->validate([
@@ -69,19 +67,15 @@ class BookingController extends Controller
             'pembayaranEmoney' => 'required_without:pembayaranBank'
         ], $msg);
 
-        // Validator::make($request->all(), [
-        //     'pembayaranBank' => Rule::requiredIf($request->pembayaranEmoney == '')
-        // ]);
-
-        // Validator::make($request->all(), [
-        //     'pembayaranEmoney' => Rule::requiredIf($request->pembayaranBank == '')
-        // ]);
-
         $pelanggan = new Pelanggan();
-        $pelanggan->nama = $request->nama;
+        $pelanggan->customer_id = '123456';
+        $pelanggan->customer_name = $request->nama;
+        $pelanggan->username = '1337OP';
+        $pelanggan->pin = 'PIN123';
+        $pelanggan->customer_phone = $request->notelp;
+        $pelanggan->customer_address = $request->alamat;
+        $pelanggan->customer_email = 'mail@email.com';
         $pelanggan->no_ktp = $request->no_ktp;
-        $pelanggan->telp = $request->notelp;
-        $pelanggan->alamat = $request->alamat;
         $pelanggan->save();
 
 
@@ -177,14 +171,22 @@ class BookingController extends Controller
             /**
              * Proses check out
              */
+
             $booking = Booking::find($id);
+
+            // $tgl_checkin = new DateTime($booking->checkin_time);
+            // $today = new DateTime();
+            // $jumlah_hari = $tgl_checkin->diff($today);
+            // $formatted_jumlahHari = $jumlah_hari->format('%a');
+            // // dd($formatted_jumlahHari);
+
             $booking->exists = true;
             $booking->active = 0;
             $booking->save();
+
             $kamar = Kamar::find($booking->id_kamar);
             $kamar->active = 1;
             $kamar->save();
-            // dd($booking, $kamar);
 
             $infop = Pelanggan::find($booking->id_pelanggan);
 
@@ -220,7 +222,6 @@ class BookingController extends Controller
         $keyword = $request->cari;
 
         // mengambil data dari table pegawai sesuai pencarian data
-        // $data['result'] = $result;
         $cari = DB::table('bookings')
             ->join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
             ->join('users', 'bookings.id_user', '=', 'users.id')

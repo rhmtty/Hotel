@@ -21,7 +21,9 @@ class UsersSeeder extends Seeder
                 'jenis_kelamin' => 'perempuan',
                 'telp' => '081226478',
                 'alamat' => 'WBM',
-                'role' => 'Superuser'
+                'role' => 'Superuser',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
             ],
             [
                 'fullname' => 'Karnoto',
@@ -30,7 +32,9 @@ class UsersSeeder extends Seeder
                 'jenis_kelamin' => 'laki-laki',
                 'telp' => '085608911601',
                 'alamat' => 'Wonogiri',
-                'role' => 'Admin'
+                'role' => 'Admin',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
             ]
         ]);
     }

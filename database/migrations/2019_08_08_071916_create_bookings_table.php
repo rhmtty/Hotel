@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->integer('id_kamar');
             $table->integer('id_user');
             $table->integer('id_pelanggan');
-            $table->integer('id_bank')->nullable();
+            $table->string('id_bank')->nullable();
             $table->string('kode_produk')->nullable();
             $table->date('checkin_time');
             $table->date('checkout_time');

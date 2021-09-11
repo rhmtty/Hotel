@@ -27,7 +27,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/admin/booking/edit/save/'.$book->id)}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/booking/edit/save/'.$book->id)}}" method="POST">
                     @csrf
                         <input type="hidden" value="{{$book->id}}" name="id">
                         <input type="hidden" value="{{$book->id_kamar}}" name="id_kamar">

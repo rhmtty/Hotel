@@ -11,19 +11,25 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/admin', function () {
     if (!Auth::user()) {
         return view('auth.login');
     } else {
-        return redirect('/member');
+        return redirect('/customer');
     }
 });
 
-Route::get('/', 'MemberController@index');
-// Route::get('/', 'MemberController@getResumeAccount');
+/**
+ * 
+ * MEMBER CONTROLLER
+ **/
+// Route::get('/customer', 'ApiController@createVirtualAccountAPI');
+Route::get('/customer/register', 'PelangganController@register');
+Route::post('/customer/register/post', 'PelangganController@postRegister');
+Route::get('/customer/booking', 'PelangganController@newBooking');
+Route::get('/customer/create/va', 'PelangganController@createVirtualAccount');
+Route::post('/customer/post/va', 'PelangganController@postVirtualAccount');
+
 
 /**
  * 

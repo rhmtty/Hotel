@@ -15,10 +15,16 @@ class CreatePelangganTable extends Migration
     {
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('no_ktp')->unsigned();
-            $table->string('nama');
-            $table->string('telp');
-            $table->text('alamat');
+            $table->string('customer_id');
+            $table->string('customer_name');
+            $table->string('username')->unique();
+            $table->string('pin')->nullable();
+            $table->string('customer_phone');
+            $table->string('customer_email')->unique();
+            $table->bigInteger('no_ktp')->unsigned();
+            $table->text('customer_address');
+            $table->string('password');
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->timestamps();
         });
     }
