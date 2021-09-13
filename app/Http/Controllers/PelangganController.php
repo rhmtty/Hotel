@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Pelanggan;
 use App\RetailPayment;
 use App\VirtualAccount;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PelangganController extends Controller
 {
@@ -62,19 +60,20 @@ class PelangganController extends Controller
             "partner_reff" => "200102083952562712182",
             "customer_id" => uniqid(),
             "customer_name" => $request->customer_name,
-            "expired" => "20211231230000",
-            "username" => "LI307GXIN",
+            "expired" => "20211231130000",
+            "username" => "LI8781PBT",
             "pin" => $request->pin,
             "customer_phone" => $request->customer_phone,
             "customer_email" => $request->customer_email,
             "bank_code" => $request->bank_code
         ];
         $response = json_encode($dataArray);
+
         // UNTUK MEGECEK APABILA DATA SUKSES 
         $isSuccess = ApiController::createVirtualAccountAPI($response);
         $jsonDecode = json_decode($isSuccess);
 
-        if ($jsonDecode->status == 'FAILED') {
+        if ($jsonDecode->status == 'SUCCESS') {
             $virtual_account = new VirtualAccount();
             $virtual_account->amount = $request->amount;
             $virtual_account->bank_code = $request->bank_code;
@@ -90,7 +89,10 @@ class PelangganController extends Controller
             $customer->customer_phone = $dataArray['customer_phone'];
             $customer->customer_email = $dataArray['customer_email'];
             $customer->save();
+
+            return back()->with('success', 'Data sukses di tambah! ' . $jsonDecode->response_desc);
         }
+        return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
     }
 
     public function createRetailPayment()
@@ -134,7 +136,7 @@ class PelangganController extends Controller
             $customer->customer_email = $dataArray['customer_email'];
             $customer->save();
 
-            return back()->with('success', 'Data sukses di tambah!');
+            return back()->with('success', 'Data sukses di tambah!' . $jsonDecode->response_desc);
         }
         return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
     }

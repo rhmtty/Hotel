@@ -11,13 +11,12 @@
 |
 */
 
-use App\Http\Controllers\PelangganController;
 
 Route::get('/admin', function () {
     if (!Auth::user()) {
         return view('auth.login');
     } else {
-        return redirect('/customer');
+        return redirect('/customer/login');
     }
 });
 
@@ -25,16 +24,18 @@ Route::get('/admin', function () {
  * 
  * MEMBER CONTROLLER
  **/
-Route::get('/customer', 'ApiController@createRetailPaymentAPI');
-Route::get('/customer/register', 'PelangganController@register');
-Route::post('/customer/register/post', 'PelangganController@postRegister');
-Route::get('/customer/login', 'PelangganController@loginForm');
-Route::post('/customer/login/post', 'PelangganController@authenticate');
-Route::get('/customer/booking', 'PelangganController@newBooking');
-Route::get('/customer/create/retail-payment', 'PelangganController@createRetailPayment');
-Route::post('/customer/post/retail-payment', 'PelangganController@postRetailPayment');
-Route::get('/customer/create/va', 'PelangganController@createVirtualAccount');
-Route::post('/customer/post/va', 'PelangganController@postVirtualAccount');
+Route::group(['prefix' => 'customer'], function () {
+    // Route::get('/', 'ApiController@createRetailPaymentAPI');
+    Route::get('/register', 'PelangganController@register');
+    Route::post('/register/post', 'PelangganController@postRegister');
+    Route::get('/login', 'PelangganController@loginForm');
+    Route::post('/login/post', 'PelangganController@authenticate');
+    Route::get('/booking', 'PelangganController@newBooking');
+    Route::get('/create/retail-payment', 'PelangganController@createRetailPayment');
+    Route::post('/post/retail-payment', 'PelangganController@postRetailPayment');
+    Route::get('/create/va', 'PelangganController@createVirtualAccount');
+    Route::post('/post/va', 'PelangganController@postVirtualAccount');
+});
 
 
 /**

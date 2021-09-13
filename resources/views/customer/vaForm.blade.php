@@ -20,6 +20,12 @@
                 <span class="badge">Sukses! </span> {{session('success')}}
             </div>
         @endif
+        @if(session('failed'))
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <span class="badge">Gagal! </span> {{session('failed')}}
+            </div>
+        @endif
         <!-- form input mask -->
         <div class="col-md-12">
             <div class="x_panel">
@@ -38,9 +44,14 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">BANK Code</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <select name="retailCode" id="" class="form-control col-md-7 col-xs-12">
+                                <select name="bank_code" id="" class="form-control col-md-7 col-xs-12">
                                     <option>--- PILIH KODE BANK ---</option>
-                                        <option value="ALFAMART">Alfamart</option>
+                                        <option value="014">Bank BCA</option>
+                                        <option value="002">Bank BRI</option>
+                                        <option value="022">Bank CIMB</option>
+                                        <option value="009">Bank BNI</option>
+                                        <option value="008">Bank Mandiri</option>
+                                        <option value="523">Bank SAHABAT SAMPOERENA</option>
                                 </select>
                                 <span></span>
                             </div>

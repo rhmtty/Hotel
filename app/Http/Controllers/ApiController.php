@@ -70,21 +70,10 @@ class ApiController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-                "amount" : 25000,
-                "partner_reff" : "200102083952562712182",
-                "customer_id" : "31857118",
-                "customer_name" : "GPI",
-                "expired" : "20211231230000",
-                "username" : "LI307GXIN",
-                "pin" : "2K2NPCBBNNTovgB",
-                "customer_phone" : "081231857418",
-                "customer_email" : "cto@linkqu.id",
-                "bank_code" : "947"
-            }',
+            CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => array(
-                'client-id: test',
-                'client-secret: test213'
+                'client-id: testing',
+                'client-secret: 123'
             ),
         ));
 
