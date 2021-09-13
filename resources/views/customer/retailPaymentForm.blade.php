@@ -1,6 +1,6 @@
 @extends('template')
 @section('title')
-  Virtual Account
+  Create Retail Payment
 @stop
 @section('content')
     <div class="page-title">
@@ -20,11 +20,17 @@
                 <span class="badge">Sukses! </span> {{session('success')}}
             </div>
         @endif
+        @if(session('failed'))
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <span class="badge">Gagal! </span> {{session('failed')}}
+            </div>
+        @endif
         <!-- form input mask -->
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Create Virtual Account</h2>
+                    <h2>Create Retail Payment</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -33,13 +39,13 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/va')}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/retail-payment')}}" method="POST">
                     @csrf
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">BANK Code</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Retail Code</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="retailCode" id="" class="form-control col-md-7 col-xs-12">
-                                    <option>--- PILIH KODE BANK ---</option>
+                                    <option>--- PILIH KODE RETAIL ---</option>
                                         <option value="ALFAMART">Alfamart</option>
                                 </select>
                                 <span></span>

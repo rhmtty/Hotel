@@ -145,9 +145,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <button type="button" class="btn btn-success" onclick="history.back()">
+                                <a type="button" class="btn btn-success" href="{{ url('/customer/login') }}">{{ __('Login') }}</a>
+                                {{-- <button type="button" class="btn btn-success" onclick="history.back()">
                                     {{__('Back')}}
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     </form>

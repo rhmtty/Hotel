@@ -55,52 +55,14 @@ class ApiController extends Controller
         return $data_resumeAccount['data'];
     }
 
-    // public static function createVirtualAccountAPI()
-    // {
-    //     $url_api = 'https://gateway-dev.linkqu.id';
-
-    //     $curl = curl_init();
-
-    //     curl_setopt_array($curl, array(
-    //         CURLOPT_URL => $url_api . '/linkqu-partner/transaction/create/va',
-    //         CURLOPT_RETURNTRANSFER => true,
-    //         CURLOPT_ENCODING => '',
-    //         CURLOPT_MAXREDIRS => 10,
-    //         CURLOPT_TIMEOUT => 0,
-    //         CURLOPT_FOLLOWLOCATION => true,
-    //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //         CURLOPT_CUSTOMREQUEST => 'POST',
-    //         CURLOPT_POSTFIELDS => '{
-    //             "amount" : 25000,
-    //             "partner_reff" : "200102083952562712182",
-    //             "customer_id" : "31857118",
-    //             "customer_name" : "GPI",
-    //             "expired" : "20211231230000",
-    //             "username" : "LI307GXIN",
-    //             "pin" : "2K2NPCBBNNTovgB",
-    //             "customer_phone" : "081231857418",
-    //             "customer_email" : "cto@linkqu.id",
-    //             "bank_code" : "947"
-    //         }',
-    //         CURLOPT_HTTPHEADER => array(
-    //             'client-id: test',
-    //             'client-secret: test213'
-    //         ),
-    //     ));
-
-    //     $response = curl_exec($curl);
-
-    //     curl_close($curl);
-    //     dd($response);
-    //     return $response;
-    // }
-
-    public static function createRetailPaymentAPI()
+    public static function createVirtualAccountAPI($data)
     {
+        $url_api = 'https://gateway-dev.linkqu.id';
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => '{{url}}/linkqu-partner/transaction/create/retail',
+            CURLOPT_URL => $url_api . '/linkqu-partner/transaction/create/va',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -109,17 +71,45 @@ class ApiController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => '{
-                "amount" : 10000,
-                "partner_reff" : "20010208395256271116",
-                "customer_id" : "31857123",
-                "customer_name" : "GPI LINKQU",
-                "expired" : "2021100230000",
+                "amount" : 25000,
+                "partner_reff" : "200102083952562712182",
+                "customer_id" : "31857118",
+                "customer_name" : "GPI",
+                "expired" : "20211231230000",
                 "username" : "LI307GXIN",
                 "pin" : "2K2NPCBBNNTovgB",
-                "retail_code" : "ALFAMART",
                 "customer_phone" : "081231857418",
-                "customer_email" : "cto@linkqu.id"
+                "customer_email" : "cto@linkqu.id",
+                "bank_code" : "947"
             }',
+            CURLOPT_HTTPHEADER => array(
+                'client-id: test',
+                'client-secret: test213'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+    }
+
+    public static function createRetailPaymentAPI($data)
+    {
+        $url_api = 'https://gateway-dev.linkqu.id';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url_api . '/linkqu-partner/transaction/create/retail',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => array(
                 'client-id: testing',
                 'client-secret: 123'
@@ -129,6 +119,7 @@ class ApiController extends Controller
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
+
+        return $response;
     }
 }

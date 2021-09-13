@@ -21,10 +21,10 @@ class CreatePelangganTable extends Migration
             $table->string('pin')->nullable();
             $table->string('customer_phone');
             $table->string('customer_email')->unique();
-            $table->bigInteger('no_ktp')->unsigned();
-            $table->text('customer_address');
-            $table->string('password');
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->bigInteger('no_ktp')->nullable();
+            $table->text('customer_address')->nullable();
+            $table->string('password')->nullable();
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->timestamps();
         });
     }

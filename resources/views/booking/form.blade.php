@@ -84,39 +84,39 @@
                         </div>
                         
                         <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Cek out</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="{{old('checkout')}}">
-                            <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
-                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                <input type="text" class="form-control col-md-7 col-xs-12" id="datepicker-end" aria-describedby="inputSuccess2Status" name="checkout" value="{{old('checkout')}}">
+                                <span aria-hidden="true"><i class="fa fa-calendar-o form-control-feedback right" ></i></span>
+                                <span id="inputSuccess2Status" class="sr-only">(success)</span>
                             </div>                           
                         </div>
 
                         <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Bank</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <select name="pembayaranBank" id="" class="form-control col-md-7 col-xs-12">
-                                            <option value="">--- PILIH BANK ---</option>
-                                            @foreach($data_bank as $data)
-                                                <option value={{ $data['id'] }} {{ (old('pembayaran') == $data['id']) ? 'selected' : ''}}>{{ $data['kodeBank'] }} - {{ $data['namaBank'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span></span>
-                                    </div>
-                                </div>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Bank</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <select name="pembayaranBank" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- PILIH BANK ---</option>
+                                    @foreach($data_bank as $data)
+                                        <option value={{ $data['id'] }} {{ (old('pembayaran') == $data['id']) ? 'selected' : ''}}>{{ $data['kodeBank'] }} - {{ $data['namaBank'] }}</option>
+                                    @endforeach
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Emoney</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <select name="pembayaranEmoney" id="" class="form-control col-md-7 col-xs-12">
-                                            <option value="">--- PILIH EMONEY ---</option>
-                                            @foreach($data_emoney['dataproduk'] as $data)
-                                                <option value={{ $data['kodebank'] }} {{ (old('pembayaranEmoney') == $data['kodebank']) ? 'selected' : ''}}>{{ $data['kodebank'] }} - {{ $data['namaproduk'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span></span>
-                                    </div>
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Emoney</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <select name="pembayaranEmoney" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- PILIH EMONEY ---</option>
+                                    @foreach($data_emoney['dataproduk'] as $data)
+                                        <option value={{ $data['kodebank'] }} {{ (old('pembayaranEmoney') == $data['kodebank']) ? 'selected' : ''}}>{{ $data['kodebank'] }} - {{ $data['namaproduk'] }}</option>
+                                    @endforeach
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
