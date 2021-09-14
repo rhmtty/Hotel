@@ -35,6 +35,12 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('/post/retail-payment', 'PelangganController@postRetailPayment');
     Route::get('/create/va', 'PelangganController@createVirtualAccount');
     Route::post('/post/va', 'PelangganController@postVirtualAccount');
+    Route::get('/create/vapermata', 'PelangganController@createVirtualAccountPermata');
+    Route::post('/post/vapermata', 'PelangganController@postVirtualAccountPermata');
+    Route::get('/create/qris', 'PelangganController@createQrisImage');
+    Route::post('/post/qris', 'PelangganController@postQrisImage');
+    Route::get('/create/ewallet', 'PelangganController@createEwallet');
+    Route::post('/post/ewallet', 'PelangganController@postEwallet');
 });
 
 

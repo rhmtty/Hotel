@@ -39,19 +39,13 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/va')}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/vapermata')}}" method="POST">
                     @csrf
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">BANK Code</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="bank_code" id="" class="form-control col-md-7 col-xs-12">
-                                    <option>--- PILIH KODE BANK ---</option>
-                                        <option value="014">014 - Bank BCA</option>
-                                        <option value="002">002 - Bank BRI</option>
-                                        <option value="022">022 - Bank CIMB</option>
-                                        <option value="009">009 - Bank BNI</option>
-                                        <option value="008">008 - Bank Mandiri</option>
-                                        <option value="523">523 - Bank SAHABAT SAMPOERNA</option>
+                                    <option value="013">014 - Bank Permata</option>
                                 </select>
                                 <span></span>
                             </div>
@@ -83,7 +77,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">PIN</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="pin" value="{{old('pin')}}">
+                                <input type="pin" class="form-control demo colorpicker-element" id="demo_forceformat3" name="pin" value="{{old('pin')}}">
                             </div>
                         </div>
                         

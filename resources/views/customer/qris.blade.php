@@ -1,13 +1,13 @@
 @extends('template')
 @section('title')
-  Virtual Account
+  Create QRIS Payment
 @stop
 @section('content')
     <div class="page-title">
         <div class="title_left">
             <ul class="breadcrumb">
                 <li><a href="/admin"><h3>Home</h3></a></li>
-                <li><span>Virtual Account</span></li>
+                <li><span>QRIS</span></li>
             </ul>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Create Virtual Account</h2>
+                    <h2>Create Retail Payment</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -39,23 +39,8 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/va')}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/customer/post/qris')}}" method="POST">
                     @csrf
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">BANK Code</label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <select name="bank_code" id="" class="form-control col-md-7 col-xs-12">
-                                    <option>--- PILIH KODE BANK ---</option>
-                                        <option value="014">014 - Bank BCA</option>
-                                        <option value="002">002 - Bank BRI</option>
-                                        <option value="022">022 - Bank CIMB</option>
-                                        <option value="009">009 - Bank BNI</option>
-                                        <option value="008">008 - Bank Mandiri</option>
-                                        <option value="523">523 - Bank SAHABAT SAMPOERNA</option>
-                                </select>
-                                <span></span>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">

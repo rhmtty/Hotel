@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVirtualAccountsTable extends Migration
+class CreateEwalletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateVirtualAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('virtual_accounts', function (Blueprint $table) {
+        Schema::create('ewallets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('amount');
-            $table->string('bank_code');
-            $table->timestamp('expired');
             $table->string('partner_reff')->unique();
-            $table->string('transaction_amount')->nullable();
+            $table->timestamp('expired');
+            $table->string('retail_code');
+            $table->string('ewallet_phone');
+            $table->string('bill_title');
+            $table->json('item_name')->nullable();
+            $table->json('item_image_url')->nullable();
+            $table->json('item_price')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ class CreateVirtualAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('virtual_accounts');
+        Schema::dropIfExists('ewallets');
     }
 }
