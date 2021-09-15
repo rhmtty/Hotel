@@ -43,6 +43,13 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('/post/ewallet', 'PelangganController@postEwallet');
 });
 
+/**
+ * PAYMENT CONTROLLER
+ * 
+ **/
+Route::group(['prefix' => 'transaction'], function () {
+    Route::post('/inquiry', 'TransactionController@inquiryTransferBank');
+});
 
 /**
  * 
