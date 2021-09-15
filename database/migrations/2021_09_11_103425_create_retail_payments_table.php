@@ -18,7 +18,7 @@ class CreateRetailPaymentsTable extends Migration
             $table->integer('amount');
             $table->string('retail_code');
             $table->timestamp('expired');
-            $table->string('partner_reff')->unique();
+            $table->integer('partner_reff')->unique();
             $table->timestamps();
         });
     }

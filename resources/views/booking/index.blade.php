@@ -67,14 +67,14 @@
             <td>{{$result->lama_menginap}} Hari</td>
             <td>{{date('d-m-Y', strtotime($result->checkin_time))}}</td>
             <td>{{date('d-m-Y', strtotime($result->checkout_time))}}</td>
-            <td>Rp.{{ number_format($result->total)}}</td>
+            <td>Rp.{{ number_format($result->amount)}}</td>
             <td>{{$result->operator}}</td>
             <td>{{$result->active == 1 ? 'Check In' : 'Check Out'}}</td>
             <td>
               @if($result->active == 1)
                 <a href="{{ url('/booking/edit/'.$result->id) }}"><i class="fa fa-pencil"></i></a>
                 <button type="button" class="del-button" data-toggle="modal" data-target=".delete-booking-md"><i class="fa fa-eraser"></i></button>
-                <a href="{{url('/booking/check-out/'.$result->id)}}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
+                <a href="{{ url('/booking/check-out/'.$result->id) }}"><button class="btn btn-info btn-sm" style="margin-top: -4px;">Check Out</button></a>
               @endif
             </td>
           </tr>

@@ -18,7 +18,7 @@ class CreateVirtualAccountsTable extends Migration
             $table->integer('amount');
             $table->string('bank_code');
             $table->timestamp('expired');
-            $table->string('partner_reff')->unique();
+            $table->integer('partner_reff')->unique();
             $table->string('transaction_amount')->nullable();
             $table->timestamps();
         });

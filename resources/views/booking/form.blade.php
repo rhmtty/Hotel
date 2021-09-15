@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="demo1 form-control" name="nama" value="{{old('nama')}}"/>
+                                <input type="text" class="demo1 form-control" name="customer_name" value="{{old('customer_name')}}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,14 +50,20 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">No telp</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{old('notelp')}}">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="customer_phone" value="{{old('customer_phone')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="customer_email" value="{{old('customer_email')}}">
                             </div>
                         </div>
                         <div class="form form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Alamat <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea id="textarea" required="required" name="alamat" class="form-control col-md-7 col-xs-12">{{old('alamat')}}</textarea>
+                                <textarea id="textarea" required="required" name="customer_address" class="form-control col-md-7 col-xs-12">{{old('customer_address')}}</textarea>
                             </div>
                         </div>
                         <!-- FORM BOOKING -->
@@ -117,6 +123,7 @@
                                 <span></span>
                             </div>
                         </div>
+                        
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">

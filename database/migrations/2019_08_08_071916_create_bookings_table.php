@@ -22,9 +22,10 @@ class CreateBookingsTable extends Migration
             $table->string('kode_produk')->nullable();
             $table->date('checkin_time');
             $table->date('checkout_time');
-            $table->double('total');
+            $table->double('amount');
             $table->integer('lama_menginap');
             $table->integer('active');
+            $table->integer('invoice');
             $table->timestamps();
         });
     }

@@ -20,25 +20,25 @@ class PelangganController extends Controller
         return view('customer.login');
     }
 
-    public function postRegister(Request $request)
-    {
-        // $retail_payment = ApiController::createRetailPaymentAPI();
+    // public function postRegister(Request $request)
+    // {
+    //     // $retail_payment = ApiController::createRetailPaymentAPI();
 
-        $pelanggan = new Pelanggan();
-        $pelanggan->customer_id = uniqid();
-        $pelanggan->customer_name = $request->customer_name;
-        $pelanggan->username = $request->username;
-        $pelanggan->pin = 'PIN Transaction Linkqu Account';
-        $pelanggan->customer_phone = $request->customer_phone;
-        $pelanggan->customer_email = $request->customer_email;
-        $pelanggan->no_ktp = $request->ktp;
-        $pelanggan->customer_address = $request->customer_address;
-        $pelanggan->password = bcrypt($request->password);
-        $pelanggan->jenis_kelamin = $request->jenis_kelamin;
-        $pelanggan->save();
+    //     $pelanggan = new Pelanggan();
+    //     $pelanggan->customer_id = uniqid();
+    //     $pelanggan->customer_name = $request->customer_name;
+    //     $pelanggan->username = $request->username;
+    //     // $pelanggan->pin = $request->pin;
+    //     $pelanggan->customer_phone = $request->customer_phone;
+    //     $pelanggan->customer_email = $request->customer_email;
+    //     $pelanggan->no_ktp = $request->ktp;
+    //     $pelanggan->customer_address = $request->customer_address;
+    //     $pelanggan->password = bcrypt($request->password);
+    //     $pelanggan->jenis_kelamin = $request->jenis_kelamin;
+    //     $pelanggan->save();
 
-        return back()->with('success', 'Data pelanggan berhasil di tambah!');
-    }
+    //     return back()->with('success', 'Data pelanggan berhasil di tambah!');
+    // }
 
     public function newBooking()
     {
@@ -58,7 +58,7 @@ class PelangganController extends Controller
     {
         $dataArray = [
             "amount" => $request->amount,
-            "partner_reff" => "20091911581103688587",
+            "partner_reff" => "20051911581337688007",
             "transaction_amount" => $request->amount,
             "customer_id" => uniqid(),
             "customer_name" => $request->customer_name,
@@ -80,7 +80,7 @@ class PelangganController extends Controller
             $virtual_account = new VirtualAccount();
             $virtual_account->amount = $request->amount;
             $virtual_account->bank_code = $request->bank_code;
-            $virtual_account->expired = $request->expired;
+            $virtual_account->expired = $dataArray['pin'];
             $virtual_account->partner_reff = $request->partner_reff;
             $virtual_account->transaction_amount = $request->amount;
             $virtual_account->save();
@@ -108,11 +108,11 @@ class PelangganController extends Controller
     {
         $dataArray = [
             "amount" => $request->amount,
-            "partner_reff" => "200102083952562712182",
+            "partner_reff" => "200702083951337712007",
             "customer_id" => uniqid(),
             "customer_name" => $request->customer_name,
             "expired" => "20211231130000",
-            "username" => "LI8781PBT",
+            "username" => "LI307GXIN",
             "pin" => $request->pin,
             "customer_phone" => $request->customer_phone,
             "customer_email" => $request->customer_email,
@@ -128,7 +128,7 @@ class PelangganController extends Controller
             $virtual_account = new VirtualAccount();
             $virtual_account->amount = $request->amount;
             $virtual_account->bank_code = $request->bank_code;
-            $virtual_account->expired = $request->expired;
+            $virtual_account->expired = $dataArray['pin'];
             $virtual_account->partner_reff = $request->partner_reff;
             $virtual_account->save();
 

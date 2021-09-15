@@ -127,6 +127,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="pin" class="col-md-4 col-form-label text-md-right">{{ __('Pin') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="pin" type="text" class="form-control @error('pin') is-invalid @enderror" name="pin"  value="{{ old('pin') }}" required autocomplete="pin">
+
+                                @error('pin')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="alamat" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
 
                             <div class="col-md-6">

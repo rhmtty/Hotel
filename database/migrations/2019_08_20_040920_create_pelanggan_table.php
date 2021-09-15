@@ -17,7 +17,7 @@ class CreatePelangganTable extends Migration
             $table->bigIncrements('id');
             $table->string('customer_id');
             $table->string('customer_name');
-            $table->string('username')->unique();
+            $table->string('username')->unique()->nullable();
             $table->string('pin')->nullable();
             $table->string('customer_phone');
             $table->string('customer_email')->unique();

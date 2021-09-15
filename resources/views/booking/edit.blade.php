@@ -49,6 +49,14 @@
                                 <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{$book->telp_pelanggan}}">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="customer_email" value="{{ $book->email }}">
+                            </div>
+                        </div>
+
                         <div class="form form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Alamat <span class="required">*</span>
                             </label>
@@ -84,12 +92,31 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Keterangan</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Bank</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="keterangan" placeholder="Contoh: (Order via traveloka)" value="{{$book->keterangan}}">
+                                <select name="pembayaranBank" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- PILIH BANK ---</option>
+                                    @foreach($data_bank as $data)
+                                        <option value={{ $data['id'] }} {{ (old('pembayaran') == $data['id']) ? 'selected' : ''}}>{{ $data['kodeBank'] }} - {{ $data['namaBank'] }}</option>
+                                    @endforeach
+                                </select>
                                 <span></span>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Pembayaran Emoney</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <select name="pembayaranEmoney" id="" class="form-control col-md-7 col-xs-12">
+                                    <option value="">--- PILIH EMONEY ---</option>
+                                    @foreach($data_emoney['dataproduk'] as $data)
+                                        <option value={{ $data['kodebank'] }} {{ (old('pembayaranEmoney') == $data['kodebank']) ? 'selected' : ''}}>{{ $data['kodebank'] }} - {{ $data['namaproduk'] }}</option>
+                                    @endforeach
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
+
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">

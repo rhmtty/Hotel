@@ -16,7 +16,7 @@ class CreateEwalletsTable extends Migration
         Schema::create('ewallets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('amount');
-            $table->string('partner_reff')->unique();
+            $table->integer('partner_reff')->unique();
             $table->timestamp('expired');
             $table->string('retail_code');
             $table->string('ewallet_phone');

@@ -1,11 +1,11 @@
 <title>Laporan Booking</title>
 <style>
-table { position: relative; border-collapse:collapse; width: 100%; }
-table td { border:1px solid #000; padding: 5px; }
-h1,h2,p { margin: 0; text-align: center;}
-p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
-.title { background: #ccc; }
-.footer { background: #ccc; }
+    table { position: relative; border-collapse:collapse; width: 100%; }
+    table td { border:1px solid #000; padding: 5px; }
+    h1,h2,p { margin: 0; text-align: center;}
+    p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
+    .title { background: #ccc; }
+    .footer { background: #ccc; }
 </style>
 
 <h1>GUEST HOUSE</h1>
@@ -23,8 +23,7 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
         <td>Tgl Check In</td>
         <td>Tgl Check Out</td>
         <td>Lama Menginap</td>
-        <td>Total</td>
-        <td>Keterangan</td>
+        <td>Jumlah</td>
         <td>Operator</td>
     </tr>
     @foreach($bookings as $no => $data)
@@ -36,8 +35,7 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
         <td>{{ date('d-m-Y', strtotime($data->checkin_time)) }}</td>
         <td>{{ date('d-m-Y', strtotime($data->checkout_time)) }}</td>
         <td>{{ $data->lama_menginap }} Hari</td>
-        <td>Rp.{{ number_format($data->total) }}</td>
-        <td>{{ $data->keterangan }}</td>
+        <td>Rp.{{ number_format($data->amount) }}</td>
         <td>{{ $data->operator }}</td>
     </tr>    
     @endforeach
@@ -45,6 +43,6 @@ p { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 8px double #000; }
 <table>
     <tr class="footer">
         <td width="65.2%"><b>Total</b></td>
-        <td><b>Rp. {{ number_format($gtotal)  }}</b></td>
+        <td><b>Rp. {{ number_format($gtotal) }}</b></td>
     </tr>
 </table>

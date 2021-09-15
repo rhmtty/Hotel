@@ -48,7 +48,7 @@ Route::group(['prefix' => 'customer'], function () {
  * 
  **/
 Route::group(['prefix' => 'transaction'], function () {
-    Route::post('/inquiry', 'TransactionController@inquiryTransferBank');
+    Route::get('/inquiry', 'TransactionController@inquiryTransferBank');
 });
 
 /**
@@ -65,6 +65,7 @@ Route::group(['prefix' => 'booking'], function () {
     Route::post('/check-out/post/{id}', 'BookingController@CheckOut');
     Route::delete('/delete', 'BookingController@deleteBooking');
     Route::get('/cari', 'BookingController@cari');
+    Route::get('/transaction/{invoice}', 'BookingController@transaction');
 });
 
 Route::group(['prefix' => 'admin'], function () {

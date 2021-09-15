@@ -277,12 +277,14 @@ class ApiController extends Controller
     //     echo $response;
     // }
 
-    public static function  transactionPaymentAPI($data)
+    public static function  inquiryTransferBankAPI($data)
     {
+        $url_api = 'https://gateway-dev.linkqu.id';
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => '{{url}}/linkqu-partner/transaction/withdraw/inquiry',
+            CURLOPT_URL => $url_api . '/linkqu-partner/transaction/withdraw/inquiry',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -297,5 +299,9 @@ class ApiController extends Controller
                 'client-secret: 123'
             ),
         ));
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
     }
 }
