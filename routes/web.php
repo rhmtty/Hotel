@@ -16,9 +16,11 @@ Route::get('/admin', function () {
     if (!Auth::user()) {
         return view('auth.login');
     } else {
-        return redirect('/customer/login');
+        return redirect('/');
     }
 });
+
+Route::get('/', 'DashboardController@index');
 
 /**
  * 
@@ -49,6 +51,8 @@ Route::group(['prefix' => 'customer'], function () {
  **/
 Route::group(['prefix' => 'transaction'], function () {
     Route::get('/inquiry', 'TransactionController@inquiryTransferBank');
+    Route::get('/pesanan-saya/', 'TransactionController@customerTransaction');
+    Route::get('/pesanan-saya/{invoice}', 'TransactionController@customerTransaction');
 });
 
 /**
@@ -61,18 +65,13 @@ Route::group(['prefix' => 'booking'], function () {
     Route::post('/book', 'BookingController@postNew');
     Route::get('/edit/{id}', 'BookingController@editData');
     Route::post('/edit/save/{id}', 'BookingController@editData');
-    Route::get('/check-out/{id}', 'BookingController@CheckOut');
-    Route::post('/check-out/post/{id}', 'BookingController@CheckOut');
+    Route::get('/check-out/{invoice}', 'BookingController@CheckOut');
+    Route::post('/check-out/post/{invoice}', 'BookingController@CheckOut');
     Route::delete('/delete', 'BookingController@deleteBooking');
     Route::get('/cari', 'BookingController@cari');
-    Route::get('/transaction/{invoice}', 'BookingController@transaction');
 });
 
 Route::group(['prefix' => 'admin'], function () {
-
-    Route::get('/', 'DashboardController@index');
-    Route::get('/delete/{id}', 'DashboardController@delete');
-
     /**
      * KAMAR CONTROLLER
      */

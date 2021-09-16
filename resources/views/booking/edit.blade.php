@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pelanggan</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="demo1 form-control" name="nama" value="{{$book->nama_pelanggan}}"/>
+                                <input type="text" class="demo1 form-control" name="customer_name" value="{{$book->nama_pelanggan}}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">No telp</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="notelp" value="{{$book->telp_pelanggan}}">
+                                <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" name="customer_phone" value="{{$book->telp_pelanggan}}">
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Alamat <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea id="textarea" required="required" name="alamat" class="form-control col-md-7 col-xs-12">{{$book->alamat_pelanggan}}</textarea>
+                                <textarea id="textarea" required="required" name="customer_address" class="form-control col-md-7 col-xs-12">{{$book->alamat_pelanggan}}</textarea>
                             </div>
                         </div>
                         <!-- FORM BOOKING -->

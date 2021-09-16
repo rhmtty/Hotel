@@ -26,9 +26,10 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" action="{{url('/booking/check-out/post/'.$booking->id)}}" method="POST">
+                    <form class="form-horizontal form-label-left" action="{{url('/booking/check-out/post/'.$booking->invoice)}}" method="POST">
                     @csrf
-                        <div class="form-group">
+                    <strong>Invoice {{ $booking->invoice }}</strong><br><br>
+                    <div class="form-group">
                             <label class="col-md-2" for="">Nama Pelanggan: </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <span class="demo1">{{$booking->nama_pelanggan}}</span>      
@@ -79,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-md-2" for="">Total Tagihan: </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <span class="demo1">Rp. {{ number_format($booking->total,2)}}</span> 
+                                <span class="demo1">Rp. {{ number_format($booking->amount, 2)}}</span> 
                             </div>
                         </div>
                         <div class="ln_solid"></div>

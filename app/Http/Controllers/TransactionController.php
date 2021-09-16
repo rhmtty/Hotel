@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
     public function inquiryTransferBank(Request $request)
     {
-        $username_customer = Pelanggan::where('');
+        $username_customer = Booking::invoice();
         dd($username_customer);
 
         $dataArray = [
@@ -23,33 +25,59 @@ class TransactionController extends Controller
 
         $response = json_encode($dataArray);
 
-        $isSuccess = ApiController::createEwalletAPI($response);
+        $isSuccess = ApiController::inquiryTransferBankAPI($response);
         $jsonDecode = json_decode($isSuccess);
 
         if ($jsonDecode->status == 'SUCCESS') {
-            $retail_payment = new Ewallet();
-            $retail_payment->amount = $request->amount;
-            $retail_payment->retail_code = $dataArray['retail_code'];
-            $retail_payment->expired = $dataArray['expired'];
-            $retail_payment->partner_reff = $dataArray['partner_reff'];
-            $retail_payment->ewallet_phone = $dataArray['ewallet_phone'];
-            $retail_payment->bill_title = $dataArray['bill_title'];
-            $retail_payment->item_name = $dataArray['item_name'];
-            $retail_payment->item_image_url = $dataArray['item_image_url'];
-            $retail_payment->item_price = $dataArray['item_price'];
-            $retail_payment->save();
+            // $retail_payment = new Ewallet();
+            // $retail_payment->amount = $request->amount;
+            // $retail_payment->retail_code = $dataArray['retail_code'];
+            // $retail_payment->expired = $dataArray['expired'];
+            // $retail_payment->partner_reff = $dataArray['partner_reff'];
+            // $retail_payment->ewallet_phone = $dataArray['ewallet_phone'];
+            // $retail_payment->bill_title = $dataArray['bill_title'];
+            // $retail_payment->item_name = $dataArray['item_name'];
+            // $retail_payment->item_image_url = $dataArray['item_image_url'];
+            // $retail_payment->item_price = $dataArray['item_price'];
+            // $retail_payment->save();
 
-            $customer = new Pelanggan();
-            $customer->customer_id = $dataArray['customer_id'];
-            $customer->customer_name = $dataArray['customer_name'];
-            $customer->username = $dataArray['username'];
-            $customer->pin = $dataArray['pin'];
-            $customer->customer_phone = $dataArray['customer_phone'];
-            $customer->customer_email = $dataArray['customer_email'];
-            $customer->save();
+            // $customer = new Pelanggan();
+            // $customer->customer_id = $dataArray['customer_id'];
+            // $customer->customer_name = $dataArray['customer_name'];
+            // $customer->username = $dataArray['username'];
+            // $customer->pin = $dataArray['pin'];
+            // $customer->customer_phone = $dataArray['customer_phone'];
+            // $customer->customer_email = $dataArray['customer_email'];
+            // $customer->save();
 
             return back()->with('success', 'Data sukses di tambah! ' . $jsonDecode->response_desc);
         }
         return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
     }
+
+    public function customerTransaction($invoice, Request $request)
+    {
+        $invoice = $request->search_customer_trx;
+
+        $trx = Booking::invoice($invoice);
+
+        if ($trx) {
+            return view('transaction.transaction', compact('trx'));
+        }
+
+        return view('transaction.transaction');
+    }
+
+    // public function searchCustomerTransaction(Request $request)
+    // {
+    //     $keyword = $request->search_customer_trx;
+
+    //     $trx = Booking::searchCustomerTrx($keyword);
+
+    //     if ($keyword) {
+    //         return view('transaction.transaction', compact('trx'));
+    //     }
+
+    //     return view('transaction.transaction');
+    // }
 }

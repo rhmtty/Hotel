@@ -6,6 +6,7 @@
 
     <ul class="nav navbar-nav navbar-right">
       <li class="">
+      @if(Auth::user())
         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           <img src="{{url('assets/images/avatar.png')}}" alt="">{{ Auth::user()->fullname }}
           <span class=" fa fa-angle-down"></span>
@@ -15,6 +16,7 @@
           <li><a href="#" id="log-out" data-target="#ModalLogout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
           </li>
         </ul>
+      @endif
       </li>
     </ul>
   </nav>

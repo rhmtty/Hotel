@@ -1,18 +1,17 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{{url('/admin')}}" class="site_title"><i class="fa fa-building"></i> <span>Guest House</span></a>
+    <a href="{{ Auth::user() ? url('/admin') : '/' }}" class="site_title"><i class="fa fa-building"></i> <span>Guest House</span></a>
   </div>
-
   <div class="clearfix"></div>
 
   <!-- menu profile quick info -->
   <div class="profile clearfix">
     <div class="profile_pic">
-        <img src="{{url('assets/images/avatar.png')}}" alt="{{ Auth::user()->fullname }}" class="img-circle profile_img">
+        <img src="{{ url('assets/images/avatar.png') }}" alt="{{ Auth::user() ? Auth::user()->fullname : '' }}" class="img-circle profile_img">
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
-      <h2>{{ Auth::user()->fullname }}</h2>
+      <h2>{{ Auth::user() ? Auth::user()->fullname : '' }}</h2>
     </div>
   </div>
   <!-- /menu profile quick info -->
@@ -24,13 +23,16 @@
     <div class="menu_section">
       <h3>General</h3>
       <ul class="nav side-menu">
-        <li><a href="{{ url('/admin') }}"><i class="fa fa-home"></i> Home <span></span></a></li>
+        <li><a href="{{ Auth::user() ? url('/admin') : '/' }}"><i class="fa fa-home"></i> Home</a></li>
         <li><a><i class="fa fa-book"></i>Booking<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/booking/form')}}">Pesan Kamar</a></li>
-            <li><a href="{{url('/booking')}}">List Booking</a></li>
+            @if(Auth::user())
+            <li><a href="{{ url('/booking') }}">List Booking</a></li>
+            @endif
           </ul>
         </li>
+        @if(Auth::user())
         <li><a><i class="fa fa-building"></i>Blok <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/admin/blok/form')}}">Tambah Blok</a></li>
@@ -53,6 +55,12 @@
             <li><a href="{{url('/admin/laporan/bookings')}}">Laporan Booking</a></li>
             <li><a target="_blank" href="{{url('/admin/laporan/pelanggan')}}">Laporan Data Pelanggan</a></li>
             <li><a href="{{url('/admin/laporan/aktifitas')}}">Log Aktivitas</a></li>
+          </ul>
+        </li>
+        @endif
+        <li><a><i class="fa fa-shopping-cart"></i>Transaksi<span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{url('/transaction/pesanan-saya/')}}">Pesanan Saya</a></li>
           </ul>
         </li>
       </ul>

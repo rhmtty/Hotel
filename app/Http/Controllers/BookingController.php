@@ -19,6 +19,22 @@ class BookingController extends Controller
     //     $this->middleware('auth');
     // }
 
+    public function validationMessage()
+    {
+        $msg = [
+            'required' => 'form :attribute tidak boleh kosong!!',
+            'min' => ':attribute harus diisi minimal :min karakter',
+            'max' => ':attribute harus diisi minimal :max karakter',
+            'after_or_equal' => 'Tanggal check in/check out tidak valid',
+            'numeric' => ':attribute data harus berupa angka',
+            'alpha' => 'form :attribute harus berupa huruf',
+            'date' => ':attribute harus berupa tanggal',
+            'required_without' => 'pilih metode pembayaran',
+        ];
+
+        return $msg;
+    }
+
     /**
      * Tampil data booking
      */
@@ -26,15 +42,6 @@ class BookingController extends Controller
     {
         $book = Booking::DataBooking();
         return view('booking.index', ['book' => $book]);
-    }
-
-    public function transaction($invoice)
-    {
-        // $trx = Booking::where('invoice', $invoice)->first();
-        $trx = Booking::invoice($invoice);
-        // dd($trx);
-
-        return view('booking.transaction', compact('trx'));
     }
 
     /**
@@ -53,17 +60,6 @@ class BookingController extends Controller
      */
     public function postNew(Request $request)
     {
-        $msg = [
-            'required' => 'form :attribute tidak boleh kosong!!',
-            'min' => ':attribute harus diisi minimal :min karakter',
-            'max' => ':attribute harus diisi minimal :max karakter',
-            'after_or_equal' => 'Tanggal check in/check out tidak valid',
-            'numeric' => ':attribute data harus berupa angka',
-            'alpha' => 'form :attribute harus berupa huruf',
-            'date' => ':attribute harus berupa tanggal',
-            'required_without' => 'pilih metode pembayaran',
-        ];
-
         $request->validate([
             'customer_name' => 'bail|required|min:1|max:20|alpha',
             'no_ktp' => 'required|min:1|numeric',
@@ -75,7 +71,7 @@ class BookingController extends Controller
             'checkout' => 'required|date|after_or_equal:checkin',
             'pembayaranBank' => 'required_without:pembayaranEmoney',
             'pembayaranEmoney' => 'required_without:pembayaranBank'
-        ], $msg);
+        ], $this->validationMessage());
 
         // SIMPAN DATA KE TABEL PELANGGAN
         $pelanggan = new Pelanggan();
@@ -100,17 +96,20 @@ class BookingController extends Controller
 
         $amount = $hari * $harga;
 
-        // $idPelanggan = Pelanggan::where('customer_name', $request->customer_name)->value('id');
         $id_pelanggan = $pelanggan::where('customer_name', $request->customer_name)->value('id');
 
-        $invoice = date('Ymd') . rand(0, 100);
+        $invoice = date('Ymd') . rand(0, 99);
 
         // MENYIMPAN DATA KE TABEL BOOKING
         $book = new Booking();
         $book->id_kamar = $request->kamar;
         $book->id_bank = $request->pembayaranBank;
         $book->kode_produk = $request->pembayaranEmoney;
-        $book->id_user = Auth::user()->id;
+
+        if (Auth::user()) {
+            $book->id_user = Auth::user()->id;
+        }
+
         $book->id_pelanggan = $id_pelanggan;
         $book->checkin_time = $tglCekin;
         $book->checkout_time = $tglCekout;
@@ -125,13 +124,15 @@ class BookingController extends Controller
         $room->update();
 
         // MENYIMPAN LOG AKTIVITAS KE TABEL AKTIVITAS KARYAWAN
-        $karyawan = new AktivitasKaryawan();
-        $karyawan->nama_karyawan = Auth::user()->fullname;
-        $karyawan->info_karyawan = Auth::user()->alamat . ' ' . Auth::user()->telp;
-        $karyawan->aktivitas = "Kamar baru dipesan. Nama Pelanggan: " . $request->nama . " No KTP: " . $request->no_ktp . " Alamat: " . $request->alamat . " Telepon: " . $request->notelp;
-        $karyawan->save();
+        if (Auth::user()) {
+            $karyawan = new AktivitasKaryawan();
+            $karyawan->nama_karyawan = Auth::user()->fullname;
+            $karyawan->info_karyawan = Auth::user()->alamat . ' ' . Auth::user()->telp;
+            $karyawan->aktivitas = "Kamar baru dipesan. Nama Pelanggan: " . $request->nama . " No KTP: " . $request->no_ktp . " Alamat: " . $request->alamat . " Telepon: " . $request->notelp;
+            $karyawan->save();
+        }
 
-        return redirect('/booking/transaction/' . $invoice)->with('success', 'Kamar sukses dibooking');
+        return redirect('/transaction/pesanan-saya/' . $invoice)->with('success', 'Harap catat nomor invoice untuk melakukan pembayaran');
     }
 
     /**
@@ -148,13 +149,17 @@ class BookingController extends Controller
         } elseif ($request->isMethod('POST')) {
 
             $request->validate([
-                'nama' => 'required|min:1|max:20',
-                'no_ktp' => 'required|min:1|same:no_ktp|numeric',
-                'notelp' => 'required|numeric',
-                'alamat' => 'required|max:20',
+                'customer_name' => 'bail|required|min:1|max:20|alpha',
+                'no_ktp' => 'required|min:1|numeric',
+                'customer_phone' => 'required|numeric',
+                'customer_address' => 'required',
+                'customer_email' => 'required|email',
+                'kamar' => 'required',
                 'checkin' => 'required|date|after_or_equal:today',
-                'checkout' => 'required|date'
-            ]);
+                'checkout' => 'required|date|after_or_equal:checkin',
+                'pembayaranBank' => 'required_without:pembayaranEmoney',
+                'pembayaranEmoney' => 'required_without:pembayaranBank'
+            ], $this->validationMessage());
 
             $tglCekin = new DateTime($request->checkin);
             $tglCekout = new DateTime($request->checkout);
@@ -169,7 +174,7 @@ class BookingController extends Controller
             $book->lama_menginap = $hari;
             $book->checkin_time = $request->checkin;
             $book->checkout_time = $request->checkout;
-            $book->total = $hari * $harga;
+            $book->amount = $hari * $harga;
             $book->id_bank = $request->pembayaranBank;
             $book->kode_produk = $request->pembayaranEmoney;
             $book->update();
@@ -179,17 +184,17 @@ class BookingController extends Controller
             $karyawan->info_karyawan = Auth::user()->alamat . ' ' . Auth::user()->telp;
             $karyawan->aktivitas = "Mengedit data booking. ID booking: " . $id;
             $karyawan->save();
-            return redirect('/admin/booking')->with('success-edit', 'Data booking sukses di edit!!');
+            return redirect('/booking')->with('success-edit', 'Data booking sukses di edit!!');
         }
     }
 
-    public function CheckOut(Request $request, $id)
+    public function CheckOut(Request $request, $invoice)
     {
         if ($request->isMethod('GET')) {
             /**
              * Tampil Check Out
              */
-            $booking = Booking::DataCheckOut($id);
+            $booking = Booking::DataCheckOut($invoice);
 
             return view('booking.checkout', compact('booking'));
         } elseif ($request->isMethod('POST')) {
@@ -197,7 +202,7 @@ class BookingController extends Controller
              * Proses check out
              */
 
-            $booking = Booking::find($id);
+            $booking = Booking::where('invoice', $invoice)->first();
 
             // $tgl_checkin = new DateTime($booking->checkin_time);
             // $today = new DateTime();
@@ -215,11 +220,14 @@ class BookingController extends Controller
 
             $infop = Pelanggan::find($booking->id_pelanggan);
 
-            $karyawan = new AktivitasKaryawan();
-            $karyawan->nama_karyawan = Auth::user()->fullname;
-            $karyawan->info_karyawan = Auth::user()->alamat . ' ' . Auth::user()->telp;
-            $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: " . $infop->nama . " No KTP: " . $infop->no_ktp . "Alamat: " . $infop->alamat . " Telepon: " . $infop->telp . " No Kamar: " . $kamar->no_kamar . " Tipe: " . $kamar->tipe . " Total Tagihan: Rp. " . $booking->total;
-            $karyawan->save();
+            if (Auth::user()) {
+                $karyawan = new AktivitasKaryawan();
+                $karyawan->nama_karyawan = Auth::user()->fullname;
+                $karyawan->info_karyawan = Auth::user()->alamat . ' ' . Auth::user()->telp;
+                $karyawan->aktivitas = "Proses Check Out. Nama Pelanggan: " . $infop->nama . " No KTP: " . $infop->no_ktp . "Alamat: " . $infop->alamat . " Telepon: " . $infop->telp . " No Kamar: " . $kamar->no_kamar . " Tipe: " . $kamar->tipe . " Total Tagihan: Rp. " . $booking->amoun;
+                $karyawan->save();
+            }
+
             return redirect('/booking')->with('checkout', 'Proses Check Out sukses dilakukan!!');
         }
     }
@@ -232,15 +240,6 @@ class BookingController extends Controller
         $kamar->save();
     }
 
-    public function hasilcari()
-    {
-        // mengambil data dari table pegawai
-        $booking = DB::table('bookings')->paginate(10);
-
-        // mengirim data pegawai ke view index
-        return view('booking.index', ['booking' => $booking]);
-    }
-
     public function cari(Request $request)
     {
         // menangkap data pencarian
@@ -251,12 +250,12 @@ class BookingController extends Controller
             ->join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
             ->join('users', 'bookings.id_user', '=', 'users.id')
             ->join('pelanggan', 'bookings.id_pelanggan', '=', 'pelanggan.id')
-            // ->where('bookings.active', 1)
-            ->where('pelanggan.nama', 'like', '%' . $keyword . '%')
+            ->where('pelanggan.customer_name', 'like', '%' . $keyword . '%')
             ->orWhere('pelanggan.no_ktp', 'like', '%' . $keyword . '%')
             ->orWhere('kamar.no_kamar', 'like', '%' . $keyword . '%')
-            ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.nama as nama_pelanggan', 'pelanggan.telp as telp_pelanggan', 'pelanggan.alamat as alamat_pelanggan')
+            ->select('bookings.*', 'kamar.no_kamar as nomer_kamar', 'kamar.lantai as lantai_kamar', 'kamar.blok_id as nama_blok', 'kamar.tipe as tipe_kamar', 'kamar.harga as harga_kamar', 'kamar.fasilitas as fasilitas_kamar', 'users.fullname as operator', 'pelanggan.no_ktp as ktp_pelanggan', 'pelanggan.customer_name as nama_pelanggan', 'pelanggan.customer_phone as telp_pelanggan', 'pelanggan.customer_address as alamat_pelanggan')
             ->get();
+
         // mengirim data pegawai ke view index
         return view('booking.index', ['book' => $cari]);
     }

@@ -11,10 +11,27 @@
                 <li><span>Invoice</span></li>
             </ul>
         </div>
+
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <form action="{{ url('/transaction/pesanan-saya/') }}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control"  name="search_customer_trx" placeholder="Cari data transaksi. . . ." value="{{ old('search-customer-transaction') }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Cari</button>
+                    </span>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="clearfix"></div>
 
     <div class="row">
+        @if(session('success'))
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Tutup</span></button>
+                <span class="badge">Sukses! </span> {{session('success')}}
+            </div>
+        @endif
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -27,6 +44,7 @@
                 </div>
 
                 <div class="x_content">
+                @if(isset($trx) && $trx->count() > 0)
                     <strong>Invoice number</strong>
                     <p>{{ $trx->invoice }}</p>
                     <strong>Date of issue</strong>
@@ -58,10 +76,16 @@
                         <tbody><tr></tr></tbody>
                     </table>
 
-                    <div class="invoice-total">
+                    <div class="invoice-total col-sm-12">
                         <p>Invoice total</p>
                         <h3>Rp.{{ number_format($trx->amount) }}</h3>
                     </div>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span><span class="sr-only">Tutup</span></button>
+                        <strong class="badge">Silahkan cari data booking menggunakan nomor invoice!!</strong>
+                    </div>
+                @endif
                 </div>
             </div>
         </div>
