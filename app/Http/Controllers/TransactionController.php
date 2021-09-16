@@ -55,29 +55,20 @@ class TransactionController extends Controller
         return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
     }
 
-    public function customerTransaction($invoice, Request $request)
+    public function customerTransaction($invoice = null, Request $request)
     {
-        $invoice = $request->search_customer_trx;
+        $keyword = $request->search_customer_trx;
 
-        $trx = Booking::invoice($invoice);
+        if ($keyword) {
+            $trx = Booking::invoice($keyword);
 
-        if ($trx) {
+            return view('transaction.transaction', compact('trx'));
+        } elseif (!$keyword) {
+            $trx = Booking::invoice($invoice);
+
             return view('transaction.transaction', compact('trx'));
         }
 
-        return view('transaction.transaction');
+        // return view('transaction.transaction');
     }
-
-    // public function searchCustomerTransaction(Request $request)
-    // {
-    //     $keyword = $request->search_customer_trx;
-
-    //     $trx = Booking::searchCustomerTrx($keyword);
-
-    //     if ($keyword) {
-    //         return view('transaction.transaction', compact('trx'));
-    //     }
-
-    //     return view('transaction.transaction');
-    // }
 }

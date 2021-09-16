@@ -16,7 +16,7 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_kamar');
-            $table->integer('id_user');
+            $table->integer('id_user')->nullable()->default(0);
             $table->integer('id_pelanggan');
             $table->string('id_bank')->nullable();
             $table->string('kode_produk')->nullable();
