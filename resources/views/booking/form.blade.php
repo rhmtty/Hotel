@@ -103,9 +103,11 @@
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="pembayaranBank" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- PILIH BANK ---</option>
-                                    @foreach($data_bank as $data)
-                                        <option value={{ $data['id'] }} {{ (old('pembayaran') == $data['id']) ? 'selected' : ''}}>{{ $data['kodeBank'] }} - {{ $data['namaBank'] }}</option>
-                                    @endforeach
+                                    @if($data_bank != null)
+                                        @foreach($data_bank as $data)
+                                            <option value={{ $data['kodeBank'] }} {{ (old('pembayaran') == $data['id']) ? 'selected' : ''}}>{{ $data['kodeBank'] }} - {{ $data['namaBank'] }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                                 <span></span>
                             </div>
@@ -116,9 +118,11 @@
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <select name="pembayaranEmoney" id="" class="form-control col-md-7 col-xs-12">
                                     <option value="">--- PILIH EMONEY ---</option>
-                                    @foreach($data_emoney['dataproduk'] as $data)
-                                        <option value={{ $data['kodebank'] }} {{ (old('pembayaranEmoney') == $data['kodebank']) ? 'selected' : ''}}>{{ $data['kodebank'] }} - {{ $data['namaproduk'] }}</option>
-                                    @endforeach
+                                    @if ($data_emoney != null)    
+                                        @foreach($data_emoney['dataproduk'] as $data)
+                                            <option value={{ $data['kodebank'] }} {{ (old('pembayaranEmoney') == $data['kodebank']) ? 'selected' : ''}}>{{ $data['kodebank'] }} - {{ $data['namaproduk'] }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                                 <span></span>
                             </div>

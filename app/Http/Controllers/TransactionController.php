@@ -3,58 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
-use App\Pelanggan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
-    public function inquiryTransferBank(Request $request)
-    {
-        $username_customer = Booking::invoice();
-        dd($username_customer);
-
-        $dataArray = [
-            "username" => "LI307GXIN",
-            "pin" => "2K2NPCBBNNTovgB",
-            "bankcode" => "008",
-            "accountnumber" => "1234566788234",
-            "amount" => 50000,
-            "partner_reff" => 12345567
-        ];
-
-        $response = json_encode($dataArray);
-
-        $isSuccess = ApiController::inquiryTransferBankAPI($response);
-        $jsonDecode = json_decode($isSuccess);
-
-        if ($jsonDecode->status == 'SUCCESS') {
-            // $retail_payment = new Ewallet();
-            // $retail_payment->amount = $request->amount;
-            // $retail_payment->retail_code = $dataArray['retail_code'];
-            // $retail_payment->expired = $dataArray['expired'];
-            // $retail_payment->partner_reff = $dataArray['partner_reff'];
-            // $retail_payment->ewallet_phone = $dataArray['ewallet_phone'];
-            // $retail_payment->bill_title = $dataArray['bill_title'];
-            // $retail_payment->item_name = $dataArray['item_name'];
-            // $retail_payment->item_image_url = $dataArray['item_image_url'];
-            // $retail_payment->item_price = $dataArray['item_price'];
-            // $retail_payment->save();
-
-            // $customer = new Pelanggan();
-            // $customer->customer_id = $dataArray['customer_id'];
-            // $customer->customer_name = $dataArray['customer_name'];
-            // $customer->username = $dataArray['username'];
-            // $customer->pin = $dataArray['pin'];
-            // $customer->customer_phone = $dataArray['customer_phone'];
-            // $customer->customer_email = $dataArray['customer_email'];
-            // $customer->save();
-
-            return back()->with('success', 'Data sukses di tambah! ' . $jsonDecode->response_desc);
-        }
-        return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
-    }
-
     public function customerTransaction($invoice = null, Request $request)
     {
         $keyword = $request->search_customer_trx;
@@ -70,5 +22,51 @@ class TransactionController extends Controller
         }
 
         // return view('transaction.transaction');
+    }
+
+    public function payment($invoice)
+    {
+        $trx = Booking::invoice($invoice);
+
+        $payloads = [
+            "username" => "LI307GXIN",
+            "pin" => "2K2NPCBBNNTovgB",
+            "bankcode" => $trx->kode_bank,
+            "accountnumber" => "1234566788234",
+            "amount" => $trx->amount,
+            "partner_reff" => $trx->invoice
+        ];
+
+        $response = json_encode($payloads);
+        dd($response);
+
+        $isSuccess = ApiController::inquiryTransferBankAPI($response);
+        $jsonDecode = json_decode($isSuccess);
+
+        if ($jsonDecode->status == 'SUCCESS') {
+            // $retail_payment = new Ewallet();
+            // $retail_payment->amount = $request->amount;
+            // $retail_payment->retail_code = $payloads['retail_code'];
+            // $retail_payment->expired = $payloads['expired'];
+            // $retail_payment->partner_reff = $payloads['partner_reff'];
+            // $retail_payment->ewallet_phone = $payloads['ewallet_phone'];
+            // $retail_payment->bill_title = $payloads['bill_title'];
+            // $retail_payment->item_name = $payloads['item_name'];
+            // $retail_payment->item_image_url = $payloads['item_image_url'];
+            // $retail_payment->item_price = $payloads['item_price'];
+            // $retail_payment->save();
+
+            // $customer = new Pelanggan();
+            // $customer->customer_id = $payloads['customer_id'];
+            // $customer->customer_name = $payloads['customer_name'];
+            // $customer->username = $payloads['username'];
+            // $customer->pin = $payloads['pin'];
+            // $customer->customer_phone = $payloads['customer_phone'];
+            // $customer->customer_email = $payloads['customer_email'];
+            // $customer->save();
+
+            return back()->with('success', 'Data sukses di tambah! ' . $jsonDecode->response_desc);
+        }
+        return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
     }
 }

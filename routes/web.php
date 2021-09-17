@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +56,7 @@ Route::group(['prefix' => 'transaction'], function () {
     Route::get('/inquiry', 'TransactionController@inquiryTransferBank');
     Route::get('/pesanan-saya/', 'TransactionController@customerTransaction');
     Route::get('/pesanan-saya/{invoice}', 'TransactionController@customerTransaction');
+    Route::get('/payment/{invoice}', 'TransactionController@payment');
 });
 
 /**

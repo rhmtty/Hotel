@@ -44,9 +44,9 @@ class PelangganController extends Controller
     {
         $data_bank = ApiController::getDataBankAPI();
         $data_emoney = ApiController::getDataEmoneyAPI();
-        $data_resumeAccount = ApiController::getResumeAccountAPI();
+        // $data_resumeAccount = ApiController::getResumeAccountAPI();
 
-        return view('customer.form', compact('data_bank', 'data_emoney', 'data_resumeAccount'));
+        return view('booking.form', compact('data_bank', 'data_emoney'));
     }
 
     public function createVirtualAccountPermata()

@@ -7,7 +7,7 @@
     <div class="page-title">
         <div class="title_left">
             <ul class="breadcrumb">
-                <li><a href="/admin"><h3>Home</h3></a></li>
+                <li><a href="/"><h3>Home</h3></a></li>
                 <li><span>Invoice</span></li>
             </ul>
         </div>
@@ -79,6 +79,10 @@
                     <div class="invoice-total col-sm-12">
                         <p>Invoice total</p>
                         <h3>Rp.{{ number_format($trx->amount) }}</h3>
+                    </div>
+
+                    <div class="payment-proccess">
+                        <a href="{{ url('/transaction/payment/'.$trx->invoice) }}" class="btn btn-success">Proses Pembayaran</a>
                     </div>
                 @else
                     <div class="alert alert-danger" role="alert">

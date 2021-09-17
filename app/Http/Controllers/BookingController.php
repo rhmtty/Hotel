@@ -52,6 +52,8 @@ class BookingController extends Controller
         $data_bank = ApiController::getDataBankAPI();
         $data_emoney = ApiController::getDataEmoneyAPI();
 
+        if ($data_bank != null && $data_emoney != null) {
+        }
         return view('booking.form', compact('data_bank', 'data_emoney'));
     }
 
@@ -103,12 +105,8 @@ class BookingController extends Controller
         // MENYIMPAN DATA KE TABEL BOOKING
         $book = new Booking();
         $book->id_kamar = $request->kamar;
-        $book->id_bank = $request->pembayaranBank;
+        $book->kode_bank = $request->pembayaranBank;
         $book->kode_produk = $request->pembayaranEmoney;
-
-        if (Auth::user()) {
-            $book->id_user = Auth::user()->id;
-        }
 
         $book->id_pelanggan = $id_pelanggan;
         $book->checkin_time = $tglCekin;
@@ -249,7 +247,6 @@ class BookingController extends Controller
         // mengambil data dari table pegawai sesuai pencarian data
         $cari = DB::table('bookings')
             ->join('kamar', 'bookings.id_kamar', '=', 'kamar.id')
-            ->join('users', 'bookings.id_user', '=', 'users.id')
             ->join('pelanggan', 'bookings.id_pelanggan', '=', 'pelanggan.id')
             ->where('pelanggan.customer_name', 'like', '%' . $keyword . '%')
             ->orWhere('pelanggan.no_ktp', 'like', '%' . $keyword . '%')
