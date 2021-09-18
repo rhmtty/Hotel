@@ -24,49 +24,53 @@ class TransactionController extends Controller
         // return view('transaction.transaction');
     }
 
-    public function payment($invoice)
+    public function payment(Request $request, $invoice)
     {
         $trx = Booking::invoice($invoice);
 
-        $payloads = [
-            "username" => "LI307GXIN",
-            "pin" => "2K2NPCBBNNTovgB",
-            "bankcode" => $trx->kode_bank,
-            "accountnumber" => "1234566788234",
-            "amount" => $trx->amount,
-            "partner_reff" => $trx->invoice
-        ];
+        if ($request->isMethod('POST')) {
+            $payloads = [
+                "username" => $request->username,
+                "pin" => $request->pin,
+                "bankcode" => $trx->kode_bank,
+                "accountnumber" => $request->accountNumber,
+                "amount" => $trx->amount,
+                "partner_reff" => $trx->invoice
+            ];
 
-        $response = json_encode($payloads);
-        dd($response);
+            $response = json_encode($payloads);
+            $isSuccess = ApiController::inquiryTransferBankAPI($response);
+            $jsonDecode = json_decode($isSuccess);
 
-        $isSuccess = ApiController::inquiryTransferBankAPI($response);
-        $jsonDecode = json_decode($isSuccess);
+            if ($jsonDecode->status == '') {
+                $dataTf = [
+                    "username" => $payloads['username'],
+                    "pin" => $payloads['pin'],
+                    "bankcode" => $payloads['bankcode'],
+                    "accountnumber" => $payloads['accountnumber'],
+                    "amount" => $payloads['amount'],
+                    "partner_reff" => $payloads['partner_reff'],
+                    "inquiry_reff" => "70291"
+                ];
 
-        if ($jsonDecode->status == 'SUCCESS') {
-            // $retail_payment = new Ewallet();
-            // $retail_payment->amount = $request->amount;
-            // $retail_payment->retail_code = $payloads['retail_code'];
-            // $retail_payment->expired = $payloads['expired'];
-            // $retail_payment->partner_reff = $payloads['partner_reff'];
-            // $retail_payment->ewallet_phone = $payloads['ewallet_phone'];
-            // $retail_payment->bill_title = $payloads['bill_title'];
-            // $retail_payment->item_name = $payloads['item_name'];
-            // $retail_payment->item_image_url = $payloads['item_image_url'];
-            // $retail_payment->item_price = $payloads['item_price'];
-            // $retail_payment->save();
+                $response = json_encode($dataTf);
+                $isSuccess = ApiController::paymentTfBankAPI($response);
+                $jsonDecode = json_decode($isSuccess);
 
-            // $customer = new Pelanggan();
-            // $customer->customer_id = $payloads['customer_id'];
-            // $customer->customer_name = $payloads['customer_name'];
-            // $customer->username = $payloads['username'];
-            // $customer->pin = $payloads['pin'];
-            // $customer->customer_phone = $payloads['customer_phone'];
-            // $customer->customer_email = $payloads['customer_email'];
-            // $customer->save();
+                $booking = Booking::where('invoice', $invoice)->first();
+                $booking->exists = true;
+                $booking->status = $jsonDecode->status;
+                $booking->update();
 
-            return back()->with('success', 'Data sukses di tambah! ' . $jsonDecode->response_desc);
+                return back()->with('success', 'Pembayaran ' . $jsonDecode->response_desc . '!');
+            }
+            return back()->with('failed', 'Pembayaran gagal ' . $jsonDecode->response_desc . '!');
         }
-        return back()->with('failed', 'Data gagal di tambah! ' . $jsonDecode->response_desc);
+
+        return view('transaction.payment', compact('trx'));
+    }
+
+    public function checkTrxStatus(Request $request)
+    {
     }
 }

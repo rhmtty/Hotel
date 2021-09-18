@@ -284,4 +284,61 @@ class ApiController extends Controller
         curl_close($curl);
         return $response;
     }
+
+    public static function paymentTfBankAPI($data)
+    {
+        $url_api = 'https://gateway-dev.linkqu.id';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url_api . '/linkqu-partner/transaction/withdraw/payment',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'client-id: testing',
+                'client-secret: 123'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+    }
+
+    public static function checkTrxStatusAPI($params)
+    {
+        $url_api = 'https://gateway-dev.linkqu.id';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url_api . '/linkqu-partner/transaction/withdraw/payment?username={{username}}&pin={{pin}}&bankcode=014&accountnumber=8210310011&amount=10000&partner_reff=23213233333&inquiry_reff=71557&remark=',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: text/plain',
+                'client-id: testing',
+                'client-secret: 123'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+    }
 }

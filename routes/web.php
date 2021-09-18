@@ -57,6 +57,7 @@ Route::group(['prefix' => 'transaction'], function () {
     Route::get('/pesanan-saya/', 'TransactionController@customerTransaction');
     Route::get('/pesanan-saya/{invoice}', 'TransactionController@customerTransaction');
     Route::get('/payment/{invoice}', 'TransactionController@payment');
+    Route::post('/payment/{invoice}', 'TransactionController@payment');
 });
 
 /**

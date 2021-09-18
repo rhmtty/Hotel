@@ -53,23 +53,23 @@
             <th>Check In</th>
             <th>Check Out</th>
             <th>Total</th>
-            {{-- <th>Operator</th> --}}
             <th>Status</th>
+            <th>Invoice</th>
             <th width="12%">Aksi</th>
           </tr>
         </thead>
         <tbody>
         @foreach($book as $result)
           <tr class="@if($result->active == 0) table-danger @endif">
-            <td>No. {{$result->nomer_kamar}}</td>
-            <td>{{$result->tipe_kamar}}</td>
-            <td>{{$result->nama_pelanggan}}</td>
-            <td>{{$result->lama_menginap}} Hari</td>
-            <td>{{date('d-m-Y', strtotime($result->checkin_time))}}</td>
-            <td>{{date('d-m-Y', strtotime($result->checkout_time))}}</td>
-            <td>Rp.{{ number_format($result->amount)}}</td>
-            {{-- <td>{{$result->operator}}</td> --}}
-            <td>{{$result->active == 1 ? 'Check In' : 'Check Out'}}</td>
+            <td>No. {{$result->nomer_kamar }}</td>
+            <td>{{ $result->tipe_kamar }}</td>
+            <td>{{ $result->nama_pelanggan }}</td>
+            <td>{{ $result->lama_menginap }} Hari</td>
+            <td>{{ date('d-m-Y', strtotime($result->checkin_time)) }}</td>
+            <td>{{ date('d-m-Y', strtotime($result->checkout_time)) }}</td>
+            <td>IDR.{{  number_format($result->amount) }}</td>
+            <td>{{ $result->active == 1 ? 'Check In' : 'Check Out' }}</td>
+            <td>{{  $result->invoice }}</td>
             <td>
               @if($result->active == 1)
                 <a href="{{ url('/booking/edit/'.$result->id) }}"><i class="fa fa-pencil"></i></a>

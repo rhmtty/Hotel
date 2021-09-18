@@ -24,7 +24,8 @@ class CreateBookingsTable extends Migration
             $table->double('amount');
             $table->integer('lama_menginap');
             $table->integer('active');
-            $table->integer('invoice');
+            $table->bigInteger('invoice');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

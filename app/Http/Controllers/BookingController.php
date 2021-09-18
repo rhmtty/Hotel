@@ -79,8 +79,6 @@ class BookingController extends Controller
         $pelanggan = new Pelanggan();
         $pelanggan->customer_id = uniqid();
         $pelanggan->customer_name = $request->customer_name;
-        // $pelanggan->username = $request->username;
-        // $pelanggan->pin = $request->pin;
         $pelanggan->customer_phone = $request->customer_phone;
         $pelanggan->customer_email = $request->customer_email;
         $pelanggan->no_ktp = $request->no_ktp;
@@ -89,6 +87,10 @@ class BookingController extends Controller
         $pelanggan->jenis_kelamin = $request->jenis_kelamin;
         $pelanggan->save();
 
+        /**
+         * Blok kode untuk menghitung jumlah hari 
+         * 
+         */
         $tglCekin = new DateTime($request->checkin);
         $tglCekout = new DateTime($request->checkout);
         $jumlah_hari = $tglCekin->diff($tglCekout);
@@ -100,7 +102,9 @@ class BookingController extends Controller
 
         $id_pelanggan = $pelanggan::where('customer_name', $request->customer_name)->value('id');
 
-        $invoice = date('Ymd') . rand(0, 99);
+        $date = new DateTime();
+        $formattedDate = $date->format('YmdHis');
+        $invoice = $formattedDate . rand(0, 99);
 
         // MENYIMPAN DATA KE TABEL BOOKING
         $book = new Booking();
