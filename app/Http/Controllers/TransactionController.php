@@ -10,18 +10,15 @@ class TransactionController extends Controller
     public function customerTransaction($invoice = null, Request $request)
     {
         $keyword = $request->search_customer_trx;
+        $trx = Booking::invoice($invoice);
 
         if ($keyword) {
             $trx = Booking::invoice($keyword);
 
             return view('transaction.transaction', compact('trx'));
-        } elseif (!$keyword) {
-            $trx = Booking::invoice($invoice);
-
-            return view('transaction.transaction', compact('trx'));
         }
 
-        // return view('transaction.transaction');
+        return view('transaction.transaction', compact('trx'));
     }
 
     public function payment(Request $request, $invoice)
@@ -72,5 +69,6 @@ class TransactionController extends Controller
 
     public function checkTrxStatus(Request $request)
     {
+        return view('transaction.check-trx');
     }
 }

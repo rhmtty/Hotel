@@ -7,7 +7,7 @@
   <!-- menu profile quick info -->
   <div class="profile clearfix">
     <div class="profile_pic">
-        <img src="{{ url('assets/images/avatar.png') }}" alt="{{ Auth::user() ? Auth::user()->fullname : '' }}" class="img-circle profile_img">
+      <img src="{{ url('assets/images/avatar.png') }}" alt="{{ Auth::user() ? Auth::user()->fullname : '' }}" class="img-circle profile_img">
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
@@ -61,6 +61,7 @@
         <li><a><i class="fa fa-shopping-cart"></i>Transaksi<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{url('/transaction/pesanan-saya/')}}">Pesanan Saya</a></li>
+            <li><a href="{{url('/transaction/payment/check-trx/')}}">Cek Status Transaksi</a></li>
           </ul>
         </li>
       </ul>

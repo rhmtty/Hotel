@@ -85,7 +85,7 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            <div class="col-md-12 col-md-offset-10">
+                            <div class="col-md-offset-10">
                                 <button type="button" class="btn btn-primary" onclick="history.back()">Cancel</button>
                                 <button type="submit" class="btn btn-success" {{$booking->active == 0 ? 'disabled' : ''}}>Submit</button>
                             </div>

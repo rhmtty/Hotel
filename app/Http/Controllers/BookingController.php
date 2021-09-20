@@ -197,7 +197,6 @@ class BookingController extends Controller
              * Tampil Check Out
              */
             $booking = Booking::DataCheckOut($invoice);
-            dd($booking);
 
             return view('booking.checkout', compact('booking'));
         } elseif ($request->isMethod('POST')) {
