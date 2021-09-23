@@ -34,6 +34,21 @@ class BookingController extends Controller
 
         return $msg;
     }
+    
+    public function validationRules(){
+        return $rules = [
+                'customer_name' => 'bail|required|min:1|max:20|alpha',
+                'no_ktp' => 'required|min:1|numeric',
+                'customer_phone' => 'required|numeric',
+                'customer_address' => 'required',
+                'customer_email' => 'required|email',
+                'kamar' => 'required',
+                'checkin' => 'required|date|after_or_equal:today',
+                'checkout' => 'required|date|after_or_equal:checkin',
+                'pembayaranBank' => 'required_without:pembayaranEmoney',
+                'pembayaranEmoney' => 'required_without:pembayaranBank'
+            ];
+    }
 
     /**
      * Tampil data booking
@@ -62,18 +77,7 @@ class BookingController extends Controller
      */
     public function postNew(Request $request)
     {
-        $request->validate([
-            'customer_name' => 'bail|required|min:1|max:20|alpha',
-            'no_ktp' => 'required|min:1|numeric',
-            'customer_phone' => 'required|numeric',
-            'customer_address' => 'required',
-            'customer_email' => 'required|email',
-            'kamar' => 'required',
-            'checkin' => 'required|date|after_or_equal:today',
-            'checkout' => 'required|date|after_or_equal:checkin',
-            'pembayaranBank' => 'required_without:pembayaranEmoney',
-            'pembayaranEmoney' => 'required_without:pembayaranBank'
-        ], $this->validationMessage());
+        $request->validate($this->validationRules(), $this->validationMessage());
 
         // SIMPAN DATA KE TABEL PELANGGAN
         $pelanggan = new Pelanggan();
